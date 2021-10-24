@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [src, setSrc] = useState();
+
+    const [isChecked, setIsChecked] = useState(true);
+
+    const onChange = (event) => {
+        const file = event.target.files[0];
+
+        setSrc(URL.createObjectURL(file));
+    }
+
+
+    return (
+        <div>
+            <input onChange={onChange} type="file"/>
+            <input onChange={event => setIsChecked(event.target.checked)} checked={isChecked} type="checkbox"/>
+            <div style={{
+                width: '1000px',
+                height: '1000px'
+            }}>
+                <model-viewer
+                    style={{
+                        width: '100%',
+                        height: '100%'
+                    }}
+                    alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
+                    src={src}
+                    camera-controls={false}
+                />
+            </div>
+        </div>
+    )
 }
 
 export default App;
