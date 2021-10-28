@@ -8,6 +8,15 @@ import { useForm } from "react-hook-form";
 function App() {
   const [src, setSrc] = useState("");
 
+  const [orbit, setOrbit] = useState("45deg 55deg 2.5m");
+
+  useEffect(() => {
+    if (!src) return;
+    setTimeout(() => {
+      setOrbit("25deg 25deg 1.5m");
+    }, 3000);
+  }, [src]);
+
   const { watch, control } = useForm({
     defaultValues: {
       cameraControls: true,
@@ -30,6 +39,7 @@ function App() {
             baseColor={watch("baseColor")}
             disableZoom={watch("disableZoom")}
             cameraControls={watch("cameraControls")}
+            cameraOrbit={orbit}
             src={src}
           />
         </div>
