@@ -42,7 +42,7 @@ function App() {
             cameraOrbit={orbit}
             src={src}
             orientation = {[10,20,3]}
-            scale = {[1.5,1,1.5]}
+            scale = {[1.5,1,1]}
           />
         </div>
         <div>
