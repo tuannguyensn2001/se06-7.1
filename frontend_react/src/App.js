@@ -41,8 +41,8 @@ function App() {
             cameraControls={watch("cameraControls")}
             cameraOrbit={orbit}
             src={src}
-            orientation = {[10,2,3]}
-            scale = {[1,1,1]}
+            orientation = {[10,20,3]}
+            scale = {[1.5,1,1.5]}
           />
         </div>
         <div>
