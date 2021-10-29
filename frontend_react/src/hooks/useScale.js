@@ -5,8 +5,8 @@ export default function useScale(model,scale) {
 
     useEffect(() => {
 
-        if (CheckArray(scale,scale.length) === false) return;
-        model.current.scale = (`${scale[0]}deg ${scale[1]}deg ${scale[2]}deg`)
+        if (CheckArray(scale) === false) return;
+        model.current.scale = (`${scale[0]} ${scale[1]} ${scale[2]}`)
     },[scale])
   
 }
