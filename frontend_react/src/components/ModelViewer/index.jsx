@@ -8,9 +8,6 @@ function ModelViewer(props) {
       style={{ width: "100%", height: "100%" }}
       ref={model}
       src={props.src}
-      camera-orbit={props.cameraOrbit}
-      autoRotate={true}
-      transform={[1, 2, 3]}
     >
       {!!props.children && props.children}
     </model-viewer>
