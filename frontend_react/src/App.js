@@ -40,23 +40,19 @@ function App() {
             baseColor={watch("baseColor")}
             disableZoom={watch("disableZoom")}
             cameraControls={watch("cameraControls")}
+            cameraOrbit={orbit}
             src={src}
+            orientation = {[1,2,3]}
+            scale = {[1,1,1]}
           >
-            {/*<Hotspot*/}
-            {/*  slot={"handle"}*/}
-            {/*  position={[1, 1, 1]}*/}
-            {/*  normal={[-0.73, 0.05, 0.69]}*/}
-            {/*>*/}
-            {/*  <button>Click me</button>*/}
-            {/*</Hotspot>*/}
             {!!src && (
-              <button
-                slot="hotspot-hand"
-                data-position="-0.54 0.93 0.1"
-                data-normal="-0.73 0.05 0.69"
-              >
-                <div id="annotation">This hotspot disappears completely</div>
-              </button>
+                <button
+                    slot="hotspot-hand"
+                    data-position="-0.54 0.93 0.1"
+                    data-normal="-0.73 0.05 0.69"
+                >
+                  <div id="annotation">This hotspot disappears completely</div>
+                </button>
             )}
           </ModelViewer>
         </div>
