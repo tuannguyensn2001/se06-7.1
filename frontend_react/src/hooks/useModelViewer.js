@@ -4,6 +4,12 @@ import useBaseColor from "@/hooks/useBaseColor";
 import useDisableZoom from "@/hooks/useDisableZoom";
 import useOrientation from "./useOrientation";
 import useScale from "./useScale";
+import useAutoRotate from "@/hooks/useAutoRotate";
+import useCameraOrbit from "./useCameraOrbit";
+import useInterpolationDecay from "./useInterpolationDecay";
+import useCameraTarget from "./useCameraTarget";
+import useTurnSkybox from "./useTurnSkybox";
+import usePan from "./usePan";
 
 export default function useModelViewer({
   children,
@@ -14,6 +20,11 @@ export default function useModelViewer({
   orientation,
   scale,
   cameraOrbit,
+  autoRotate,
+  interpolationDecay,
+  cameraTarget,
+  pan,
+  srcSkybox,
 }) {
 
   const model = useRef(null);
@@ -27,6 +38,18 @@ export default function useModelViewer({
   useOrientation(model,orientation);
 
   useScale(model,scale);
+
+  useAutoRotate(model, autoRotate);
+
+  useCameraOrbit(model, cameraOrbit);
+
+  useCameraTarget(model, cameraTarget);
+
+  useInterpolationDecay(model, interpolationDecay);
+
+  usePan(model, pan);
+
+  useTurnSkybox(model, srcSkybox);
 
   return {
     model,

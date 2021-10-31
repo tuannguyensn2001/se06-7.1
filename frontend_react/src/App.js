@@ -56,19 +56,24 @@ function App() {
             baseColor={watch("baseColor")}
             disableZoom={watch("disableZoom")}
             cameraControls={watch("cameraControls")}
-            cameraOrbit={orbit}
+            cameraOrbit={[1,2,3]}
+            autoRotate={true}
             src={src}
             orientation={orientation}
             scale={orientation}
+            interpolationDecay={[200]}
+            cameraTarget={[0,1,0]}
+            pan={true}
+            srcSkybox={'./asset/whipple_creek_regional_park_04_1k.hdr'}
           >
             {!!src && (
-              <button
-                slot="hotspot-hand"
-                data-position="-0.54 0.93 0.1"
-                data-normal="-0.73 0.05 0.69"
-              >
-                <div id="annotation">This hotspot disappears completely</div>
-              </button>
+                <button
+                    slot="hotspot-hand"
+                    data-position="-0.54 0.93 0.1"
+                    data-normal="-0.73 0.05 0.69"
+                >
+                  <div id="annotation">This hotspot disappears completely</div>
+                </button>
             )}
           </ModelViewer>
         </div>
