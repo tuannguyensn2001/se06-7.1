@@ -11,12 +11,28 @@ function App() {
 
   const [orbit, setOrbit] = useState("45deg 55deg 2.5m");
 
+  const [orientation, setOrientation] = useState([1, 2, 3]);
+
   useEffect(() => {
     if (!src) return;
     setTimeout(() => {
       setOrbit("25deg 25deg 1.5m");
     }, 3000);
   }, [src]);
+
+  useEffect(() => {
+    if (!src) return;
+
+    let interval = setInterval(() => {
+      setOrientation((prevState) => {
+        const [a, b, c] = orientation;
+        return [a + 1, b + 1, c + 1];
+      });
+    }, 2000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [orientation, src]);
 
   const { watch, control } = useForm({
     defaultValues: {
@@ -42,17 +58,17 @@ function App() {
             cameraControls={watch("cameraControls")}
             cameraOrbit={orbit}
             src={src}
-            orientation = {[1,2,3]}
-            scale = {[1,1,1]}
+            orientation={orientation}
+            scale={orientation}
           >
             {!!src && (
-                <button
-                    slot="hotspot-hand"
-                    data-position="-0.54 0.93 0.1"
-                    data-normal="-0.73 0.05 0.69"
-                >
-                  <div id="annotation">This hotspot disappears completely</div>
-                </button>
+              <button
+                slot="hotspot-hand"
+                data-position="-0.54 0.93 0.1"
+                data-normal="-0.73 0.05 0.69"
+              >
+                <div id="annotation">This hotspot disappears completely</div>
+              </button>
             )}
           </ModelViewer>
         </div>
