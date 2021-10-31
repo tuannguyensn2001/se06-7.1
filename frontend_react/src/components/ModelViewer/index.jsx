@@ -9,8 +9,7 @@ function ModelViewer(props) {
       ref={model}
       src={props.src}
       camera-orbit={props.cameraOrbit}
-      autoRotate={true}
-      transform={[1, 2, 3]}
+      // skybox-image={props.srcSkybox}
     >
       {!!props.children && props.children}
     </model-viewer>

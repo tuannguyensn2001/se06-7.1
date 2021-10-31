@@ -7,16 +7,7 @@ import { useForm } from "react-hook-form";
 
 function App() {
   const [src, setSrc] = useState("");
-
-  const [orbit, setOrbit] = useState("45deg 55deg 2.5m");
-
-  useEffect(() => {
-    if (!src) return;
-    setTimeout(() => {
-      setOrbit("25deg 25deg 1.5m");
-    }, 3000);
-  }, [src]);
-
+  // const [skybox, setSkybox] = useState("");
   const { watch, control } = useForm({
     defaultValues: {
       cameraControls: true,
@@ -28,19 +19,32 @@ function App() {
     setSrc(URL.createObjectURL(info));
   };
 
+  // const handleSky = (info) => {
+  //   setSkybox(URL.createObjectURL(info));
+  // };
+
+
   return (
     <div>
       <Upload beforeUpload={handleChangeFile}>
         <Button>Click to Upload</Button>
       </Upload>
+      {/* <Upload beforeUpload={handleSky}>
+        <Button>Click to Sky</Button>
+      </Upload> */}
       <WrapperStyled>
         <div>
           <ModelViewer
             baseColor={watch("baseColor")}
             disableZoom={watch("disableZoom")}
             cameraControls={watch("cameraControls")}
-            cameraOrbit={orbit}
+            cameraOrbit={[1,2,3]}
+            autoRotate={true}
             src={src}
+            interpolationDecay={[200]}
+            cameraTarget={[0,1,0]}
+            pan={true}
+            srcSkybox={'./asset/whipple_creek_regional_park_04_1k.hdr'}
           />
         </div>
         <div>
