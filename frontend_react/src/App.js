@@ -56,9 +56,10 @@ function App() {
             baseColor={watch("baseColor")}
             disableZoom={watch("disableZoom")}
             cameraControls={watch("cameraControls")}
-            autoRotate={true}
+            autoRotate={false}
             src={src}
-            srcSkybox={"./asset/whipple_creek_regional_park_04_1k.hdr"}
+            srcSkybox={"./asset/aircraft_workshop_01_1k.hdr"}
+            orbitSensitivity={[500]}
           >
             {!!src && (
               <button

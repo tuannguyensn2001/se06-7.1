@@ -10,6 +10,7 @@ import useInterpolationDecay from "./useInterpolationDecay";
 import useCameraTarget from "./useCameraTarget";
 import useTurnSkybox from "./useTurnSkybox";
 import usePan from "./usePan";
+import useOrbitSensitivity from "@/useOrbitSensitivity";
 
 export default function useModelViewer({
   children,
@@ -25,6 +26,7 @@ export default function useModelViewer({
   cameraTarget,
   pan,
   srcSkybox,
+  orbitSensitivity
 }) {
 
   const model = useRef(null);
@@ -50,6 +52,8 @@ export default function useModelViewer({
   usePan(model, pan);
 
   useTurnSkybox(model, srcSkybox);
+
+  useOrbitSensitivity(model, orbitSensitivity, autoRotate);
 
   return {
     model,
