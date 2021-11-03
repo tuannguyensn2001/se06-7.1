@@ -9,7 +9,6 @@ function ModelViewer(props) {
       ref={model}
       src={props.src}
       camera-orbit={props.cameraOrbit}
-      autoRotate={true}
     >
       {!!props.children && props.children}
     </model-viewer>

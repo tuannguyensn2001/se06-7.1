@@ -20,19 +20,19 @@ function App() {
     }, 3000);
   }, [src]);
 
-  useEffect(() => {
-    if (!src) return;
+  // useEffect(() => {
+  //   if (!src) return;
 
-    let interval = setInterval(() => {
-      setOrientation((prevState) => {
-        const [a, b, c] = orientation;
-        return [a + 1, b + 1, c + 1];
-      });
-    }, 2000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [orientation, src]);
+  //   let interval = setInterval(() => {
+  //     setOrientation((prevState) => {
+  //       const [a, b, c] = orientation;
+  //       return [a + 1, b + 1, c + 1];
+  //     });
+  //   }, 2000);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [orientation, src]);
 
   const { watch, control } = useForm({
     defaultValues: {
@@ -56,9 +56,17 @@ function App() {
             baseColor={watch("baseColor")}
             disableZoom={watch("disableZoom")}
             cameraControls={watch("cameraControls")}
-            autoRotate={true}
+            autoRotate={false}
             src={src}
-            srcSkybox={"./asset/whipple_creek_regional_park_04_1k.hdr"}
+            srcSkybox={"./asset/aircraft_workshop_01_1k.hdr"}
+            //autoRotateDelay={[30000]}
+            //rotationPerSecond={[10]} 
+            //interactionPolicy={'allow-when-focused'} 
+            //fieldOfView={[10]}
+            //maxCameraOrbit={[0,180,0]}
+            //minCameraOrbit={[0,180,180]}
+            maxFieldOfView={[180]}
+            minFieldOfView={[10]}
           >
             {!!src && (
               <button

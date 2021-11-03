@@ -7,5 +7,7 @@ export default function useAutoRotate(model, autoRotate) {
     autoRotate
       ? model.current.setAttribute("auto-rotate", "true")
       : model.current.removeAttribute("auto-rotate");
+
+    // console.log("autoRotate", autoRotate);
   }, [autoRotate]);
 }
