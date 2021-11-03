@@ -10,7 +10,14 @@ import useInterpolationDecay from "./useInterpolationDecay";
 import useCameraTarget from "./useCameraTarget";
 import useTurnSkybox from "./useTurnSkybox";
 import usePan from "./usePan";
-import useOrbitSensitivity from "@/useOrbitSensitivity";
+import useAutoRotateDelay from "@/hooks/useAutoRotateDelay";
+import useRotationPerSecond from "./useRotationPerSecond";
+import useInteractionPolicy from "./useInteractionPolicy";
+import useFieldOfView from "./useFieldOfView";
+import useMaxCameraOrbit from "./useMaxCameraOrbit";
+import useMinCameraOrbit from "./useMinCameraOrbit";
+import useMaxFieldOfView from "./useMaxFieldOfView";
+import useMinFieldOfView from "./useMinFieldOfView";
 
 export default function useModelViewer({
   children,
@@ -26,7 +33,14 @@ export default function useModelViewer({
   cameraTarget,
   pan,
   srcSkybox,
-  orbitSensitivity
+  autoRotateDelay,
+  rotationPerSecond,
+  interactionPolicy,
+  fieldOfView,
+  maxCameraOrbit,
+  minCameraOrbit,
+  maxFieldOfView,
+  minFieldOfView,
 }) {
 
   const model = useRef(null);
@@ -37,9 +51,9 @@ export default function useModelViewer({
 
   useDisableZoom(model, disableZoom);
 
-  useOrientation(model,orientation);
+  useOrientation(model, orientation);
 
-  useScale(model,scale);
+  useScale(model, scale);
 
   useAutoRotate(model, autoRotate);
 
@@ -53,7 +67,21 @@ export default function useModelViewer({
 
   useTurnSkybox(model, srcSkybox);
 
-  useOrbitSensitivity(model, orbitSensitivity, autoRotate);
+  useAutoRotateDelay(model, autoRotateDelay, autoRotate);
+
+  useRotationPerSecond(model, rotationPerSecond, autoRotate);
+
+  useInteractionPolicy(model, interactionPolicy);
+
+  useFieldOfView(model, fieldOfView);
+
+  useMaxCameraOrbit(model, maxCameraOrbit);
+
+  useMinCameraOrbit(model, minCameraOrbit);
+
+  useMaxFieldOfView(model, maxFieldOfView, disableZoom);
+
+  useMinFieldOfView(model, minFieldOfView, disableZoom);
 
   return {
     model,
