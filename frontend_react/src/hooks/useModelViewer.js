@@ -10,7 +10,11 @@ import useInterpolationDecay from "./useInterpolationDecay";
 import useCameraTarget from "./useCameraTarget";
 import useTurnSkybox from "./useTurnSkybox";
 import usePan from "./usePan";
-
+import useExposure from "./useExposure";
+import useShadowIntensity from "./useShadowIntensity"
+import useEnvironmentImage from "./useEnvironmentImage";
+import useMetalness from "./useMetalness";
+import useRoughness from "./useRoughness";
 export default function useModelViewer({
   children,
   src,
@@ -25,6 +29,12 @@ export default function useModelViewer({
   cameraTarget,
   pan,
   srcSkybox,
+  poster,
+  exposure,
+  shadowIntensity,
+  envImage,
+  metalness,
+  roughness
 }) {
 
   const model = useRef(null);
@@ -50,6 +60,18 @@ export default function useModelViewer({
   usePan(model, pan);
 
   useTurnSkybox(model, srcSkybox);
+
+  // Kiểm soát độ sáng cho cả model và cả khung
+  useExposure(model,exposure);
+
+  // Chỉnh độ opacity của bóng model
+  useShadowIntensity(model,shadowIntensity)
+
+  useEnvironmentImage(model,envImage);
+
+  useMetalness(model,metalness);
+
+  useRoughness(model,roughness);
 
   return {
     model,

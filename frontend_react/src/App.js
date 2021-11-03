@@ -13,6 +13,7 @@ function App() {
 
   const [orientation, setOrientation] = useState([1, 2, 3]);
 
+  const [poster , setPoster] = useState("");
   useEffect(() => {
     if (!src) return;
     setTimeout(() => {
@@ -42,7 +43,11 @@ function App() {
   });
 
   const handleChangeFile = (info) => {
-    setSrc(URL.createObjectURL(info));
+    setPoster("./asset/smash-3.jpg")
+    setTimeout(() =>{
+
+      setSrc(URL.createObjectURL(info));
+    },1000)
   };
 
   return (
@@ -56,9 +61,17 @@ function App() {
             baseColor={watch("baseColor")}
             disableZoom={watch("disableZoom")}
             cameraControls={watch("cameraControls")}
+            // Thêm alt
+            alt = ""
             autoRotate={true}
             src={src}
-            srcSkybox={"./asset/whipple_creek_regional_park_04_1k.hdr"}
+            shadowIntensity = {[3]}
+            srcSkybox = {"./asset/neutral.hdr"}
+            envImage = {"./asset/smash-3.jpg"}
+            poster = {poster}
+            roughness = {[0.5]}
+            metalness = {[0.3]}
+            scale = {[2,1,1.5]}
           >
             {!!src && (
               <button
