@@ -38,6 +38,7 @@ function App() {
     defaultValues: {
       cameraControls: true,
       disableZoom: false,
+      autoRotate: false,
     },
   });
 
@@ -56,17 +57,21 @@ function App() {
             baseColor={watch("baseColor")}
             disableZoom={watch("disableZoom")}
             cameraControls={watch("cameraControls")}
-            autoRotate={false}
+            autoRotate={watch("autoRotate")}
             src={src}
             srcSkybox={"./asset/aircraft_workshop_01_1k.hdr"}
-            //autoRotateDelay={[30000]}
-            //rotationPerSecond={[10]} 
-            //interactionPolicy={'allow-when-focused'} 
-            //fieldOfView={[10]}
-            //maxCameraOrbit={[0,180,0]}
-            //minCameraOrbit={[0,180,180]}
-            maxFieldOfView={[180]}
-            minFieldOfView={[10]}
+            autoRotateDelay={[watch("autoRotateDelay")]}
+            cameraOrbit={[watch("cameraOrbit1"), watch("cameraOrbit2"), watch("cameraOrbit3")]}
+            cameraTarget={[watch("cameraTarget1"), watch("cameraTarget2"), watch("cameraTarget3")]}
+            rotationPerSecond={[watch("rotationPerSecond")]}
+            interactionPolicy={watch("interactionPolicy")}
+            fieldOfView={[watch("fieldOfView")]}
+            maxCameraOrbit={[watch("maxCameraOrbit1"), watch("maxCameraOrbit2"), watch("maxCameraOrbit3")]}
+            minCameraOrbit={[watch("minCameraOrbit1"), watch("minCameraOrbit2"), watch("minCameraOrbit3")]}
+            maxFieldOfView={[watch("maxFieldOfView")]}
+            minFieldOfView={[watch("maxFieldOfView")]}
+            interpolationDecay={[watch("interpolationDecay")]}
+
           >
             {!!src && (
               <button
