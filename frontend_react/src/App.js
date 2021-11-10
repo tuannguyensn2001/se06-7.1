@@ -13,7 +13,6 @@ function App() {
 
   const [orientation, setOrientation] = useState([1, 2, 3]);
 
-  const [poster , setPoster] = useState("");
   useEffect(() => {
     if (!src) return;
     setTimeout(() => {
@@ -21,33 +20,30 @@ function App() {
     }, 3000);
   }, [src]);
 
-  useEffect(() => {
-    if (!src) return;
+  // useEffect(() => {
+  //   if (!src) return;
 
-    let interval = setInterval(() => {
-      setOrientation((prevState) => {
-        const [a, b, c] = orientation;
-        return [a + 1, b + 1, c + 1];
-      });
-    }, 2000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [orientation, src]);
+  //   let interval = setInterval(() => {
+  //     setOrientation((prevState) => {
+  //       const [a, b, c] = orientation;
+  //       return [a + 1, b + 1, c + 1];
+  //     });
+  //   }, 2000);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [orientation, src]);
 
-  const { watch, control } = useForm({
-    defaultValues: {
-      cameraControls: true,
-      disableZoom: false,
-    },
-  });
+    const {watch, control} = useForm({
+        defaultValues: {
+            cameraControls: true,
+            disableZoom: false,
+            maxFieldOfView: 60
+        },
+    });
 
   const handleChangeFile = (info) => {
-    setPoster("./asset/smash-3.jpg")
-    setTimeout(() =>{
-
-      setSrc(URL.createObjectURL(info));
-    },1000)
+    setSrc(URL.createObjectURL(info));
   };
 
   return (
@@ -61,17 +57,15 @@ function App() {
             baseColor={watch("baseColor")}
             disableZoom={watch("disableZoom")}
             cameraControls={watch("cameraControls")}
-            // Thêm alt
-            alt = ""
-            autoRotate={true}
+            autoRotate={false}
             src={src}
-            shadowIntensity = {[3]}
-            srcSkybox = {"./asset/neutral.hdr"}
-            envImage = {"./asset/smash-3.jpg"}
-            poster = {poster}
-            roughness = {[0.5]}
-            metalness = {[0.3]}
-            scale = {[2,1,1.5]}
+            srcSkybox={"./asset/aircraft_workshop_01_1k.hdr"}
+            //autoRotateDelay={[30000]}
+            //rotationPerSecond={[10]} 
+            //interactionPolicy={'allow-when-focused'} 
+            //fieldOfView={[10]}
+            //maxCameraOrbit={[0,180,0]}
+            //minCameraOrbit={[0,180,180]}
             maxFieldOfView={[180]}
             minFieldOfView={[10]}
           >
