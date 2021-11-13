@@ -38,7 +38,6 @@ function App() {
         defaultValues: {
             cameraControls: true,
             disableZoom: false,
-            maxFieldOfView: 60,
             autoRotate: false,
         },
     });
@@ -86,7 +85,7 @@ function App() {
           </ModelViewer>
         </div>
         <div>
-          <SettingsCamera control={control} />
+          <SettingsCamera control={control} watch={watch} />
         </div>
       </WrapperStyled>
     </div>
