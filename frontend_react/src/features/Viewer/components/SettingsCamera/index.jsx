@@ -16,18 +16,18 @@ import FormItem from "antd/lib/form/FormItem";
 import Form from "antd/lib/form/FormItem";
 import CollapsePanel from "antd/lib/collapse/CollapsePanel";
 
-function SettingsCamera({ control, watch }) {
-  const InputNumberComponent = styled(InputNumber)`
-    width: 80px;
-    margin-left: 8px;
-    margin-bottom: 8px;
-  `;
-  const SelectComponent = styled(Select)`
-    width: 80px;
-    margin-left: 8px;
-    margin-bottom: 8px;
-  `;
+const InputNumberComponent = styled(InputNumber)`
+  //width: 80px;
+  //margin-left: 8px;
+  //margin-bottom: 8px;
+`;
+const SelectComponent = styled(Select)`
+  //width: 80px;
+  //margin-left: 8px;
+  //margin-bottom: 8px;
+`;
 
+function SettingsCamera({ control, watch }) {
   const { Panel } = Collapse;
 
   return (
@@ -93,17 +93,20 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     Delay
-                    <InputNumberComponent  {...field}
-                      size="small" min={0}
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
                       disabled={!watch("autoRotate")}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
                   </FormItemInput>
                 )}
               />
             </Panel>
           </Collapse>
-          
+
           <Collapse defaultActiveKey="1">
             <Panel header="Rotation Per Second" key="0">
               <Controller
@@ -112,65 +115,76 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     Second
-                    <InputNumberComponent  {...field}
-                      size="small" min={0}
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
                       disabled={!watch("autoRotate")}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
             </Panel>
           </Collapse>
-          
         </Panel>
       </Collapse>
-      
+
       <Collapse>
         <Panel header="Camera" key="1">
           {/* orbit */}
           <Collapse defaultActiveKey="1">
             <Panel header="Camera Orbit" key="0">
-                <Controller
-                  control={control}
-                  name={"cameraOrbit1"}
-                  render={({ field }) => (
-                    <FormItemInput >
-                      theta
-                      <InputNumberComponent {...field}
-                        size="small" min={0}
-                        value={field.value} onChange={field.onChange}>
-                      </InputNumberComponent>
-                    </FormItemInput>
-                  )}
-                />
+              <Controller
+                control={control}
+                name={"cameraOrbit1"}
+                render={({ field }) => (
+                  <FormItemInput>
+                    theta
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
+                  </FormItemInput>
+                )}
+              />
 
-                <Controller
-                  control={control}
-                  name={"cameraOrbit2"}
-                  render={({ field }) => (
-                    <FormItemInput>
-                      phi
-                      <InputNumberComponent {...field}
-                        size="small" min={0}
-                        value={field.value} onChange={field.onChange}>
-                      </InputNumberComponent>
-                    </FormItemInput>
-                  )}
-                />
-                <Controller
-                  control={control}
-                  name={"cameraOrbit3"}
-                  render={({ field }) => (
-                    <FormItemInput>
-                      radius
-                      <InputNumberComponent {...field}
-                        size="small" min={0}
-                        value={field.value} onChange={field.onChange}>
-                      </InputNumberComponent>
-                    </FormItemInput>
-                  )}
-                />
+              <Controller
+                control={control}
+                name={"cameraOrbit2"}
+                render={({ field }) => (
+                  <FormItemInput>
+                    phi
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
+                  </FormItemInput>
+                )}
+              />
+              <Controller
+                control={control}
+                name={"cameraOrbit3"}
+                render={({ field }) => (
+                  <FormItemInput>
+                    radius
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
+                  </FormItemInput>
+                )}
+              />
             </Panel>
           </Collapse>
 
@@ -181,12 +195,15 @@ function SettingsCamera({ control, watch }) {
                 control={control}
                 name={"minCameraOrbit1"}
                 render={({ field }) => (
-                  <FormItemInput >
+                  <FormItemInput>
                     theta
-                    <InputNumberComponent {...field}
-                      size="small" min={0}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
@@ -197,10 +214,13 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     phi
-                    <InputNumberComponent {...field}
-                      size="small" min={0}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
@@ -211,29 +231,35 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     radius
-                    <InputNumberComponent {...field}
-                      size="small" min={0}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
             </Panel>
           </Collapse>
 
-          {/* maxorbit */}  
+          {/* maxorbit */}
           <Collapse defaultActiveKey="1">
             <Panel header="Max Camera Orbit" key="0">
               <Controller
                 control={control}
                 name={"maxCameraOrbit1"}
                 render={({ field }) => (
-                  <FormItemInput >
+                  <FormItemInput>
                     theta
-                    <InputNumberComponent {...field}
-                      size="small" min={0}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
@@ -244,10 +270,13 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     phi
-                    <InputNumberComponent {...field}
-                      size="small" min={0}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
@@ -258,16 +287,19 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     radius
-                    <InputNumberComponent {...field}
-                      size="small" min={0}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
             </Panel>
           </Collapse>
-        
+
           {/* target */}
           <Collapse defaultActiveKey="1">
             <Panel header="Camera Target" key="0">
@@ -275,12 +307,15 @@ function SettingsCamera({ control, watch }) {
                 control={control}
                 name={"cameraTarget1"}
                 render={({ field }) => (
-                  <FormItemInput >
+                  <FormItemInput>
                     theta
-                    <InputNumberComponent {...field}
-                      size="small" min={0}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
@@ -291,10 +326,13 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     phi
-                    <InputNumberComponent {...field}
-                      size="small" min={0}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
@@ -305,10 +343,13 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     radius
-                    <InputNumberComponent {...field}
-                      size="small" min={0}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
@@ -323,16 +364,19 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     fieldOfView
-                    <InputNumberComponent  {...field}
-                      size="small" min={0} max={180}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      max={180}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
             </Panel>
           </Collapse>
-
         </Panel>
       </Collapse>
 
@@ -346,8 +390,14 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     Policy
-                    <SelectComponent {...field} style={{ width: 180 }} size="middle" >
-                      <Option value="allow-when-focused">allow-when-focused</Option>
+                    <SelectComponent
+                      {...field}
+                      style={{ width: 180 }}
+                      size="middle"
+                    >
+                      <Option value="allow-when-focused">
+                        allow-when-focused
+                      </Option>
                       <Option value="always-allow">always-allow</Option>
                     </SelectComponent>
                   </FormItemInput>
@@ -364,10 +414,13 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     Decay
-                    <InputNumberComponent  {...field}
-                      size="small" min={0}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
@@ -375,7 +428,6 @@ function SettingsCamera({ control, watch }) {
           </Collapse>
         </Panel>
       </Collapse>
-      
 
       <Collapse>
         <Panel header="Zoom" key="1">
@@ -387,11 +439,14 @@ function SettingsCamera({ control, watch }) {
                 render={({ field }) => (
                   <FormItemInput>
                     maxFieldOfView
-                    <InputNumberComponent  {...field}
-                      size="small" min={0}
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
                       disabled={watch("disableZoom")}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
                   </FormItemInput>
                 )}
               />
@@ -405,259 +460,257 @@ function SettingsCamera({ control, watch }) {
                 name={"minFieldOfView"}
                 render={({ field }) => (
                   <FormItemInput>
-                    minFieldOfView 
-                    <InputNumberComponent  {...field}
-                      size="small" min={0}
+                    minFieldOfView
+                    <InputNumberComponent
+                      {...field}
+                      size="small"
+                      min={0}
                       disabled={watch("disableZoom")}
-                      value={field.value} onChange={field.onChange}>
-                    </InputNumberComponent>
+                      value={field.value}
+                      onChange={field.onChange}
+                    ></InputNumberComponent>
                   </FormItemInput>
                 )}
               />
             </Panel>
           </Collapse>
-
         </Panel>
       </Collapse>
 
-        <Collapse>
-            <CollapsePanel header="Transform">
-                <Collapse>
-                    <CollapsePanel header="Orientation">
-                        <FormItemInput>
-                            <Controller
-                                control={control}
-                                name={"orientationX"}
-                                render={({ field }) => (
-                                    <FormItemInput>
-                                        Roll
-                                        <InputNumberComponent
-                                            {...field}
-                                            size="small"
-                                            min={0}
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                        />
-                                    </FormItemInput>
-                                )}
-                            />
-
-                            <Controller
-                                control={control}
-                                name={"orientationY"}
-                                render={({ field }) => (
-                                    <FormItemInput>
-                                        Pitch
-                                        <InputNumberComponent
-                                            {...field}
-                                            size="small"
-                                            min={0}
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                        />
-                                    </FormItemInput>
-                                )}
-                            />
-
-                            <Controller
-                                control={control}
-                                name={"orientationZ"}
-                                render={({ field }) => (
-                                    <FormItemInput>
-                                        Yaw
-                                        <InputNumberComponent
-                                            {...field}
-                                            size="small"
-                                            min={0}
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                        />
-                                    </FormItemInput>
-                                )}
-                            />
-                        </FormItemInput>
-                    </CollapsePanel>
-                </Collapse>
-
-                <Collapse>
-                    <CollapsePanel header="Scale">
-                        <FormItemInput>
-                            <Controller
-                                control={control}
-                                name={"scaleX"}
-                                render={({ field }) => (
-                                    <FormItemInput>
-                                        Scale X
-                                        <InputNumberComponent
-                                            {...field}
-                                            size="small"
-                                            min={0}
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                        />
-                                    </FormItemInput>
-                                )}
-                            />
-                            <Controller
-                                control={control}
-                                name={"scaleY"}
-                                render={({ field }) => (
-                                    <FormItemInput>
-                                        Scale Y
-                                        <InputNumberComponent
-                                            {...field}
-                                            size="small"
-                                            min={0}
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                        />
-                                    </FormItemInput>
-                                )}
-                            />
-                            <Controller
-                                control={control}
-                                name={"scaleZ"}
-                                render={({ field }) => (
-                                    <FormItemInput>
-                                        ScaleZ
-                                        <InputNumberComponent
-                                            {...field}
-                                            size="small"
-                                            min={0}
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                        />
-                                    </FormItemInput>
-                                )}
-                            />
-                        </FormItemInput>
-                    </CollapsePanel>
-                </Collapse>
-            </CollapsePanel>
-        </Collapse>
-
-        <Collapse>
-            <CollapsePanel header="ChangeMaterial">
-                <FormItemInput>
+      <Collapse>
+        <CollapsePanel header="Transform">
+          <Collapse>
+            <CollapsePanel header="Orientation">
+              <FormItemInput>
+                <Controller
+                  control={control}
+                  name={"orientationX"}
+                  render={({ field }) => (
                     <FormItemInput>
-                        <Controller
-                            control={control}
-                            name="checkMetalness"
-                            render={({ field }) => (
-                                <Checkbox {...field} autoFocus={true} checked={field.value}>
-                                    Tắt/Bật Metalness
-                                </Checkbox>
-                            )}
-                        />
-                        <Controller
-                            control={control}
-                            name={"metalness"}
-                            render={({ field }) => (
-                                <FormItemInput>
-                                    <Slider
-                                        {...field}
-                                        mim={0}
-                                        max={1}
-                                        step={0.01}
-                                        disabled={watch("checkMetalness")}
-                                        value={field.value}
-                                        onChange={field.onChange}
-                                    />
-                                </FormItemInput>
-                            )}
-                        />
+                      Roll
+                      <InputNumberComponent
+                        {...field}
+                        size="small"
+                        min={0}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
                     </FormItemInput>
-
-                    <FormItemInput>
-                        <Controller
-                            control={control}
-                            name="checkRoughness"
-                            render={({ field }) => (
-                                <Checkbox {...field} autoFocus={true} checked={field.value}>
-                                    Tắt/Bật Roughness
-                                </Checkbox>
-                            )}
-                        />
-
-                        <Controller
-                            control={control}
-                            name={"roughness"}
-                            render={({ field }) => (
-                                <FormItemInput>
-                                    <Slider
-                                        {...field}
-                                        mim={0}
-                                        max={1}
-                                        step={0.01}
-                                        disabled={watch("checkRoughness")}
-                                        value={field.value}
-                                        onChange={field.onChange}
-                                    />
-                                </FormItemInput>
-                            )}
-                        />
-                    </FormItemInput>
-                </FormItemInput>
-            </CollapsePanel>
-        </Collapse>
-
-        <Collapse>
-            <CollapsePanel header="Lighting and Enviroment">
-                <FormItemInput>
-                    <Controller
-                        control={control}
-                        name="checkExposure"
-                        render={({ field }) => (
-                            <Checkbox {...field} autoFocus={true} checked={field.value}>
-                                Tắt/Bật Exposure
-                            </Checkbox>
-                        )}
-                    />
-
-                    <Controller
-                        control={control}
-                        name="exposure"
-                        render={({ field }) => (
-                            <FormItemInput>
-                                <Slider
-                                    {...field}
-                                    min={0}
-                                    max={20}
-                                    step={0.01}
-                                    disabled={watch("checkExposure")}
-                                    defaultValue={1}
-                                    value={field.value}
-                                    onChange={field.onChange}
-                                />
-                            </FormItemInput>
-                        )}
-                    />
-                </FormItemInput>
+                  )}
+                />
 
                 <Controller
-                    control={control}
-                    name="shadowIntensity"
-                    render={({ field }) => (
-                        <FormItemInput>
-                            Shadow
-                            <Slider
-                                {...field}
-                                min={0}
-                                max={10}
-                                step={0.01}
-                                value={field.value}
-                                onChange={field.onChange}
-                            />
-                        </FormItemInput>
-                    )}
+                  control={control}
+                  name={"orientationY"}
+                  render={({ field }) => (
+                    <FormItemInput>
+                      Pitch
+                      <InputNumberComponent
+                        {...field}
+                        size="small"
+                        min={0}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    </FormItemInput>
+                  )}
                 />
+
+                <Controller
+                  control={control}
+                  name={"orientationZ"}
+                  render={({ field }) => (
+                    <FormItemInput>
+                      Yaw
+                      <InputNumberComponent
+                        {...field}
+                        size="small"
+                        min={0}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    </FormItemInput>
+                  )}
+                />
+              </FormItemInput>
             </CollapsePanel>
-        </Collapse>
+          </Collapse>
 
-      
+          <Collapse>
+            <CollapsePanel header="Scale">
+              <FormItemInput>
+                <Controller
+                  control={control}
+                  name={"scaleX"}
+                  render={({ field }) => (
+                    <FormItemInput>
+                      Scale X
+                      <InputNumberComponent
+                        {...field}
+                        size="small"
+                        min={0}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    </FormItemInput>
+                  )}
+                />
+                <Controller
+                  control={control}
+                  name={"scaleY"}
+                  render={({ field }) => (
+                    <FormItemInput>
+                      Scale Y
+                      <InputNumberComponent
+                        {...field}
+                        size="small"
+                        min={0}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    </FormItemInput>
+                  )}
+                />
+                <Controller
+                  control={control}
+                  name={"scaleZ"}
+                  render={({ field }) => (
+                    <FormItemInput>
+                      ScaleZ
+                      <InputNumberComponent
+                        {...field}
+                        size="small"
+                        min={0}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    </FormItemInput>
+                  )}
+                />
+              </FormItemInput>
+            </CollapsePanel>
+          </Collapse>
+        </CollapsePanel>
+      </Collapse>
+
+      <Collapse>
+        <CollapsePanel header="ChangeMaterial">
+          <FormItemInput>
+            <FormItemInput>
+              <Controller
+                control={control}
+                name="checkMetalness"
+                render={({ field }) => (
+                  <Checkbox {...field} autoFocus={true} checked={field.value}>
+                    Tắt/Bật Metalness
+                  </Checkbox>
+                )}
+              />
+              <Controller
+                control={control}
+                name={"metalness"}
+                render={({ field }) => (
+                  <FormItemInput>
+                    <Slider
+                      {...field}
+                      mim={0}
+                      max={1}
+                      step={0.01}
+                      disabled={watch("checkMetalness")}
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  </FormItemInput>
+                )}
+              />
+            </FormItemInput>
+
+            <FormItemInput>
+              <Controller
+                control={control}
+                name="checkRoughness"
+                render={({ field }) => (
+                  <Checkbox {...field} autoFocus={true} checked={field.value}>
+                    Tắt/Bật Roughness
+                  </Checkbox>
+                )}
+              />
+
+              <Controller
+                control={control}
+                name={"roughness"}
+                render={({ field }) => (
+                  <FormItemInput>
+                    <Slider
+                      {...field}
+                      mim={0}
+                      max={1}
+                      step={0.01}
+                      disabled={watch("checkRoughness")}
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  </FormItemInput>
+                )}
+              />
+            </FormItemInput>
+          </FormItemInput>
+        </CollapsePanel>
+      </Collapse>
+
+      <Collapse>
+        <CollapsePanel header="Lighting and Enviroment">
+          <FormItemInput>
+            <Controller
+              control={control}
+              name="checkExposure"
+              render={({ field }) => (
+                <Checkbox {...field} autoFocus={true} checked={field.value}>
+                  Tắt/Bật Exposure
+                </Checkbox>
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="exposure"
+              render={({ field }) => (
+                <FormItemInput>
+                  <Slider
+                    {...field}
+                    min={0}
+                    max={20}
+                    step={0.01}
+                    disabled={watch("checkExposure")}
+                    defaultValue={1}
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                </FormItemInput>
+              )}
+            />
+          </FormItemInput>
+
+          <Controller
+            control={control}
+            name="shadowIntensity"
+            render={({ field }) => (
+              <FormItemInput>
+                Shadow
+                <Slider
+                  {...field}
+                  min={0}
+                  max={10}
+                  step={0.01}
+                  value={field.value}
+                  onChange={field.onChange}
+                />
+              </FormItemInput>
+            )}
+          />
+        </CollapsePanel>
+      </Collapse>
     </div>
-
-
   );
 }
 
