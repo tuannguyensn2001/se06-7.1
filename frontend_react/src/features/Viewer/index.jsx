@@ -5,6 +5,7 @@ import { Upload, Button } from "antd";
 import SettingsCamera from "@/features/Viewer/components/SettingsCamera";
 import { useForm } from "react-hook-form";
 import Hotspot from "@/components/Hotspot";
+import axios from "axios";
 
 function Viewer() {
   const [src, setSrc] = useState("");
@@ -21,6 +22,16 @@ function Viewer() {
       setOrbit("25deg 25deg 1.5m");
     }, 3000);
   }, [src]);
+
+  useEffect(() => {
+    axios
+      .get("https://laravel.test:8443/api/test")
+      .then((response) => {
+        const url = response.data.url;
+        setSrc(url);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   // useEffect(() => {
   //   if (!src) return;
