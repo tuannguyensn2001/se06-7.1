@@ -1,25 +1,15 @@
-import {
-  Button,
-  Checkbox,
-  Collapse,
-  InputNumber,
-  Select,
-  Slider,
-  Upload,
-} from "antd";
+import { Checkbox, Collapse, InputNumber, Select, Slider } from "antd";
 import { Controller } from "react-hook-form";
 import { SketchPicker } from "react-color";
 import FormItemInput from "antd/lib/form/FormItemInput";
 import styled from "styled-components";
 import { Option } from "antd/lib/mentions";
-import FormItem from "antd/lib/form/FormItem";
-import Form from "antd/lib/form/FormItem";
 import CollapsePanel from "antd/lib/collapse/CollapsePanel";
 
 const InputNumberComponent = styled(InputNumber)`
-  //width: 80px;
-  //margin-left: 8px;
-  //margin-bottom: 8px;
+  width: 80px;
+  margin-left: 8px;
+  margin-bottom: 8px;
 `;
 const SelectComponent = styled(Select)`
   //width: 80px;

@@ -1,5 +1,6 @@
 import Viewer from "@/features/Viewer";
 import Home from "@/features/Home";
+import Login from "@/features/Auth/pages/Login";
 
 const routes = [
   {
@@ -9,6 +10,10 @@ const routes = [
   {
     path: "/",
     component: <Home />,
+  },
+  {
+    path: "/login",
+    component: <Login />,
   },
 ];
 

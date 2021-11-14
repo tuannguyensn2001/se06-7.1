@@ -8,7 +8,9 @@ import Hotspot from "@/components/Hotspot";
 import axios from "axios";
 
 function Viewer() {
-  const [src, setSrc] = useState("");
+  const [src, setSrc] = useState(
+    "http://backend_laravel.test/storage/model/Horse.glb"
+  );
 
   const [orbit, setOrbit] = useState("45deg 55deg 2.5m");
 
@@ -23,15 +25,15 @@ function Viewer() {
     }, 3000);
   }, [src]);
 
-  useEffect(() => {
-    axios
-      .get("https://laravel.test:8443/api/test")
-      .then((response) => {
-        const url = response.data.url;
-        setSrc(url);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://laravel.test:8443/api/test")
+  //     .then((response) => {
+  //       const url = response.data.url;
+  //       setSrc(url);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   // useEffect(() => {
   //   if (!src) return;
@@ -82,7 +84,7 @@ function Viewer() {
             autoRotate={watch("autoRotate")}
             src={src}
             poster={poster}
-            // srcSkybox={"./asset/whipple_creek_regional_park_04_1k.hdr"}
+            srcSkybox={"./asset/whipple_creek_regional_park_04_1k.hdr"}
             autoRotateDelay={[watch("autoRotateDelay")]}
             cameraOrbit={[
               watch("cameraOrbit1"),
