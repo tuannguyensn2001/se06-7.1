@@ -41,7 +41,6 @@ function App() {
         defaultValues: {
             cameraControls: true,
             disableZoom: false,
-            maxFieldOfView: 60,
             autoRotate: false,
             default : 0,
             checkExposure : true,
