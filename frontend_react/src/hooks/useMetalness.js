@@ -3,12 +3,20 @@ import CheckArray from "@/helper/CheckArray";
 export default function useMetalness(model,metalness) {
     
     useEffect(() => {
-        if (!Array.isArray(model?.current?.model?.materials) || !metalness) return;     
+
+        let arrMetalness = [metalness[0]]
+
+        if (!Array.isArray(model?.current?.model?.materials) || !arrMetalness) return;     
         if (!model.current) return;
-        
-        if (CheckArray(metalness,1)) {
-            let material = model?.current?.model?.materials[0];  
-            material.pbrMetallicRoughness.setMetallicFactor(metalness[0]);
+        let material = model?.current?.model?.materials[0];  
+            
+        if (!metalness[1]) {
+            if (CheckArray(arrMetalness,1)) {
+                material.pbrMetallicRoughness.setMetallicFactor(arrMetalness[0]);
+                return;
+            }
         }
+        material.pbrMetallicRoughness.setMetallicFactor(0);
+
     },[model,metalness])
 }

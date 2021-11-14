@@ -13,6 +13,9 @@ function App() {
 
   const [orientation, setOrientation] = useState([1, 2, 3]);
 
+  const [poster,setPoster] = useState("");
+
+
   useEffect(() => {
     if (!src) return;
     setTimeout(() => {
@@ -40,12 +43,22 @@ function App() {
             disableZoom: false,
             maxFieldOfView: 60,
             autoRotate: false,
+            default : 0,
+            checkExposure : true,
+            checkMetalness : true,
+            checkRoughness : true
         },
     });
 
-  const handleChangeFile = (info) => {
-    setSrc(URL.createObjectURL(info));
-  };
+    console.log(control)
+
+    const handleChangeFile = (info) => {
+      setPoster("./asset/loading1.gif")
+      setTimeout(() =>{
+  
+        setSrc(URL.createObjectURL(info));
+      },2000)
+    };
 
   return (
     <div>
@@ -60,7 +73,8 @@ function App() {
             cameraControls={watch("cameraControls")}
             autoRotate={watch("autoRotate")}
             src={src}
-            srcSkybox={"./asset/aircraft_workshop_01_1k.hdr"}
+            poster = {poster}
+            // srcSkybox={"./asset/whipple_creek_regional_park_04_1k.hdr"}
             autoRotateDelay={[watch("autoRotateDelay")]}
             cameraOrbit={[watch("cameraOrbit1"), watch("cameraOrbit2"), watch("cameraOrbit3")]}
             cameraTarget={[watch("cameraTarget1"), watch("cameraTarget2"), watch("cameraTarget3")]}
@@ -72,7 +86,13 @@ function App() {
             maxFieldOfView={[watch("maxFieldOfView")]}
             minFieldOfView={[watch("maxFieldOfView")]}
             interpolationDecay={[watch("interpolationDecay")]}
-
+            orientation = {[watch("orientationX") , watch("orientationY") , watch("orientationZ")]}
+            scale = {[watch("scaleX") , watch("scaleY") , watch("scaleZ")]}
+            metalness = {[watch("metalness") , watch("checkMetalness")]}
+            roughness = {[watch("roughness") , watch("checkRoughness")]}
+            exposure = {[watch("exposure") , watch("checkExposure")]}
+            shadowIntensity = {[watch("shadowIntensity")]}
+            
           >
             {!!src && (
               <button
@@ -86,7 +106,7 @@ function App() {
           </ModelViewer>
         </div>
         <div>
-          <SettingsCamera control={control} />
+          <SettingsCamera control={control} watch={watch} />
         </div>
       </WrapperStyled>
     </div>

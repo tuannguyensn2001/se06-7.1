@@ -12,8 +12,9 @@ function ModelViewer(props) {
       camera-orbit={props.cameraOrbit}
       autoRotate={true}
       poster = {props.poster}
-      max-field-of-view = "175deg"
       autoplay
+      
+      
     >
       {!!props.children && props.children}
     </model-viewer>

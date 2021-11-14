@@ -2,22 +2,22 @@ import { useEffect } from "react";
 import CheckArray from "@/helper/CheckArray";
 export default function useExposure(model,exposure) {
     useEffect(() => {
-        if (!model.current) return;
 
-        console.log(exposure)
-        if (CheckArray(exposure,1)) {
-            model.current.setAttribute("exposure",exposure[0]);
-            return;
+        
+        let  arrExposure = [exposure[0]]
+        if (!model.current) return;
+        console.log(exposure[1])
+        if (!exposure[1]) {
+            if (CheckArray(arrExposure,1)) {
+                model.current.setAttribute("exposure",arrExposure);
+                return;
+            } 
         }
+        model.current.setAttribute("exposure",1);
         model.current.removeAttribute("exposure")
 
-        // if (typeof exposure == "number") {
-        //     model.current.setAttribute("exposure", exposure)
-        //     return;
-        // }
-        // model.current.removeAttribute("exposure")
-       
-        
+        // console.log(exposure)
+  
     },[model,exposure])
     
 }
