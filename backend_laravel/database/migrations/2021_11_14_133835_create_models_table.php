@@ -17,6 +17,7 @@ class CreateModelsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('media_id');
+            $table->tinyInteger('user_upload_type')->default(2);
             $table->timestamps();
         });
     }
