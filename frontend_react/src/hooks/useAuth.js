@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "react-query";
 import { fetchLogin, fetchMe, fetchRegister } from "@/features/Auth/services";
 import { setLogin, setLogout, setMe } from "@/features/Auth/slices";
@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function useAuth() {
   const dispatch = useDispatch();
+
+  const auth = useSelector((state) => state.auth);
 
   const fire = useNotification();
 
@@ -81,5 +83,6 @@ export default function useAuth() {
     getMeMutation,
     logoutMutation,
     registerMutation,
+    auth,
   };
 }

@@ -26,5 +26,14 @@ Route::group(['prefix' => '/v1'], function () {
         Route::get('/me', [\App\Http\Controllers\AuthController::class, 'me'])->middleware('jwt');
     });
 
-    Route::get('/models', [\App\Http\Controllers\ModelController::class, 'index']);
+    Route::group(['prefix' => '/models'], function () {
+
+    });
+
+    Route::group([
+        'prefix' => '/base-models',
+    ], function () {
+        Route::get('/', [\App\Http\Controllers\BaseModelController::class, 'index']);
+        Route::get('/{id}', [\App\Http\Controllers\BaseModelController::class, 'show']);
+    });
 });

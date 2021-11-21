@@ -41,7 +41,9 @@ class MediaSeeder extends Seeder
 
             DB::table('models')->insert([
                 'name' => $item,
-                'media_id' => $key + 1
+                'media_id' => $key + 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]);
         }
     }

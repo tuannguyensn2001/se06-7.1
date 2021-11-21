@@ -6,7 +6,7 @@ import { useRoutes } from "react-router-dom";
 const Routes = () => {
   const routes = useRoutes([
     {
-      path: "/viewer",
+      path: "/viewer/:id",
       element: <Viewer />,
     },
     {
