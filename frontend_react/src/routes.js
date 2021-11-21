@@ -1,20 +1,25 @@
 import Viewer from "@/features/Viewer";
 import Home from "@/features/Home";
 import Login from "@/features/Auth/pages/Login";
+import { useRoutes } from "react-router-dom";
 
-const routes = [
-  {
-    path: "/viewer",
-    component: <Viewer />,
-  },
-  {
-    path: "/",
-    component: <Home />,
-  },
-  {
-    path: "/login",
-    component: <Login />,
-  },
-];
+const Routes = () => {
+  const routes = useRoutes([
+    {
+      path: "/viewer",
+      element: <Viewer />,
+    },
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+  ]);
 
-export default routes;
+  return routes;
+};
+
+export default Routes;

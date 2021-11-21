@@ -1,20 +1,24 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import routes from "@/routes";
+import Header from "@/components/Header";
+import useAuth from "@/hooks/useAuth";
+import { useEffect } from "react";
+import Routes from "@/routes";
 
 function App() {
+  const { getMeMutation } = useAuth();
+
+  useEffect(() => {
+    getMeMutation.mutate();
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        {routes.map((item) => (
-          <Route
-            key={item.path}
-            path={item.path}
-            element={item.component}
-            {...item}
-          />
-        ))}
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <Header />
+      <div>
+        <Routes />
+      </div>
+    </div>
   );
 }
 
