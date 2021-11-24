@@ -1,55 +1,12 @@
-import { useEffect, useRef, useState } from "react";
 import ModelViewer from "@/components/ModelViewer";
 import styled from "styled-components";
-import { Upload, Button } from "antd";
 import SettingsCamera from "@/features/Viewer/components/SettingsCamera";
 import { useForm } from "react-hook-form";
-import Hotspot from "@/components/Hotspot";
-import axios from "axios";
+import useModel from "@/features/Viewer/hooks/useModel";
+import { Button } from "antd";
 
 function Viewer() {
-  const [src, setSrc] = useState(
-    "http://backend_laravel.test/storage/model/Horse.glb"
-  );
-
-  const [orbit, setOrbit] = useState("45deg 55deg 2.5m");
-
-  const [orientation, setOrientation] = useState([1, 2, 3]);
-
-  const [poster, setPoster] = useState("");
-
-  useEffect(() => {
-    if (!src) return;
-    setTimeout(() => {
-      setOrbit("25deg 25deg 1.5m");
-    }, 3000);
-  }, [src]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("https://laravel.test:8443/api/test")
-  //     .then((response) => {
-  //       const url = response.data.url;
-  //       setSrc(url);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!src) return;
-
-  //   let interval = setInterval(() => {
-  //     setOrientation((prevState) => {
-  //       const [a, b, c] = orientation;
-  //       return [a + 1, b + 1, c + 1];
-  //     });
-  //   }, 2000);
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, [orientation, src]);
-
-  const { watch, control } = useForm({
+  const { watch, control, handleSubmit } = useForm({
     defaultValues: {
       cameraControls: true,
       disableZoom: false,
@@ -61,30 +18,20 @@ function Viewer() {
     },
   });
 
-  console.log(control);
-
-  const handleChangeFile = (info) => {
-    setPoster("./asset/loading1.gif");
-    setTimeout(() => {
-      setSrc(URL.createObjectURL(info));
-    }, 2000);
-  };
+  const { src, handleSave } = useModel();
 
   return (
     <div>
-      <Upload beforeUpload={handleChangeFile}>
-        <Button>Click to Upload</Button>
-      </Upload>
       <WrapperStyled>
         <div>
+          <Button onClick={handleSubmit(handleSave)}>Lưu</Button>
           <ModelViewer
+            src={src}
             baseColor={watch("baseColor")}
             disableZoom={watch("disableZoom")}
             cameraControls={watch("cameraControls")}
             autoRotate={watch("autoRotate")}
-            src={src}
-            poster={poster}
-            srcSkybox={"./asset/whipple_creek_regional_park_04_1k.hdr"}
+            // srcSkybox={"./asset/whipple_creek_regional_park_04_1k.hdr"}
             autoRotateDelay={[watch("autoRotateDelay")]}
             cameraOrbit={[
               watch("cameraOrbit1"),
@@ -121,18 +68,8 @@ function Viewer() {
             metalness={[watch("metalness"), watch("checkMetalness")]}
             roughness={[watch("roughness"), watch("checkRoughness")]}
             exposure={[watch("exposure"), watch("checkExposure")]}
-            shadowIntensity={[watch("shadowIntensity")]}
-          >
-            {!!src && (
-              <button
-                slot="hotspot-hand"
-                data-position="-0.54 0.93 0.1"
-                data-normal="-0.73 0.05 0.69"
-              >
-                <div id="annotation">This hotspot disappears completely</div>
-              </button>
-            )}
-          </ModelViewer>
+            // shadowIntensity={[watch("shadowIntensity")]}
+          />
         </div>
         <div>
           <SettingsCamera control={control} watch={watch} />
