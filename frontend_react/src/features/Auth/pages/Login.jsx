@@ -1,35 +1,48 @@
 import styled from "styled-components";
+import styles from "./login.module.scss";
+import { useForm, Controller } from "react-hook-form";
+import useAuth from "@/hooks/useAuth";
 
 const Title = styled.div`
   color: blue;
   background-color: red;
 `;
 
-//PascalCase
-
 function Login() {
+  const { register, handleSubmit, control } = useForm();
+
+  const { loginMutation } = useAuth();
+
+  const submit = (data) => {
+    loginMutation.mutate(data);
+  };
+
   return (
-    <div class="login-box">
-      <h2>Log in</h2>
-      <form>
-        <div class="user-box">
-          <input type="text" name="" required=""></input>
-          <label>Username</label>
-        </div>
-        <div class="user-box">
-          <input type="password" name="" required=""></input>
-          <label>Password</label>
-        </div>
-        <a href="#">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Submit
-        </a>
-      </form>
+    <div className={styles.wrapper}>
+      <div className={styles["login-box"]}>
+        <h2>Log in</h2>
+        <form onSubmit={handleSubmit(submit)}>
+          <div className={styles["user-box"]}>
+            <input {...register("email")} type="text" />
+            <label>Username</label>
+          </div>
+          <div className={styles["user-box"]}>
+            <input {...register("password")} type="password" />
+            <label>Password</label>
+          </div>
+
+          {/*<a href="#">*/}
+          {/*  <span></span>*/}
+          {/*  <span></span>*/}
+          {/*  <span></span>*/}
+          {/*  <span></span>*/}
+          {/*  Submit*/}
+          {/*</a>*/}
+          <button type={"submit"}>Submit</button>
+        </form>
+      </div>
     </div>
-  )
+  );
 }
 
 export default Login;
