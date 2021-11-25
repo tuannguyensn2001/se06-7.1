@@ -1,8 +1,8 @@
 import Viewer from "@/features/Viewer";
 import Home from "@/features/Home";
 import Login from "@/features/Auth/pages/Login";
-import Register from "./features/Auth/pages/Register";
 import { useRoutes } from "react-router-dom";
+import Register from "@/features/Auth/pages/Register";
 
 const Routes = () => {
   const routes = useRoutes([
@@ -20,7 +20,7 @@ const Routes = () => {
     },
     {
       path: "/register",
-      component: <Register />,
+      element: <Register />,
     },
   ]);
 

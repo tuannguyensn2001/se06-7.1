@@ -1,44 +1,59 @@
 
+import styled from "styled-components";
+import styles from "./login.module.scss";
+import { useForm, Controller } from "react-hook-form";
+import { Button, Input, } from "antd";
+
 import useAuth from "@/hooks/useAuth";
-import { useEffect } from "react";
+import Form from "rc-field-form/es/Form";
+import FormItem from "antd/lib/form/FormItem";
+
+const Title = styled.div`
+  color: blue;
+  background-color: red;
+`;
 
 function Login() {
+  const { register, handleSubmit, control } = useForm();
+
   const { loginMutation } = useAuth();
 
-  return (
-    <div>
-      <button
-        onClick={() =>
-          loginMutation.mutate({
-            email: "tuannguyensn2001a@gmail.com",
-            password: "java2001",
-          })
-        }
-      >
-        Click
-      </button>
 
-      <div class="login-box">
-      <h2>Log in</h2>
-      <form>
-        <div class="user-box">
-          <input type="text" name="" required=""></input>
-          <label>Username</label>
+  const submit = (data) => {
+    loginMutation.mutate(data);
+  };
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles["login-box"]}>
+      
+      <h2>Login Here</h2>
+      <form onSubmit={handleSubmit(submit)}>
+        
+
+        <div className={styles["user-box"]}>
+            <label>Username</label>
+            <Input {...register("email")} type="text" />
+            
         </div>
-        <div class="user-box">
-          <input type="password" name="" required=""></input>
-          <label>Password</label>
+
+        <div className={styles["user-box"]}>
+            <label>Password</label>
+            <Input {...register("password")} type="password" />
+            
         </div>
-        <a href="#">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Submit
-        </a>
+        {/* <label for="username">Username</label>
+        <Input type="text" placeholder="Email or Phone" id="username"></Input>
+
+        <label for="password">Password</label>
+        <Input type="password" placeholder="Password" id="password"></Input> */}
+
+        <button type={"submit"}>Log In</button>
+        
       </form>
+      </div>
     </div>
-    </div>
+    
   );
 
 }
