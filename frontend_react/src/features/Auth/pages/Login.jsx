@@ -33,13 +33,13 @@ function Login() {
 
         <div className={styles["user-box"]}>
             <label>Username</label>
-            <Input {...register("email")} type="text" />
+            <input {...register("email")} type="text" />
             
         </div>
 
         <div className={styles["user-box"]}>
             <label>Password</label>
-            <Input {...register("password")} type="password" />
+            <input {...register("password")} type="password" />
             
         </div>
         {/* <label for="username">Username</label>
