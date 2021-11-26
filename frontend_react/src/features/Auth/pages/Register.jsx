@@ -1,4 +1,5 @@
 import useAuth from "@/hooks/useAuth";
+import styles from "./register.module.scss";
 import { useForm } from "react-hook-form";
 import { Input } from "antd";
 
@@ -12,27 +13,37 @@ function Register() {
   };
 
   return (
-    <div className="signup-box">
-      <h2>Sign up</h2>
-      <form onSubmit={handleSubmit(submit)}>
-        <div className="user-box">
-          <Input />
-          <label>Username</label>
-        </div>
-        <div className="user-box">
-          <input type="email"></input>
-          <label>Email</label>
-        </div>
-        <div className="user-box">
-          <input type="password"></input>
-          <label>Password</label>
-        </div>
-        <div className="user-box">
-          <input type="checkpassword"></input>
-          <label>Check Password</label>
-        </div>
-        <button className={"bg-blue-500 rounded shadow"}>Đăng ký</button>
-      </form>
+    
+    <div className={styles.wrapper}>
+      <div className={styles["signup-box"]}>
+        <h2>Create account</h2>
+        <form onSubmit={handleSubmit(submit)}>
+          <div className={styles["user-box"]}>
+            <label>Username</label>
+            <Input {...register("username")} type="text" />
+          </div>
+          <div className={styles["user-box"]}>
+            <label>Email</label>
+            <Input  {...register("email")} type="email"/>
+            
+          </div>
+          <div className={styles["user-box"]}>
+            <label>Password</label>
+            <Input {...register("password")} type="password"/>
+            
+          </div>
+          <div className={styles["user-box"]}>
+            <label>Check Password</label>
+            <Input {...register("checkpassword")} type="checkpassword"/>
+            
+          </div>
+          <div className={"signup-btn float-right"}>
+            <button type={"submit"}>
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

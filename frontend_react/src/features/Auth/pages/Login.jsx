@@ -1,17 +1,10 @@
 
-import styled from "styled-components";
 import styles from "./login.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Input, } from "antd";
 
 import useAuth from "@/hooks/useAuth";
-import Form from "rc-field-form/es/Form";
-import FormItem from "antd/lib/form/FormItem";
 
-const Title = styled.div`
-  color: blue;
-  background-color: red;
-`;
 
 function Login() {
   const { register, handleSubmit, control } = useForm();
