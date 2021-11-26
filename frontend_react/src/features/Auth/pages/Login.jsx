@@ -25,32 +25,29 @@ function Login() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles["login-box"]}>
-      
-      <h2>Login Here</h2>
-      <form onSubmit={handleSubmit(submit)}>
+      <div className={styles["login-box"]} >
+        <h2>Welcome</h2>
         
-
-        <div className={styles["user-box"]}>
+        <form onSubmit={handleSubmit(submit)}>
+          <div className={styles["user-box"]}>
             <label>Username</label>
-            <input {...register("email")} type="text" />
+            <Input {...register("email")} type="text" />
             
-        </div>
+          </div>
 
-        <div className={styles["user-box"]}>
+          <div className={styles["user-box"]}>
             <label>Password</label>
-            <input {...register("password")} type="password" />
-            
-        </div>
-        {/* <label for="username">Username</label>
-        <Input type="text" placeholder="Email or Phone" id="username"></Input>
+            <Input {...register("password")} type="password" />
+                  
+          </div>
 
-        <label for="password">Password</label>
-        <Input type="password" placeholder="Password" id="password"></Input> */}
+          <div className={"login-btn float-right"}>
+            <button type={"submit"}>
+              Login
+            </button>
+          </div>
 
-        <button type={"submit"}>Log In</button>
-        
-      </form>
+        </form>
       </div>
     </div>
     
