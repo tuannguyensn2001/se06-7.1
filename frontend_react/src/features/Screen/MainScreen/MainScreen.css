@@ -7,17 +7,21 @@
     box-sizing: border-box;
 }
 
+
 #main{
     display: flex;
     flex-direction: column;
 }
 
 #nav-container {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    color: #fff;
-    background-color:salmon
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  color: #fff;
+  background-color: salmon;
+  height: 50px;
+  align-items: center;
     
 }
 
@@ -40,15 +44,19 @@
 }
 
 #slider {
-    /* width: 100%; */
-    padding-top: 200px;
+    width: 100%;
+    min-height: 300px;
+    padding-top: 100px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('../../../assets/img/test.jpg');
-    /* background-color: aqua; */
+    background-image: url('../../../assets/img/background1.jpg');
     position: relative;
 }
 
+.slider-content {
+  margin-bottom: 200px;
+  text-align: center;
+}
 
 
 
@@ -178,23 +186,67 @@
   /* Content */
 
 #content-container {
-  /* background-color: aquamarine; */
+  background-color: rgb(208, 235, 226);
   margin: 100px;
+  font-family: sans-serif;
 }
 
-.content-list {
-  box-shadow:  5px 5px 5px 5px #eba2a2;
-  border-radius: 10px;
+.content-content {
+  width: 100%;
+  color: #fff;
+  background: linear-gradient(
+        hsl(0 0% 0% / 0) ,
+        hsl(20 0% 0% / 0.5) 20%, 
+        hsl(0 0% 0% / 1));
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(50%);
+  transition: transform 500ms ease;
+  transition-delay: 500ms;
 }
-  .content-text {
-    background-color: coral;
-    box-shadow:  5px 5px 5px 5px #eba2a2;
-    border-radius: 0px 0px 10px 10px ;
-  }
 
-  .content-text{
-    padding-top: 20px;
-  }
+.content-item {
+  position: relative;
+  --padding: 24px;
+  box-shadow:  4px 4px 4px 4px #645b5b;
+  overflow: hidden;
+
+}
+
+.content-list:hover{
+  transform: scale(1.05);
+  transition: transform 500ms ease;
+}
+
+.content-list:hover .content-content {
+  transform: translateY(0);
+}
+
+.content-list:hover .content-title::after {
+  transform: scaleX(1);
+}
+
+.content-title {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 0.8;
+  position: relative;
+  width: max-content;
+}
+
+.content-title::after {
+  content: "";
+  background-color: aqua;
+  position: absolute;
+  width: calc(100% + var(--padding));
+  height: 4px;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0);
+  transition: transform 500ms ease;
+  transform-origin: left;
+}
 
 
 /* Footer */
