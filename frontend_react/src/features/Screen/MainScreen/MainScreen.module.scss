@@ -207,6 +207,7 @@
 }
 
 .content-item {
+  border-radius: 10px;
   position: relative;
   --padding: 24px;
   box-shadow:  4px 4px 4px 4px #645b5b;
@@ -252,7 +253,7 @@
 /* Footer */
 
   .footer {
-    margin-top: 100px;
+    margin-top: 200px;
     position: relative;
     width: 100%;
     background: #3586ff;
