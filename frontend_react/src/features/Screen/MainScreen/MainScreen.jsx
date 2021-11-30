@@ -25,64 +25,69 @@ export default function MainScreen() {
                     </div>
                 </div>
                 
-                <div id={styles["content-container"]} >
-                    <div className="grid grid-cols-3 gap-20 p-20">
-                        <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
-                            <div className={styles["content-item"]}>
-                                <img src={avatar}/>
-                                <div className={styles["content-content"]}>
-                                    <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
-                                    <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+
+                <div className="flex flex-col items-center mt-40 ">
+
+                    <div className={`${styles["our-model"]} ${"bg-gray-300 w-40 h-20 text-center text-2xl rounded-3xl pt-5 "}`}>Our Model</div>
+                    <div id={styles["content-container"]} >
+                        <div className="grid grid-cols-3 gap-x-36 gap-y-20 pt-24 pb-20 px-40">
+                            <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
+                                <div className={styles["content-item"]}>
+                                    <img src={avatar}/>
+                                    <div className={styles["content-content"]}>
+                                        <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
+                                        <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
-                            <div className={styles["content-item"]}>
-                                <img src={avatar}/>
-                                <div className={styles["content-content"]}>
-                                    <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
-                                    <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                            <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
+                                <div className={styles["content-item"]}>
+                                    <img src={avatar}/>
+                                    <div className={styles["content-content"]}>
+                                        <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
+                                        <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
-                            <div className={styles["content-item"]}>
-                                <img src={avatar}/>
-                                <div className={styles["content-content"]}>
-                                    <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
-                                    <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                            <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
+                                <div className={styles["content-item"]}>
+                                    <img src={avatar}/>
+                                    <div className={styles["content-content"]}>
+                                        <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
+                                        <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
-                            <div className={styles["content-item"]}>
-                                <img src={avatar}/>
-                                <div className={styles["content-content"]}>
-                                    <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
-                                    <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                            <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
+                                <div className={styles["content-item"]}>
+                                    <img src={avatar}/>
+                                    <div className={styles["content-content"]}>
+                                        <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
+                                        <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
-                            <div className={styles["content-item"]}>
-                                <img src={avatar}/>
-                                <div className={styles["content-content"]}>
-                                    <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
-                                    <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                            <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
+                                <div className={styles["content-item"]}>
+                                    <img src={avatar}/>
+                                    <div className={styles["content-content"]}>
+                                        <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
+                                        <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
-                            <div className={styles["content-item"]}>
-                                <img src={avatar}/>
-                                <div className={styles["content-content"]}>
-                                    <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
-                                    <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                            <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
+                                <div className={styles["content-item"]}>
+                                    <img src={avatar}/>
+                                    <div className={styles["content-content"]}>
+                                        <h1 className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
+                                        <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

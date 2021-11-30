@@ -23,19 +23,21 @@ export default function MyModelScreen() {
                     </div>
                 </div>
                 
-                <div id={homestyle["content-container"]} >
-                    <h1 className="text-5xl w-full bg-gray-300">Your Model</h1>
-                    <div className="grid grid-cols-3 gap-20 p-20">
-                        <div className="w-64 h-60 mb-20 bg-gray-300 rounded-3xl">
-                            <div className="text-5xl text-center pt-24"> <a href="#">+</a> </div>
-                            <p className="text-center pt-24 mt-3 text-2xl ">Add you Model</p>
-                        </div>
-                        <div className={`${homestyle["content-list"]} ${"w-64 h-60 mb-20 "}`}>
-                            <div className={homestyle["content-item"]}>
-                                <img src={avatar}/>
-                                <div className={homestyle["content-content"]}>
-                                    <h1 className={`${homestyle["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
-                                    <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                <div className="flex flex-col items-center mt-40 ">
+                    <h1 className={`${homestyle["our-model"]} ${"bg-gray-300 w-40 h-20 text-center text-2xl rounded-3xl pt-5"}`}>Your Model</h1>
+                    <div id={homestyle["content-container"]} >
+                        <div className="grid grid-cols-3 gap-20 p-20 ml-5">
+                            <div className="w-64 h-60 mb-20 mr-20 bg-gray-300 rounded-3xl">
+                                <div className="text-5xl text-center pt-24"> <a href="#">+</a> </div>
+                                <p className="text-center pt-24 mt-3 text-2xl ">Add you Model</p>
+                            </div>
+                            <div className={`${homestyle["content-list"]} ${"w-64 h-60 mb-20 "}`}>
+                                <div className={homestyle["content-item"]}>
+                                    <img src={avatar}/>
+                                    <div className={homestyle["content-content"]}>
+                                        <h1 className={`${homestyle["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}>Sieu nhan</h1>
+                                        <div className="w-full text-center pb-10 pt-5 text-2xl "><a href="#">Go to Editor</a></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
