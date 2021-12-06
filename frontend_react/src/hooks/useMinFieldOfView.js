@@ -8,7 +8,5 @@ export default function useMinFieldOfView(model, minFieldOfView, disableZoom) {
             ? model.current.setAttribute("min-field-of-view", `${minFieldOfView[0]}deg`)
             : model.current.removeAttribute("min-field-of-view")
 
-        console.log(minFieldOfView);
-        console.log(disableZoom);
     }, [model, minFieldOfView, disableZoom])
 }
