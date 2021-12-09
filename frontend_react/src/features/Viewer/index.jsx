@@ -18,15 +18,15 @@ function Viewer() {
     },
   });
 
-  const { src, handleSave } = useModel();
+  // const { src, handleSave } = useModel();
 
   return (
     <div>
       <WrapperStyled>
         <div>
-          <Button onClick={handleSubmit(handleSave)}>Lưu</Button>
+          {/*<Button onClick={handleSubmit(handleSave)}>Lưu</Button>*/}
           <ModelViewer
-            src={src}
+            // src={src}
             baseColor={watch("baseColor")}
             disableZoom={watch("disableZoom")}
             cameraControls={watch("cameraControls")}

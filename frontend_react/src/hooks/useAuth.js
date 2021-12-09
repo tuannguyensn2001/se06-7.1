@@ -5,7 +5,7 @@ import { setLogin, setLogout, setMe } from "@/features/Auth/slices";
 import useNotification from "@/hooks/useNotification";
 import { useNavigate } from "react-router-dom";
 
-export default function useAuth() {
+export default function useAuth(setReady = () => {}) {
   const dispatch = useDispatch();
 
   const auth = useSelector((state) => state.auth);
@@ -56,6 +56,9 @@ export default function useAuth() {
       },
       onError(error) {
         fire.error(error.response.data.message);
+      },
+      onSettled() {
+        setReady(true);
       },
     }
   );

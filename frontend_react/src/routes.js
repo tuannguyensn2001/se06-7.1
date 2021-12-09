@@ -5,12 +5,10 @@ import MainScreen from "@/features/Screen/MainScreen/MainScreen";
 import { useRoutes } from "react-router-dom";
 import Register from "@/features/Auth/pages/Register";
 import MyModelScreen from "./features/Screen/MyModelScreen/MyModelScreen";
+import MyModel from "@/features/MyModel";
+
 const Routes = () => {
   const routes = useRoutes([
-    {
-      path: "/viewer/:id",
-      element: <Viewer />,
-    },
     {
       path: "/",
       element: <Home />,
@@ -20,16 +18,12 @@ const Routes = () => {
       element: <Login />,
     },
     {
-      path: "/home",
-      element: <MainScreen/>
-    },
-    {
-      path:"/mymodel",
-      element: <MyModelScreen/>
-    },
-    {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "/my-models",
+      element: <MyModel />,
     },
   ]);
 

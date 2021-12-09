@@ -1,16 +1,13 @@
-
 import styles from "./login.module.scss";
 import { useForm, Controller } from "react-hook-form";
-import { Button, Input, } from "antd";
+import { Button, Input } from "antd";
 
 import useAuth from "@/hooks/useAuth";
-
 
 function Login() {
   const { register, handleSubmit, control } = useForm();
 
   const { loginMutation } = useAuth();
-
 
   const submit = (data) => {
     loginMutation.mutate(data);
@@ -18,34 +15,35 @@ function Login() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles["login-box"]} >
+      <div className={styles["login-box"]}>
         <h2>Welcome</h2>
-        
+
         <form onSubmit={handleSubmit(submit)}>
           <div className={styles["user-box"]}>
             <label>Username</label>
-            <Input {...register("email")} type="text" />
-            
+            <Controller
+              name={"email"}
+              control={control}
+              render={({ field }) => <Input {...field} type="text" />}
+            />
           </div>
 
           <div className={styles["user-box"]}>
             <label>Password</label>
-            <Input {...register("password")} type="password" />
-                  
+            <Controller
+              name={"password"}
+              control={control}
+              render={({ field }) => <Input {...field} type="password" />}
+            />
           </div>
 
           <div className={"login-btn float-right"}>
-            <button type={"submit"}>
-              Login
-            </button>
+            <button type={"submit"}>Login</button>
           </div>
-
         </form>
       </div>
     </div>
-    
   );
-
 }
 
 export default Login;
