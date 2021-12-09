@@ -12,6 +12,8 @@ export const authSlice = createSlice({
     setLogin(state, action) {
       const { user, access_token } = action.payload;
 
+      //jwt
+
       state.isAuth = true;
       state.user = user;
 
