@@ -6,7 +6,6 @@ export default function useExposure(model,exposure) {
         
         let  arrExposure = [exposure[0]]
         if (!model.current) return;
-        console.log(exposure[1])
         if (!exposure[1]) {
             if (CheckArray(arrExposure,1)) {
                 model.current.setAttribute("exposure",arrExposure);
@@ -15,8 +14,6 @@ export default function useExposure(model,exposure) {
         }
         model.current.setAttribute("exposure",1);
         model.current.removeAttribute("exposure")
-
-        // console.log(exposure)
   
     },[model,exposure])
     

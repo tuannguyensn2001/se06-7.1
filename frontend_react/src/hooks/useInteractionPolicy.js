@@ -6,6 +6,5 @@ export default function useInteractionPolicy(model, interactionPolicy) {
         interactionPolicy
             ? model.current.setAttribute("interaction-policy", interactionPolicy)
             : model.current.removeAttribute("interaction-policy")
-        console.log('aa');
     }, [model, interactionPolicy])
 }

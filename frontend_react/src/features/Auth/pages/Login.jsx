@@ -1,17 +1,16 @@
-import styled from "styled-components";
+
 import styles from "./login.module.scss";
 import { useForm, Controller } from "react-hook-form";
+import { Button, Input, } from "antd";
+
 import useAuth from "@/hooks/useAuth";
 
-const Title = styled.div`
-  color: blue;
-  background-color: red;
-`;
 
 function Login() {
   const { register, handleSubmit, control } = useForm();
 
   const { loginMutation } = useAuth();
+
 
   const submit = (data) => {
     loginMutation.mutate(data);
@@ -19,30 +18,34 @@ function Login() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles["login-box"]}>
-        <h2>Log in</h2>
+      <div className={styles["login-box"]} >
+        <h2>Welcome</h2>
+        
         <form onSubmit={handleSubmit(submit)}>
           <div className={styles["user-box"]}>
-            <input {...register("email")} type="text" />
             <label>Username</label>
-          </div>
-          <div className={styles["user-box"]}>
-            <input {...register("password")} type="password" />
-            <label>Password</label>
+            <Input {...register("email")} type="text" />
+            
           </div>
 
-          {/*<a href="#">*/}
-          {/*  <span></span>*/}
-          {/*  <span></span>*/}
-          {/*  <span></span>*/}
-          {/*  <span></span>*/}
-          {/*  Submit*/}
-          {/*</a>*/}
-          <button type={"submit"}>Submit</button>
+          <div className={styles["user-box"]}>
+            <label>Password</label>
+            <Input {...register("password")} type="password" />
+                  
+          </div>
+
+          <div className={"login-btn float-right"}>
+            <button type={"submit"}>
+              Login
+            </button>
+          </div>
+
         </form>
       </div>
     </div>
+    
   );
+
 }
 
 export default Login;
