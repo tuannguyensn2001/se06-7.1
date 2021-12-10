@@ -5,7 +5,6 @@ function RequiredAuth(WrapperComponent) {
   const CustomComponent = (props) => {
     const { isAuth } = useSelector((state) => state.auth);
 
-    console.log("auth", isAuth);
     if (!isAuth) return <Navigate to={"/login"} />;
     return <WrapperComponent {...props} />;
   };

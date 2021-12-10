@@ -53,12 +53,11 @@ export default function useAuth(setReady = () => {}) {
         } = response;
 
         dispatch(setMe(data));
+        setReady(true);
       },
       onError(error) {
-        fire.error(error.response.data.message);
-      },
-      onSettled() {
         setReady(true);
+        fire.error(error.response.data.message);
       },
     }
   );
