@@ -27,7 +27,7 @@ Route::group(['prefix' => '/v1'], function () {
     });
 
     Route::group(['prefix' => '/models'], function () {
-
+        Route::get('/', [\App\Http\Controllers\ModelController::class, 'index'])->middleware('jwt');
     });
 
     Route::group([
@@ -36,4 +36,6 @@ Route::group(['prefix' => '/v1'], function () {
         Route::get('/', [\App\Http\Controllers\BaseModelController::class, 'index']);
         Route::get('/{id}', [\App\Http\Controllers\BaseModelController::class, 'show']);
     });
+
+
 });

@@ -43,6 +43,7 @@ class AuthController extends Controller
 
     public function login(Request $request): \Illuminate\Http\JsonResponse
     {
+
         $data = $request->only('email', 'password');
 
         try {
