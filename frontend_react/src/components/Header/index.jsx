@@ -4,6 +4,7 @@ import styles from "./style.module.scss";
 import { Link } from "react-router-dom";
 import avatar from "../../assets/img/man.png"
 import like from "../../assets/img/like.png"
+import { Menu, Dropdown } from 'antd';
 function Header() {
   const { user, isAuth } = useSelector((state) => state.auth);
 
@@ -20,8 +21,8 @@ function Header() {
 
       {
         !isAuth && 
-        <div className="flex space-x-4 m-3 space-between mr-12 ml-3">
-          <Link to={"/"} className={` ${styles["nav-item"]} ${"text-blue-500 rounded bg-gray-100 "} `}>Home</Link>
+        <div className="flex space-x-4 m-3 space-between">
+          <Link to={"/"} className={` ${styles["nav-item"]} ${"text-blue-500 rounded bg-gray-100 ml-20"} `}>Home</Link>
           <button className={`${styles["nav-item"]} ${"text-white hover:text-blue-500 rounded hover:bg-gray-100 transition-colors duration-300"} `}>Go to my model</button>
         </div>
       }
@@ -51,11 +52,38 @@ function Header() {
           {/* <div>{user.name}</div> */}
 
           <div className="h-full flex pr-11 ">
-            <span className="flex flex-col justify-center pr-3">Vinh</span>
-            <div  className= {`${styles["nav"]} ${"flex flex-col justify-center relative"}`}>
-              <img src={avatar} className="h-3/5"/>
-              <button className="w-30 h-10 bg-red-200 absolute rounded " onClick={logoutMutation.mutate}>Đăng xuất</button>
+            
+            <div className="flex flex-col justify-center space-between mt-20">
+
+              <div className="flex space-x-4 m-3 mt-4 justify-center ">
+                <span className="flex flex-col justify-center" >Vinh</span>
+                <div className="flex flex-col justify-center h-12"> <img src={avatar} className="h-3/5"/></div>
+              </div>
+
+              <Menu className=" rounded z-10 h-60 p-2">
+                  <Menu.Item>
+                    <button className="w-32 h-full hover:bg-gray-300 rounded">Setting</button>
+                  </Menu.Item>
+              
+                  <Menu.Item>
+                    <button className="w-32 h-full hover:bg-gray-300 rounded " onClick={logoutMutation.mutate}>Đăng xuất</button>
+                  </Menu.Item>
+              </Menu>
             </div>
+
+            {/* <div  className= {`${styles["nav"]} ${"flex flex-col justify-center"}`}>
+
+              <Menu>
+                <Menu.Item>
+                  <button  onClick={logoutMutation.mutate}>Đăng xuất</button>
+                </Menu.Item>
+              </Menu>
+              <div className="relative">
+                <button className="w-30 h-40 bg-red-200 absolute rounded" onClick={logoutMutation.mutate}>Đăng xuất</button>  
+              </div>
+            </div> */}
+
+
           </div>
         </div>
 
