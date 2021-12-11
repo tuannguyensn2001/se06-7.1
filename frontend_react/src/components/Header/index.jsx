@@ -6,7 +6,9 @@ import avatar from "../../assets/img/man.png"
 import like from "../../assets/img/like.png"
 import { Menu, Dropdown } from 'antd';
 import { useState } from "react";
+
 function Header() {
+
   const { user, isAuth } = useSelector((state) => state.auth);
 
   const { logoutMutation } = useAuth();
@@ -29,25 +31,25 @@ function Header() {
       {
         isAuth && 
         <div className="flex space-x-4 m-3 space-between">
-          <Link to={"/"} className={` ${styles["nav-item"]} ${"text-blue-500 rounded bg-gray-100 ml-20"} `}>Home</Link>
-          <button className={`${styles["nav-item"]} ${"text-white hover:text-blue-500 rounded hover:bg-gray-100 transition-colors duration-300"} `}>Go to my model</button>
+          <Link to={"/"} className={` ${styles["nav-item"]} ${"text-white"} `}>Home</Link>
+          <button className={`${styles["nav-item"]} ${"text-white hover:text-blue-500 rounded hover:bg-white transition-colors duration-300"} `}>Go to my model</button>
         </div>
       }
 
       {
         !isAuth &&
           <div className="flex space-x-4 m-3 space-between ml-24 mr-2">
-            <Link to={"/"} className={` ${styles["nav-item"]} ${"text-blue-500 rounded bg-gray-100 "} `}>Home</Link>
-            <button className={`${styles["nav-item"]} ${"text-white hover:text-blue-500 rounded hover:bg-gray-100 transition-colors duration-300"} `}>Go to my model</button>
+            <Link to={"/"} className={` ${styles["nav-item"]} ${"text-white"} `}>Home</Link>
+            <Link to={""} className={`${styles["nav-item"]} ${"text-white "} `}>Go to my model</Link>
           </div>
       }
 
 
       { !isAuth &&
         <div className="flex space-x-4 m-3 space-between ">
-          <Link className={`${styles["nav-item"]} ${"text-white hover:text-blue-500 rounded hover:bg-gray-100 transition-colors duration-300"}`} to={"/login"}>Đăng nhập</Link>
+          <Link className={`${styles["nav-item"]} ${"text-white"}`} to={"/login"}>Đăng nhập</Link>
 
-          <Link className={`${styles["nav-item"]} ${"text-white border border-solid border-gray-100 rounded hover:bg-gray-100 hover:text-blue-500 transition-colors duration-300 "}`} to={"/register"}>Register</Link>
+          <Link className={`${styles["nav-item"]} ${"text-blue-700 border border-solid bg-white rounded hover:bg-gray-100 hover:text-blue-500 transition-colors duration-300 "}`} to={"/register"}>Register</Link>
 
         </div>
       }
@@ -69,11 +71,11 @@ function Header() {
 
               <Menu className={`${"rounded z-10 h-60"} ${checked ? "visible" : "invisible"}`} >
                   <Menu.Item>
-                    <button className="w-32 h-full hover:bg-gray-300 rounded">Setting</button>
+                    <button className="w-32 h-full ">Setting</button>
                   </Menu.Item>
               
                   <Menu.Item>
-                    <button className="w-32 h-full hover:bg-gray-300 rounded " onClick={logoutMutation.mutate}>Đăng xuất</button>
+                    <button className="w-32 h-full " onClick={logoutMutation.mutate}>Đăng xuất</button>
                   </Menu.Item>
               </Menu>
             </div>
