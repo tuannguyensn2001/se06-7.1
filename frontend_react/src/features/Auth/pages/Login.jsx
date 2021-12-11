@@ -20,7 +20,7 @@ function Login() {
 
         <form onSubmit={handleSubmit(submit)}>
           <div className={styles["user-box"]}>
-            <label>Username</label>
+            <label>Email</label>
             <Controller
               name={"email"}
               control={control}
