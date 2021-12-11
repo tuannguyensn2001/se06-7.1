@@ -38,7 +38,7 @@ function Header() {
 
       {
         !isAuth &&
-          <div className="flex space-x-4 m-3 space-between ml-24 mr-2">
+          <div className="flex space-x-4 m-3 space-between ml-32 mr-2">
             <Link to={"/"} className={` ${styles["nav-item"]} ${"text-white"} `}>Home</Link>
             <Link to={""} className={`${styles["nav-item"]} ${"text-white "} `}>Go to my model</Link>
           </div>

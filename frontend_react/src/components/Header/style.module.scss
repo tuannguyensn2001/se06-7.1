@@ -1,7 +1,7 @@
 .header{
   height: 60px;
   width: 100%;
-  @apply bg-blue-900 flex justify-between;
+  @apply z-10 absolute flex justify-between;
 }
 
 .nav-item {
