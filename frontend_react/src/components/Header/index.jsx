@@ -17,10 +17,10 @@ function Header() {
         <h1 className={` ${styles["title"]} ${"text-white m-3 font-bold text-lg font-serif"}`}>Se06-7.1</h1>
       </div>
 
-      {/* Chỗ này là khi mà ở màn chưa đăng nhập dùng để căn chỉnh home và gto model ra giữa */}
+      {/* Chỗ này là khi mà ở màn chưa đăng nhập dùng để căn chỉnh home và go to model ra giữa */}
 
       {
-        !isAuth && 
+        isAuth && 
         <div className="flex space-x-4 m-3 space-between">
           <Link to={"/"} className={` ${styles["nav-item"]} ${"text-blue-500 rounded bg-gray-100 ml-20"} `}>Home</Link>
           <button className={`${styles["nav-item"]} ${"text-white hover:text-blue-500 rounded hover:bg-gray-100 transition-colors duration-300"} `}>Go to my model</button>
@@ -28,7 +28,7 @@ function Header() {
       }
 
       {
-        isAuth &&
+        !isAuth &&
           <div className="flex space-x-4 m-3 space-between ml-24 mr-2">
             <Link to={"/"} className={` ${styles["nav-item"]} ${"text-blue-500 rounded bg-gray-100 "} `}>Home</Link>
             <button className={`${styles["nav-item"]} ${"text-white hover:text-blue-500 rounded hover:bg-gray-100 transition-colors duration-300"} `}>Go to my model</button>
@@ -36,7 +36,7 @@ function Header() {
       }
 
 
-      { isAuth &&
+      { !isAuth &&
         <div className="flex space-x-4 m-3 space-between ">
           <Link className={`${styles["nav-item"]} ${"text-white hover:text-blue-500 rounded hover:bg-gray-100 transition-colors duration-300"}`} to={"/login"}>Đăng nhập</Link>
 
@@ -46,21 +46,21 @@ function Header() {
       }
 
       {
-        !isAuth && 
+        isAuth && 
 
         <div>
-          {/* <div>{user.name}</div> */}
 
           <div className="h-full flex pr-11 ">
             
             <div className="flex flex-col justify-center space-between mt-20">
 
-              <div className="flex space-x-4 m-3 mt-4 justify-center ">
-                <span className="flex flex-col justify-center" >Vinh</span>
+              <div className="flex space-x-4  p-1 justify-center ">
+                {/* <div>{user.name}</div> */}
+                <span className="flex flex-col justify-center text-white " >Vinh</span>
                 <div className="flex flex-col justify-center h-12"> <img src={avatar} className="h-3/5"/></div>
               </div>
 
-              <Menu className=" rounded z-10 h-60 p-2">
+              <Menu className=" rounded z-10 h-60 ">
                   <Menu.Item>
                     <button className="w-32 h-full hover:bg-gray-300 rounded">Setting</button>
                   </Menu.Item>
@@ -70,19 +70,6 @@ function Header() {
                   </Menu.Item>
               </Menu>
             </div>
-
-            {/* <div  className= {`${styles["nav"]} ${"flex flex-col justify-center"}`}>
-
-              <Menu>
-                <Menu.Item>
-                  <button  onClick={logoutMutation.mutate}>Đăng xuất</button>
-                </Menu.Item>
-              </Menu>
-              <div className="relative">
-                <button className="w-30 h-40 bg-red-200 absolute rounded" onClick={logoutMutation.mutate}>Đăng xuất</button>  
-              </div>
-            </div> */}
-
 
           </div>
         </div>
