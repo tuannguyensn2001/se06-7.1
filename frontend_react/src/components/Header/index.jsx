@@ -5,10 +5,17 @@ import { Link } from "react-router-dom";
 import avatar from "../../assets/img/man.png"
 import like from "../../assets/img/like.png"
 import { Menu, Dropdown } from 'antd';
+import { useState } from "react";
 function Header() {
   const { user, isAuth } = useSelector((state) => state.auth);
 
   const { logoutMutation } = useAuth();
+
+  const [checked, isChecked] = useState(false)
+
+  const handleChecked = () => {
+    isChecked(!checked);
+  }
 
   return (
     <div className={styles.header}>
@@ -49,7 +56,7 @@ function Header() {
         isAuth && 
 
         <div>
-
+          
           <div className="h-full flex pr-11 ">
             
             <div className="flex flex-col justify-center space-between mt-20">
@@ -57,10 +64,10 @@ function Header() {
               <div className="flex space-x-4  p-1 justify-center ">
                 {/* <div>{user.name}</div> */}
                 <span className="flex flex-col justify-center text-white " >Vinh</span>
-                <div className="flex flex-col justify-center h-12"> <img src={avatar} className="h-3/5"/></div>
+                <button onClick={handleChecked} className="flex flex-col justify-center h-12 cursor-pointer"> <img src={avatar} className="h-3/5"/></button>
               </div>
 
-              <Menu className=" rounded z-10 h-60 ">
+              <Menu className={`${"rounded z-10 h-60"} ${checked ? "visible" : "invisible"}`} >
                   <Menu.Item>
                     <button className="w-32 h-full hover:bg-gray-300 rounded">Setting</button>
                   </Menu.Item>
