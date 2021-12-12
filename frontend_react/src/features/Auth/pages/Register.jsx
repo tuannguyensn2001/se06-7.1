@@ -37,7 +37,7 @@ function Register() {
             <Input {...register("checkpassword")} type="checkpassword"/>
             
           </div>
-          <div className={"signup-btn float-right"}>
+          <div className={"signup-btn"}>
             <button type={"submit"}>
               Register
             </button>

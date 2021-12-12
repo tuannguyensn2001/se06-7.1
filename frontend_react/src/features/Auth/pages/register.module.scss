@@ -7,6 +7,8 @@
   }
   
   .signup-box {
+    display: flex;
+    flex-direction: column;
     width: 500px;
     padding: 50px;
     background: #ffffff;
@@ -14,7 +16,7 @@
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
     border-radius: 10px;
     height: 72%;
-    margin-top: 120px;
+    margin-top: calc((35vh - 60px )/2);
   }
   
   .signup-box h2 {
@@ -35,16 +37,16 @@
     left: 0;
     margin-top: 15px;
     padding: 10px 0;
-    font-size: 13px;
+    font-size: 15px;
     color: #000;
   }
   
   .signup-box button {
-    margin-top: 40px;
+    margin-top: 32px;
     font-size: 16px;
     font-weight: 550; 
     right: 0;
-    width:  auto;
+    width:  100%;
     border-radius:  20px; 
     text-align:  center; 
     padding:  15px 20px;
