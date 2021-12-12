@@ -37,7 +37,7 @@ function Login() {
             />
           </div>
 
-          <div className={"login-btn float-right"}>
+          <div className={"login-btn"}>
             <button type={"submit"}>Login</button>
           </div>
         </form>
