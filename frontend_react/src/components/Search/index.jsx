@@ -1,6 +1,6 @@
 import styles from "./style.module.scss";
 import styled from "styled-components";
-import background from "@/assets/img/background1.jpg";
+import background from "@/assets/img/slider.png";
 
 const Slider = styled.div`
   width: 100%;
