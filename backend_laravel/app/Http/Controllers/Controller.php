@@ -18,13 +18,22 @@ class Controller extends BaseController
         return response()->json($data, $status);
     }
 
-    public function responseInternalServerError($error, $data = []): \Illuminate\Http\JsonResponse
+    public function responseInternalServerError($message, $log = '', $data = []): \Illuminate\Http\JsonResponse
     {
         return $this->response([
-            'log' => $error['log'],
-            'message' => $error['message'],
+            'log' => $log,
+            'message' => $message,
             'data' => $data
         ], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR);
+    }
+
+    public function responseBadRequest($message = '', $log = '', $data = []): \Illuminate\Http\JsonResponse
+    {
+        return $this->response([
+            'message' => $message,
+            'log' => $log,
+            'data' => $data
+        ], ResponseAlias::HTTP_BAD_REQUEST);
     }
 
 }

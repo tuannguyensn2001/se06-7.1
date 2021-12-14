@@ -15,4 +15,13 @@ class ModelRepository
     {
         return Model::with('media')->where('id', $id)->isSystemUpload()->first();
     }
+
+    public function create($data)
+    {
+        return Model::create([
+            'name' => $data['name'],
+            'model' => $data['model'],
+            'user_id' => $data['user_id']
+        ]);
+    }
 }

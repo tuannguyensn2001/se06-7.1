@@ -2,7 +2,7 @@ import styles from "./style.module.scss";
 
 function Footer() {
   return (
-    <footer className={styles["footer"]}>
+    <footer className={styles.footer}>
       <div className={styles["waves"]}>
         <div className={styles["wave"]} id={styles["wave1"]}></div>
         <div className={styles["wave"]} id={styles["wave2"]}></div>

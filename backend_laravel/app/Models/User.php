@@ -56,34 +56,35 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function models(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function models(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsToMany(Model::class,'user_model')->withPivot([
-            'name',
-            'base_color',
-            'disable_zoom',
-            'camera_controls',
-            'auto_rotate',
-            'poster',
-            'skybox',
-            'auto_rotate_delay',
-            'camera_orbit',
-            'camera_target',
-            'rotation_per_second',
-            'interaction_policy',
-            'field_of_view',
-            'max_camera_orbit',
-            'min_camera_orbit',
-            'max_field_of_view',
-            'min_field_of_view',
-            'interpolation_decay',
-            'orientation',
-            'scale',
-            'metal_ness',
-            'rough_ness',
-            'exposure',
-            'shadow_intensity',
-            'env_image'
-        ]);
+//        return $this->belongsToMany(Model::class,'user_model')->withPivot([
+//            'name',
+//            'base_color',
+//            'disable_zoom',
+//            'camera_controls',
+//            'auto_rotate',
+//            'poster',
+//            'skybox',
+//            'auto_rotate_delay',
+//            'camera_orbit',
+//            'camera_target',
+//            'rotation_per_second',
+//            'interaction_policy',
+//            'field_of_view',
+//            'max_camera_orbit',
+//            'min_camera_orbit',
+//            'max_field_of_view',
+//            'min_field_of_view',
+//            'interpolation_decay',
+//            'orientation',
+//            'scale',
+//            'metal_ness',
+//            'rough_ness',
+//            'exposure',
+//            'shadow_intensity',
+//            'env_image'
+//        ]);
+        return $this->hasMany(Model::class);
     }
 }

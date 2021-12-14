@@ -4,6 +4,7 @@ import { fetchMyModel } from "@/services/models";
 import RequiredAuth from "@/components/RequiredAuth";
 import { Empty } from "antd";
 import { Link } from "react-router-dom";
+import ModelCard from "@/components/ModelCard";
 
 function MyModel() {
   const { data: models } = useQuery("models", async () => {
@@ -21,8 +22,19 @@ function MyModel() {
             <div>
               {models?.length === 0 && (
                 <Empty description={"Bạn chưa có model"}>
-                  <Link to={"#"}>Upload Model của bạn ngay tại đây</Link>
+                  <Link to={"/my-models/create"}>
+                    Upload Model của bạn ngay tại đây
+                  </Link>
                 </Empty>
+              )}
+              {models?.length !== 0 && (
+                <div>
+                  <div>
+                    {models?.map((item) => (
+                      <ModelCard id={item.id} name={item.name} key={item.id} />
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
           </div>

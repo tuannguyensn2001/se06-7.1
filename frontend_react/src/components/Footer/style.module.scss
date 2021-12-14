@@ -50,7 +50,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   //background-image: url('src/assets/img/background1.jpg');
-  position: relative;
+  //position: relative;
 }
 
 .slider-content {
@@ -268,16 +268,17 @@
 /* Footer */
 
 .footer {
-  margin-top: 200px;
+  //margin-top: 200px;
   position: relative;
   width: 100%;
   background: #3586ff;
-  min-height: 100px;
-  padding: 0px 50px;
+  //min-height: 100px;
+  //padding: 0px 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 150px;
 }
 
 .social-icon,

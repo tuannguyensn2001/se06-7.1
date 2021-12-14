@@ -13,17 +13,17 @@ class CreateUserModelTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_model', function (Blueprint $table) {
+        Schema::create('models', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('model_id');
+            $table->string('model');
             $table->string('name');
             $table->json('base_color')->nullable();
             $table->integer('disable_zoom')->nullable();
             $table->integer('camera_controls')->nullable();
             $table->integer('auto_rotate')->nullable();
-            $table->integer('poster')->nullable();
-            $table->integer('skybox')->nullable();
+            $table->string('poster')->nullable();
+            $table->string('skybox')->nullable();
             $table->json('auto_rotate_delay')->nullable();
             $table->json('camera_orbit')->nullable();
             $table->json('camera_target')->nullable();
@@ -41,7 +41,7 @@ class CreateUserModelTable extends Migration
             $table->json('rough_ness')->nullable();
             $table->json('exposure')->nullable();
             $table->json('shadow_intensity')->nullable();
-            $table->integer('env_image')->nullable();
+            $table->string('env_image')->nullable();
             $table->timestamps();
         });
     }

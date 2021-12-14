@@ -28,6 +28,11 @@ Route::group(['prefix' => '/v1'], function () {
 
     Route::group(['prefix' => '/models'], function () {
         Route::get('/', [\App\Http\Controllers\ModelController::class, 'index'])->middleware('jwt');
+        Route::post('/', [\App\Http\Controllers\ModelController::class, 'store'])->middleware('jwt');
+    });
+
+    Route::group(['prefix' => '/upload'], function () {
+        Route::post('/', [\App\Http\Controllers\UploadController::class, 'store']);
     });
 
     Route::group([
