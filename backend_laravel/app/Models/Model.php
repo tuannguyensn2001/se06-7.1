@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model as LaravelModel;
 
 /**
  * @method static create(array $array)
+ * @method static find($id)
+ * @method static where(string $string, $id)
  */
 class Model extends LaravelModel
 {

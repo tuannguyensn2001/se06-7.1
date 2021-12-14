@@ -29,6 +29,9 @@ Route::group(['prefix' => '/v1'], function () {
     Route::group(['prefix' => '/models'], function () {
         Route::get('/', [\App\Http\Controllers\ModelController::class, 'index'])->middleware('jwt');
         Route::post('/', [\App\Http\Controllers\ModelController::class, 'store'])->middleware('jwt');
+        Route::get('/{id}', [\App\Http\Controllers\ModelController::class, 'show'])->middleware('jwt');
+        Route::put('/{id}', [\App\Http\Controllers\ModelController::class, 'update'])->middleware('jwt');
+        Route::delete('/{id}',[\App\Http\Controllers\ModelController::class,'destroy'])->middleware('jwt');
     });
 
     Route::group(['prefix' => '/upload'], function () {

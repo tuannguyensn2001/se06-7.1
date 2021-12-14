@@ -7,3 +7,7 @@ export const fetchBaseModel = (id) => {
 export const fetchCreateModel = (data) => {
   return SE_API.post("/v1/models", data);
 };
+
+export const fetchModel = (id) => {
+  return SE_API.get(`/v1/models/${id}`);
+};

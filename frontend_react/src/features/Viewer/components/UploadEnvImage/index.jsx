@@ -3,8 +3,8 @@ import { UploadOutlined } from "@ant-design/icons";
 import { fetchUploadFile } from "@/services/upload";
 import { useEffect, useState } from "react";
 
-function UploadSkybox({ setSkybox: dispatchSetSkybox }) {
-  const [skybox, setSkybox] = useState("");
+function UploadEnvImage({ setEnvImage: dispatchEnvImage }) {
+  const [envImage, setEnvImage] = useState("");
 
   const beforeUpload = async (file) => {
     const form = new FormData();
@@ -14,23 +14,23 @@ function UploadSkybox({ setSkybox: dispatchSetSkybox }) {
 
     const response = await fetchUploadFile(form);
 
-    setSkybox(response.data.data);
+    setEnvImage(response.data.data);
 
     return false;
   };
 
   useEffect(() => {
-    if (!skybox) return;
-    dispatchSetSkybox(skybox);
-  }, [skybox]);
+    if (!envImage) return;
+    dispatchEnvImage(envImage);
+  }, [envImage]);
 
   return (
     <div>
       <Upload showUploadList={false} beforeUpload={beforeUpload}>
-        <Button icon={<UploadOutlined />}>Upload Skybox</Button>
+        <Button icon={<UploadOutlined />}>Upload Env Image</Button>
       </Upload>
     </div>
   );
 }
 
-export default UploadSkybox;
+export default UploadEnvImage;

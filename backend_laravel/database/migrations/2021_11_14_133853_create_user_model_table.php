@@ -18,6 +18,7 @@ class CreateUserModelTable extends Migration
             $table->integer('user_id');
             $table->string('model');
             $table->string('name');
+            $table->longText('preview')->nullable();
             $table->json('base_color')->nullable();
             $table->integer('disable_zoom')->nullable();
             $table->integer('camera_controls')->nullable();
@@ -30,7 +31,7 @@ class CreateUserModelTable extends Migration
             $table->json('rotation_per_second')->nullable();
             $table->string('interaction_policy')->nullable();
             $table->json('field_of_view')->nullable();
-            $table->json('max_camera_orbit')->nullable();
+            $table->json('max_camera_obrit')->nullable();
             $table->json('min_camera_orbit')->nullable();
             $table->json('max_field_of_view')->nullable();
             $table->json('min_field_of_view')->nullable();

@@ -3,34 +3,34 @@ import { UploadOutlined } from "@ant-design/icons";
 import { fetchUploadFile } from "@/services/upload";
 import { useEffect, useState } from "react";
 
-function UploadSkybox({ setSkybox: dispatchSetSkybox }) {
-  const [skybox, setSkybox] = useState("");
+function UploadPoster({ setPoster: dispatchSetPoster }) {
+  const [poster, setPoster] = useState("");
 
   const beforeUpload = async (file) => {
     const form = new FormData();
 
     form.append("file", file);
-    form.append("type", "models");
+    form.append("type", "posters");
 
     const response = await fetchUploadFile(form);
 
-    setSkybox(response.data.data);
+    setPoster(response.data.data);
 
     return false;
   };
 
   useEffect(() => {
-    if (!skybox) return;
-    dispatchSetSkybox(skybox);
-  }, [skybox]);
+    if (!poster) return;
+    dispatchSetPoster(poster);
+  }, [poster]);
 
   return (
     <div>
       <Upload showUploadList={false} beforeUpload={beforeUpload}>
-        <Button icon={<UploadOutlined />}>Upload Skybox</Button>
+        <Button icon={<UploadOutlined />}>Upload Poster</Button>
       </Upload>
     </div>
   );
 }
 
-export default UploadSkybox;
+export default UploadPoster;
