@@ -1,0 +1,19 @@
+.header{
+  height: 60px;
+  width: 100%;
+  @apply z-10 absolute flex justify-between;
+}
+
+.nav-item {
+  font-family: Roboto;
+  
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 15px;
+  // color: #fff;
+  padding: 10px;
+}
+
+.nav > img :hover .button {
+  visibility: visible;
+}

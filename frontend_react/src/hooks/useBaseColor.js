@@ -8,8 +8,6 @@ export default function useBaseColor(model, baseColor) {
 
     baseColor = baseColor.rgb;
 
-    console.log([baseColor?.r, baseColor?.g, baseColor?.b, baseColor?.a]);
-
     material.pbrMetallicRoughness.setBaseColorFactor([
       baseColor?.r,
       baseColor?.g,

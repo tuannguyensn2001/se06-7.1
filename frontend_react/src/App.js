@@ -1,87 +1,24 @@
-import { useEffect, useRef, useState } from "react";
-import ModelViewer from "@/components/ModelViewer";
-import styled from "styled-components";
-import { Upload, Button } from "antd";
-import SettingsCamera from "@/features/Viewer/components/SettingsCamera";
-import { useForm } from "react-hook-form";
-import Hotspot from "@/components/Hotspot";
+import { BrowserRouter, Route } from "react-router-dom";
+import routes from "@/routes";
+import Header from "@/components/Header";
+import useAuth from "@/hooks/useAuth";
+import { useEffect, useState } from "react";
+import Routes from "@/routes";
 
 function App() {
-  const [src, setSrc] = useState("");
-
-  const [orbit, setOrbit] = useState("45deg 55deg 2.5m");
+  const [ready, setReady] = useState(false);
+  const { getMeMutation } = useAuth(setReady);
 
   useEffect(() => {
-    if (!src) return;
-    setTimeout(() => {
-      setOrbit("25deg 25deg 1.5m");
-    }, 3000);
-  }, [src]);
-
-  const { watch, control } = useForm({
-    defaultValues: {
-      cameraControls: true,
-      disableZoom: false,
-    },
-  });
-
-  const handleChangeFile = (info) => {
-    setSrc(URL.createObjectURL(info));
-  };
+    getMeMutation.mutate();
+  }, []);
 
   return (
     <div>
-      <Upload beforeUpload={handleChangeFile}>
-        <Button>Click to Upload</Button>
-      </Upload>
-      <WrapperStyled>
-        <div>
-          <ModelViewer
-            baseColor={watch("baseColor")}
-            disableZoom={watch("disableZoom")}
-            cameraControls={watch("cameraControls")}
-            src={src}
-          >
-            {/*<Hotspot*/}
-            {/*  slot={"handle"}*/}
-            {/*  position={[1, 1, 1]}*/}
-            {/*  normal={[-0.73, 0.05, 0.69]}*/}
-            {/*>*/}
-            {/*  <button>Click me</button>*/}
-            {/*</Hotspot>*/}
-            {!!src && (
-              <button
-                slot="hotspot-hand"
-                data-position="-0.54 0.93 0.1"
-                data-normal="-0.73 0.05 0.69"
-              >
-                <div id="annotation">This hotspot disappears completely</div>
-              </button>
-            )}
-          </ModelViewer>
-        </div>
-        <div>
-          <SettingsCamera control={control} />
-        </div>
-      </WrapperStyled>
+      <Header />
+      <div>{ready && <Routes />}</div>
     </div>
   );
 }
 
 export default App;
-
-const WrapperStyled = styled.div`
-  height: 100vh;
-  width: 100%;
-  display: flex;
-
-  & > div:nth-child(1) {
-    width: 80%;
-    height: 100%;
-  }
-
-  & > div:nth-child(2) {
-    width: 20%;
-    height: 100%;
-  }
-`;
