@@ -1,8 +1,9 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import Editor from "@/features/my_models_editor/components/Editor";
 
 function TabModel() {
   return (
-    <Tabs isFitted variant={"enclosed"}>
+    <Tabs defaultIndex={2} isFitted variant={"enclosed"}>
       <TabList>
         <Tab _selected={{ color: "white", bg: "blue.500" }}>
           Thông tin model
@@ -19,7 +20,7 @@ function TabModel() {
           <p>two!</p>
         </TabPanel>
         <TabPanel>
-          <p>three!</p>
+          <Editor />
         </TabPanel>
       </TabPanels>
     </Tabs>
