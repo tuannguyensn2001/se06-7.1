@@ -1,0 +1,8 @@
+.header {
+  height: 60px;
+  @apply tw-w-full tw-bg-white tw-shadow-md tw-flex tw-flex-col tw-justify-center
+}
+
+.search {
+  @apply tw-p-2 tw-border-2 tw-border-rose-500
+}
