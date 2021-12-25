@@ -33,11 +33,13 @@ class UploadController extends Controller
 
         $type = $request->get('type');
 
-        $url = $this->uploadService->handle($file,$type);
+        $media = $this->uploadService->handle($file, $type)->toArray();
 
         return $this->response([
             'message' => 'Upload file thành công',
-            'data' => $url
+            'data' => array_merge($media, [
+                'path' => asset(Storage::url($media['path']))
+            ])
         ]);
     }
 

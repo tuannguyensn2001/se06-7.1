@@ -2,15 +2,35 @@
 
 namespace App\Services;
 
+use App\Models\Media;
+use App\Repositories\MediaRepository;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UploadService
 {
-    public function handle($file, $type): string
-    {
-        $result = Storage::putFileAs('public/'.$type, $file, Str::uuid().'-'.$file->getClientOriginalName());
+    private $mediaRepository;
 
-        return asset(Storage::url($result));
+    public function __construct(MediaRepository $mediaRepository)
+    {
+        $this->mediaRepository = $mediaRepository;
+    }
+
+    public function handle($file, $type) : Media
+    {
+        $originalName = $file->getClientOriginalName();
+
+        $name = Str::uuid() . '-' . $file->getClientOriginalName();
+
+        $path = Storage::putFileAs('public/' . $type, $file, $name);
+
+        return $this->mediaRepository->create([
+            'name' => $name,
+            'original_name' => $originalName,
+            'type' => $type,
+            'user_id' => 1,
+            'path' => $path,
+            'disk' => 'local'
+        ]);
     }
 }
