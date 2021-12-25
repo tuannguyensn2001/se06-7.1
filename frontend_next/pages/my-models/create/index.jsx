@@ -6,11 +6,12 @@ import { useEffect, useRef } from "react";
 import TabModel from "@/features/my_models_editor/components/TabModel";
 import EditorContext from "@/features/my_models_editor/context";
 import { useForm } from "react-hook-form";
+import { Button } from "@chakra-ui/react";
 
 function MyModelsCreate() {
   const model = useRef(null);
 
-  const { control, watch } = useForm({
+  const { control, watch, handleSubmit } = useForm({
     defaultValues: {
       cameraOrbit: [
         { value: undefined },
@@ -22,12 +23,22 @@ function MyModelsCreate() {
         { value: undefined },
         { value: undefined },
       ],
+      maxCameraOrbit: [
+        { value: undefined },
+        { value: undefined },
+        { value: undefined },
+      ],
+      cameraTarget: [
+        { value: undefined },
+        { value: undefined },
+        { value: undefined },
+      ],
     },
   });
 
-  useEffect(() => {
-    console.log(watch("cameraOrbit"));
-  }, [watch("cameraOrbit")]);
+  const submit = (data) => {
+    console.log(data);
+  };
 
   return (
     <Layout>
@@ -54,9 +65,21 @@ function MyModelsCreate() {
                 minCameraOrbit={watch("minCameraOrbit")?.map((item) =>
                   Number(item.value)
                 )}
+                maxCameraOrbit={watch("maxCameraOrbit")?.map((item) =>
+                  Number(item.value)
+                )}
+                cameraTarget={watch("cameraTarget")?.map((item) =>
+                  Number(item.value)
+                )}
+                fieldOfView={watch("fieldOfView")}
+                minFieldOfView={watch("minFieldOfView")}
+                maxFieldOfView={watch("maxFieldOfView")}
+                interactionPolicy={watch("interactionPolicy")}
+                interpolationDecay={watch("interpolationDecay")}
               />
             </div>
-            <div className={"tw-col-span-3"}>
+            <div className={styles.editor}>
+              <Button onClick={handleSubmit(submit)}>Lưu</Button>
               <TabModel />
             </div>
           </EditorContext.Provider>

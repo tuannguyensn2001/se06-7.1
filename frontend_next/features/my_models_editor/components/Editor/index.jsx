@@ -15,6 +15,10 @@ import Zoom from "@/features/my_models_editor/components/Setting/Zoom";
 import Rotate from "@/features/my_models_editor/components/Setting/Rotate";
 import CameraOrbit from "@/features/my_models_editor/components/Setting/CameraOrbit";
 import MinCameraOrbit from "@/features/my_models_editor/components/Setting/MinCameraOrbit";
+import MaxCameraOrbit from "@/features/my_models_editor/components/Setting/MaxCameraOrbit";
+import CameraTarget from "@/features/my_models_editor/components/Setting/CameraTarget";
+import FieldOfView from "@/features/my_models_editor/components/Setting/FieldOfView";
+import Interaction from "@/features/my_models_editor/components/Setting/Interaction";
 
 const collapse = {
   camera: {
@@ -36,6 +40,22 @@ const collapse = {
   min_camera_orbit: {
     text: "Min Camera Orbit",
     component: <MinCameraOrbit />,
+  },
+  max_camera_orbit: {
+    text: "Max Camera Orbit",
+    component: <MaxCameraOrbit />,
+  },
+  camera_target: {
+    text: "Camera Target",
+    component: <CameraTarget />,
+  },
+  field_of_view: {
+    text: "Field Of View",
+    component: <FieldOfView />,
+  },
+  interaction: {
+    text: "Interaction",
+    component: <Interaction />,
   },
 };
 

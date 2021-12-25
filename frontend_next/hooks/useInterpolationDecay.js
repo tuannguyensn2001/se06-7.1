@@ -5,16 +5,17 @@ export default function useInterpolationDecay(model, interpolationDecay) {
   useEffect(() => {
     if (!model.current) return;
 
-    if (CheckArray(interpolationDecay, 1)) {
+    if (!!interpolationDecay) {
       model.current.setAttribute(
         "interpolation-decay",
-        `${interpolationDecay[0]}`
+        `${interpolationDecay}`
       );
-
       const orbitCycle = [
         "45deg 55deg 4m",
         "-60deg 110deg 2m",
-        model?.current ? model.current.cameraOrbit : "10deg 15deg 10m",
+        model?.current?.cameraOrbit
+          ? model.current.cameraOrbit
+          : "10deg 15deg 10m",
       ];
       const intervalID = setInterval(() => {
         if (!model?.current) return;
