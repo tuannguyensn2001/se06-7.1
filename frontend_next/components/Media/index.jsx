@@ -14,7 +14,14 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-function Media({ onDrop, isOpen, onOpen, onClose }) {
+function Media({
+  onDrop,
+  isOpen,
+  onOpen,
+  onClose,
+  overlay = true,
+  text = 'Upload File',
+}) {
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
     multiple: false,
@@ -30,9 +37,9 @@ function Media({ onDrop, isOpen, onOpen, onClose }) {
         onClose={onClose}
         isCentered
       >
-        <ModalOverlay />
+        {overlay && <ModalOverlay />}
         <ModalContent maxW={'60rem'}>
-          <ModalHeader>Upload File</ModalHeader>
+          <ModalHeader>{text}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Tabs variant="enclosed">

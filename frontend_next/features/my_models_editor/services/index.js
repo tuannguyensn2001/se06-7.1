@@ -1,0 +1,13 @@
+import SE_API from '@/config/network';
+
+export const fetchBaseModel = (id) => {
+  return SE_API.get(`/v1/base-models/${id}`);
+};
+
+export const fetchCreateModel = (data) => {
+  return SE_API.post('/v1/models', data);
+};
+
+export const fetchModel = (id) => {
+  return SE_API.get(`/v1/models/${id}`);
+};

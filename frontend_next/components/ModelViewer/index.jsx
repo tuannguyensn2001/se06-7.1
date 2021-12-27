@@ -1,5 +1,6 @@
-import useModelViewer from "@/hooks/useModelViewer";
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+import useModelViewer from '@/hooks/useModelViewer';
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import { Button } from '@chakra-ui/react';
 
 function ModelViewer(props, ref) {
   const { model } = useModelViewer(props);
@@ -15,16 +16,18 @@ function ModelViewer(props, ref) {
   return (
     <>
       <model-viewer
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: '100%', height: '100%' }}
+        ar
+        ar-modes="webxr"
         ref={model}
         src={props.src}
-        // alt={props.alt}
-        // camera-orbit={props.cameraOrbit}
-        // autoRotate={true}
-        // poster={props.poster}
-        // autoplay
+        alt={props.alt}
+        camera-orbit={props.cameraOrbit}
+        autoRotate={true}
+        poster={props.poster}
+        autoplay
       >
-        {!!props.children && props.children}
+        {/*{!!props.children && props.children}*/}
       </model-viewer>
     </>
   );

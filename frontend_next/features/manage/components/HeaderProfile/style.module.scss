@@ -1,0 +1,14 @@
+.profile {
+  height: 200px;
+  @apply tw-bg-red-500 tw-w-full tw-bg-blue-900 tw-px-40 tw-flex;
+}
+
+.avatar {
+  @apply tw-my-6 tw-w-40;
+  height: calc(200px - 3rem);
+}
+
+.account {
+  height: calc(200px - 3rem);
+  @apply tw-my-6 tw-ml-5 tw-text-white tw-text-2xl
+}

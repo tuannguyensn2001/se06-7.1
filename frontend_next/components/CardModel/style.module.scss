@@ -1,0 +1,12 @@
+.card {
+  @apply tw-h-96 tw-rounded-xl tw-shadow tw-flex tw-flex-col ;
+}
+
+.image {
+  @apply tw-h-full tw-w-full tw-object-cover tw-rounded tw-shadow tw-transition-transform tw-ease-in-out tw-duration-700;
+
+  &:hover {
+    transform: scale(1.5);
+  }
+
+}

@@ -1,23 +1,32 @@
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import Editor from "@/features/my_models_editor/components/Editor";
+import {
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Button,
+} from '@chakra-ui/react';
+import Editor from '@/features/my_models_editor/components/Editor';
+import TabGeneral from '@/features/my_models_editor/components/TabGeneral';
 
-function TabModel() {
+function TabModel({ onClickUpload }) {
   return (
-    <Tabs defaultIndex={2} isFitted variant={"enclosed"}>
+    <Tabs defaultIndex={2} isFitted variant={'enclosed'}>
       <TabList>
-        <Tab _selected={{ color: "white", bg: "blue.500" }}>
+        <Tab _selected={{ color: 'white', bg: 'blue.500' }}>
           Thông tin model
         </Tab>
-        <Tab _selected={{ color: "white", bg: "blue.500" }}>Upload file</Tab>
-        <Tab _selected={{ color: "white", bg: "blue.500" }}>Editor</Tab>
+        <Tab _selected={{ color: 'white', bg: 'blue.500' }}>Upload file</Tab>
+        <Tab _selected={{ color: 'white', bg: 'blue.500' }}>Editor</Tab>
       </TabList>
 
       <TabPanels>
         <TabPanel>
-          <p>one!</p>
+          <TabGeneral />
         </TabPanel>
         <TabPanel>
-          <p>two!</p>
+          <Button onClick={onClickUpload('models')}>Upload 3d</Button>
+          <Button onClick={onClickUpload('skybox')}>Upload skybox</Button>
         </TabPanel>
         <TabPanel>
           <Editor />

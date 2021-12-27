@@ -1,89 +1,63 @@
-import Layout from '@/layouts/Default';
 import ModelViewer from '@/components/ModelViewer';
 import styles from './style.module.scss';
 import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import TabModel from '@/features/my_models_editor/components/TabModel';
 import EditorContext from '@/features/my_models_editor/context';
-import { useForm } from 'react-hook-form';
 import { Button, useDisclosure } from '@chakra-ui/react';
 import Media from '@/components/Media';
-import { useMutation } from 'react-query';
-import { fetchUploadFile } from '@/services';
+import HeaderEditor from '@/features/my_models_editor/components/HeaderEditor';
+import useUploadEditor from '@/features/my_models_editor/hooks/useUploadEditor';
+import useFormEditor from '@/features/my_models_editor/hooks/useFormEditor';
+import useCreateModel from '@/features/my_models_editor/hooks/useCreateModel';
+import WithAuth from '@/components/WithAuth';
 
 function MyModelsCreate() {
   const model = useRef(null);
 
-  const { control, watch, handleSubmit, setValue } = useForm({
-    defaultValues: {
-      cameraOrbit: [
-        { value: undefined },
-        { value: undefined },
-        { value: undefined },
-      ],
-      minCameraOrbit: [
-        { value: undefined },
-        { value: undefined },
-        { value: undefined },
-      ],
-      maxCameraOrbit: [
-        { value: undefined },
-        { value: undefined },
-        { value: undefined },
-      ],
-      cameraTarget: [
-        { value: undefined },
-        { value: undefined },
-        { value: undefined },
-      ],
-    },
-  });
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const uploadFile = useMutation(
-    'upload',
-    (data) => {
-      return fetchUploadFile(data);
-    },
-    {
-      onSuccess(response) {
-        const { path } = response.data.data;
-        setValue('src', path);
+  const { control, watch, handleSubmit, setValue } = useFormEditor();
+
+  const create = useCreateModel();
+
+  const { typeUpload, setTypeUpload, openUploadType, onDropFile } =
+    useUploadEditor({
+      onOpen,
+      onSuccess(type, value) {
+        setValue(type, value);
         onClose();
       },
-      onError(error) {
-        console.log(error);
-      },
-    }
-  );
+    });
 
-  const [typeUpload, setTypeUpload] = useState('');
-
-  const openUploadType = (type) => {
-    return () => {
-      setTypeUpload(type);
-      onOpen();
-    };
-  };
+  useEffect(() => {
+    !watch('src') && onOpen();
+  }, [watch('src')]);
 
   const submit = (data) => {
-    console.log(data);
-  };
-
-  const onDropFile = (files) => {
-    const [file] = files;
-    const form = new FormData();
-
-    form.append('file', file);
-    form.append('type', typeUpload);
-
-    uploadFile.mutate(form);
+    const payload = {
+      name: data.name,
+      model: data.src,
+      disable_zoom: Boolean(data?.disableZoom) || null,
+      camera_control: Boolean(data?.cameraControls) || null,
+      auto_rotate: Boolean(data?.autoRotate) || null,
+      auto_rotate_delay: data?.auto_rotate_delay || null,
+      skybox: data?.skybox || null,
+      rotation_per_second: data?.rotationPerSecond || null,
+      interaction_policy: data?.interactionPolicy || null,
+      field_of_view: data?.fieldOfView || null,
+      preview: model.current.capture(),
+      max_field_of_view: null,
+      min_field_of_view: null,
+      interpolation_decay: null,
+    };
+    create.mutate(payload);
   };
 
   return (
-    <Layout>
-      <Media onDrop={onDropFile} isOpen={isOpen} onClose={onClose} />
+    <div>
+      {!!watch('src') && <HeaderEditor onClickSave={handleSubmit(submit)} />}
+
       <div className={styles.main}>
         <div
           className={clsx([
@@ -91,6 +65,12 @@ function MyModelsCreate() {
             styles.main,
           ])}
         >
+          <Media
+            overlay={!!watch('src')}
+            onDrop={onDropFile}
+            isOpen={isOpen}
+            onClose={onClose}
+          />
           <EditorContext.Provider value={{ control, watch }}>
             <div className={'tw-h-full tw-w-full tw-col-span-9 '}>
               {!watch('src') && (
@@ -132,18 +112,20 @@ function MyModelsCreate() {
                   maxFieldOfView={watch('maxFieldOfView')}
                   interactionPolicy={watch('interactionPolicy')}
                   interpolationDecay={watch('interpolationDecay')}
+                  srcSkybox={watch('skybox')}
                 />
               )}
             </div>
-            <div className={styles.editor}>
-              <Button onClick={handleSubmit(submit)}>Lưu</Button>
-              <TabModel />
-            </div>
+            {!!watch('src') && (
+              <div className={styles.editor}>
+                <TabModel onClickUpload={openUploadType} />
+              </div>
+            )}
           </EditorContext.Provider>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 }
 
-export default MyModelsCreate;
+export default WithAuth(MyModelsCreate);
