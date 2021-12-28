@@ -24,6 +24,7 @@ export default function useFormEditor() {
         { value: undefined },
         { value: undefined },
       ],
+      name: '',
     },
   });
 

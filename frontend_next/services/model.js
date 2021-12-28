@@ -13,3 +13,7 @@ export const fetchUpdateModel = (id, data, query = {}) => {
 export const fetchDeleteModel = (id) => {
   return SE_API.delete(`/v1/models/${id}`);
 };
+
+export const fetchModel = (id) => {
+  return SE_API.get(`/v1/models/${id}`);
+};
