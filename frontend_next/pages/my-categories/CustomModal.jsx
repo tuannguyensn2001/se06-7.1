@@ -16,8 +16,8 @@ import {
 import { Controller } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
-function CustomModal({ modalHeader, onSubmit, buttonContent }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+function CustomModal({ isAddMode, onSubmit, isOpen, onClose }) {
+  // const { isOpen, onOpen, onClose } = useDisclosure();
   const { control, handleSubmit } = useForm({
     defaultValues: {
       name: '',
@@ -25,11 +25,11 @@ function CustomModal({ modalHeader, onSubmit, buttonContent }) {
   });
   return (
     <>
-      <Button onClick={onOpen}>{modalHeader}</Button>
+      {/* <Button onClick={onOpen}>Add new</Button> */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{modalHeader}</ModalHeader>
+          <ModalHeader>{isAddMode ? 'Add new' : 'Editing'}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Controller
@@ -57,7 +57,7 @@ function CustomModal({ modalHeader, onSubmit, buttonContent }) {
               onClick={handleSubmit(onSubmit)}
               variant="ghost"
             >
-              {buttonContent}
+              Save
             </Button>
           </ModalFooter>
         </ModalContent>

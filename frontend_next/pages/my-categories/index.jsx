@@ -20,7 +20,7 @@ import {
   Th,
   Td,
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
@@ -31,9 +31,15 @@ import CustomModal from './CustomModal.jsx';
 function MyCategories() {
   let localData = get();
 
-  // const { isOpen, onClose, onOpen } = useDisclosure();
+  const { isOpen, onClose, onOpen } = useDisclosure();
 
   const [categories, setCategories] = useState(localData);
+
+  const [isAddMode, setIsAddMode] = useState(true);
+
+  const [editId, setEditId] = useState(0);
+
+  const buttonRef = useRef();
 
   // const { control, handleSubmit } = useForm({
   //   defaultValues: {
@@ -44,6 +50,10 @@ function MyCategories() {
   useEffect(() => {
     set(categories);
   }, [categories]);
+
+  const handleSubmit = (data) => {
+    return isAddMode ? handleAdd(data) : handleEdit(data);
+  };
 
   const handleAdd = (data) => {
     // Add data into categories
@@ -56,19 +66,23 @@ function MyCategories() {
     setCategories(newArray);
   };
 
-  const handleEdit = (index, data) => {
+  const handleEdit = (data) => {
     let newCategories = [...categories];
-    newCategories[index] = data.name;
+    newCategories[editId] = data.name;
     setCategories(newCategories);
+    setIsAddMode(true);
   };
 
   return (
     <Layout>
-      {/* <Button onClick={onOpen}>Thêm mới</Button> */}
+      <Button ref={buttonRef} onClick={onOpen}>
+        Add new
+      </Button>
       <CustomModal
-        modalHeader="Add new"
-        onSubmit={handleAdd}
-        buttonContent="Save"
+        isAddMode={isAddMode}
+        onSubmit={handleSubmit}
+        isOpen={isOpen}
+        onClose={onClose}
       />
       <Table variant="simple">
         <Thead>
@@ -82,11 +96,16 @@ function MyCategories() {
             <Tr key={index}>
               <Td>{category}</Td>
               <Td>
-                <CustomModal
-                  modalHeader="Edit"
-                  onSubmit={() => handleEdit(index)}
-                  buttonContent="Save"
-                />
+                <Button
+                  data-category-btn={index}
+                  onClick={(e) => {
+                    setIsAddMode(false);
+                    buttonRef.current.click();
+                    setEditId(parseInt(e.target.dataset.categoryBtn));
+                  }}
+                >
+                  Edit
+                </Button>
                 <Button onClick={() => HandleDelete(index)}>Delete</Button>
               </Td>
             </Tr>
