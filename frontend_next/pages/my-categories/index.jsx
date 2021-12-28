@@ -13,30 +13,87 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
 } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
+import { set, get } from './localData.js';
+
+import CustomModal from './CustomModal.jsx';
 
 function MyCategories() {
-  const { isOpen, onClose, onOpen } = useDisclosure();
+  let localData = get();
 
-  const [categories, setCategories] = useState([]);
+  // const { isOpen, onClose, onOpen } = useDisclosure();
 
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-      name: '',
-    },
-  });
+  const [categories, setCategories] = useState(localData);
 
-  const submit = (data) => {
-    console.log(data);
+  // const { control, handleSubmit } = useForm({
+  //   defaultValues: {
+  //     name: '',
+  //   },
+  // });
+
+  useEffect(() => {
+    set(categories);
+  }, [categories]);
+
+  const handleAdd = (data) => {
+    // Add data into categories
+    setCategories((categories) => [...categories, data.name]);
+  };
+
+  const HandleDelete = (index) => {
+    const newArray = [...categories];
+    newArray.splice(index, 1);
+    setCategories(newArray);
+  };
+
+  const handleEdit = (index, data) => {
+    let newCategories = [...categories];
+    newCategories[index] = data.name;
+    setCategories(newCategories);
   };
 
   return (
     <Layout>
-      <Button onClick={onOpen}>Thêm mới</Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      {/* <Button onClick={onOpen}>Thêm mới</Button> */}
+      <CustomModal
+        modalHeader="Add new"
+        onSubmit={handleAdd}
+        buttonContent="Save"
+      />
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Name</Th>
+            <Th>Option</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {categories.map((category, index) => (
+            <Tr key={index}>
+              <Td>{category}</Td>
+              <Td>
+                <CustomModal
+                  modalHeader="Edit"
+                  onSubmit={() => handleEdit(index)}
+                  buttonContent="Save"
+                />
+                <Button onClick={() => HandleDelete(index)}>Delete</Button>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+      {/* <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Thêm mới</ModalHeader>
@@ -48,11 +105,7 @@ function MyCategories() {
               }}
               control={control}
               name={'name'}
-              render={({
-                field,
-                fieldState: { error },
-                formState: { errors },
-              }) => (
+              render={({ field, fieldState: { error } }) => (
                 <FormControl isInvalid={!!error}>
                   <FormLabel htmlFor={'name'}>Tên danh mục</FormLabel>
                   <Input id={'name'} {...field} />
@@ -75,7 +128,7 @@ function MyCategories() {
             </Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
+      </Modal> */}
     </Layout>
   );
 }
