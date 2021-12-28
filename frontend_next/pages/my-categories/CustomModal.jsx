@@ -16,13 +16,20 @@ import {
 import { Controller } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
-function CustomModal({ isAddMode, onSubmit, isOpen, onClose }) {
+function CustomModal({
+  isAddMode,
+  onSubmit,
+  isOpen,
+  onClose,
+  onSave,
+  control,
+}) {
   // const { isOpen, onOpen, onClose } = useDisclosure();
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-      name: '',
-    },
-  });
+  // const { control, handleSubmit } = useForm({
+  //   defaultValues: {
+  //     name: '',
+  //   },
+  // });
   return (
     <>
       {/* <Button onClick={onOpen}>Add new</Button> */}
@@ -52,11 +59,7 @@ function CustomModal({ isAddMode, onSubmit, isOpen, onClose }) {
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Hủy
             </Button>
-            <Button
-              type={'button'}
-              onClick={handleSubmit(onSubmit)}
-              variant="ghost"
-            >
+            <Button type={'button'} onClick={onSave} variant="ghost">
               Save
             </Button>
           </ModalFooter>
