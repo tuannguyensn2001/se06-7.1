@@ -26,12 +26,18 @@ Route::group(['prefix' => '/v1'], function () {
         Route::get('/me', [\App\Http\Controllers\AuthController::class, 'me'])->middleware('jwt');
     });
 
-    Route::group(['prefix' => '/models'], function () {
+    Route::group(['prefix' => '/models', 'middleware' => ['jwt']], function () {
         Route::get('/', [\App\Http\Controllers\ModelController::class, 'index'])->middleware('jwt');
         Route::post('/', [\App\Http\Controllers\ModelController::class, 'store'])->middleware('jwt');
         Route::get('/{id}', [\App\Http\Controllers\ModelController::class, 'show'])->middleware('jwt');
         Route::put('/{id}', [\App\Http\Controllers\ModelController::class, 'update'])->middleware('jwt');
-        Route::delete('/{id}',[\App\Http\Controllers\ModelController::class,'destroy'])->middleware('jwt');
+        Route::delete('/{id}', [\App\Http\Controllers\ModelController::class, 'destroy'])->middleware('jwt');
+        Route::put('/{id}/publish', [\App\Http\Controllers\ModelController::class, 'publish']);
+        Route::put('/{id}/private', [\App\Http\Controllers\ModelController::class, 'private']);
+    });
+
+    Route::group(['prefix' => '/models-publish'], function () {
+        Route::get('/{id}', [\App\Http\Controllers\ModelPublishController::class, 'show']);
     });
 
     Route::group(['prefix' => '/upload'], function () {

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { Button } from '@chakra-ui/react';
 import { Tooltip } from '@chakra-ui/react';
 
-function HeaderEditor({ onClickSave }) {
+function HeaderEditor({ onClickSave, showPublish, onClickPublish }) {
   const router = useRouter();
 
   const back = () => {
@@ -21,9 +21,21 @@ function HeaderEditor({ onClickSave }) {
         </div>
       </div>
       <div className={'tw-flex tw-flex-col tw-justify-center'}>
-        <Button onClick={onClickSave} colorScheme={'blue'}>
-          Lưu
-        </Button>
+        <div className={'tw-flex'}>
+          {showPublish && (
+            <Button
+              onClick={onClickPublish}
+              color={'white'}
+              className={'tw-mr-3 tw-text-white'}
+              colorScheme={'yellow'}
+            >
+              PUBLISH
+            </Button>
+          )}
+          <Button onClick={onClickSave} colorScheme={'blue'}>
+            Lưu
+          </Button>
+        </div>
       </div>
     </div>
   );

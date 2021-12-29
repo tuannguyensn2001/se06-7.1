@@ -121,16 +121,37 @@ class ModelController extends Controller
 
     public function destroy($id): \Illuminate\Http\JsonResponse
     {
-        return $this->response([
-            'message' => 'Xóa thành công',
-            'data' => $id
-        ]);
-
         try {
             $this->modelService->handleDestroy($id);
             return $this->response([
                 'message' => 'Xóa thành công',
                 'data' => $id
+            ]);
+        } catch (\Exception $exception) {
+            return $this->responseInternalServerError($exception->getMessage());
+        }
+    }
+
+    public function publish($id): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $this->modelService->handlePublish($id);
+            return $this->response([
+                'message' => 'Publish model thành công',
+                'data' => []
+            ]);
+        } catch (\Exception $exception) {
+            return $this->responseInternalServerError($exception->getMessage());
+        }
+    }
+
+    public function private($id): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $this->modelService->handlePrivate($id);
+            return $this->response([
+                'message' => 'Private model thành công',
+                'data' => []
             ]);
         } catch (\Exception $exception) {
             return $this->responseInternalServerError($exception->getMessage());

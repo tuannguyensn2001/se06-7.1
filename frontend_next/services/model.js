@@ -17,3 +17,7 @@ export const fetchDeleteModel = (id) => {
 export const fetchModel = (id) => {
   return SE_API.get(`/v1/models/${id}`);
 };
+
+export const fetchPublishModel = (id) => {
+  return SE_API.put(`/v1/models/${id}/publish`);
+};

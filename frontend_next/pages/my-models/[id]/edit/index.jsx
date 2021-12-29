@@ -12,9 +12,11 @@ import useFormEditor from '@/features/my_models_editor/hooks/useFormEditor';
 import useCreateModel from '@/features/my_models_editor/hooks/useCreateModel';
 import WithAuth from '@/components/WithAuth';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
-import { fetchMyModel } from '@/services/model';
+import { useMutation, useQuery } from 'react-query';
+import { fetchMyModel, fetchPublishModel } from '@/services/model';
 import { fetchModel } from '@/features/my_models_editor/services';
+import defineModel from '@/defines/model';
+import MySwal from '@/components/MySwal';
 
 function MyModelsEdit() {
   const model = useRef(null);
@@ -41,6 +43,7 @@ function MyModelsEdit() {
           },
         } = response;
         reset({
+          ...defineModel.defaultValue,
           src: model,
           name,
         });
@@ -51,6 +54,19 @@ function MyModelsEdit() {
     }
   );
 
+  const publish = useMutation('publish', () => fetchPublishModel(id), {
+    onSuccess(response) {
+      MySwal.fire({
+        text: response.data.message,
+        icon: 'success',
+        title: 'Thành công',
+      });
+    },
+    onError(error) {
+      console.log(error);
+    },
+  });
+
   const { openUploadType, onDropFile } = useUploadEditor({
     onOpen,
     onSuccess(type, value) {
@@ -58,6 +74,10 @@ function MyModelsEdit() {
       onClose();
     },
   });
+
+  const handlePublish = () => {
+    publish.mutate();
+  };
 
   const submit = (data) => {
     const payload = {
@@ -81,12 +101,16 @@ function MyModelsEdit() {
 
   return (
     <div>
-      <HeaderEditor onClickSave={handleSubmit(submit)} />
+      <HeaderEditor
+        onClickPublish={handlePublish}
+        showPublish
+        onClickSave={handleSubmit(submit)}
+      />
 
       <div className={styles.main}>
         <div
           className={clsx([
-            'tw-grid tw-grid-cols-12 tw-gap-4 tw-divide-x tw-h-full ',
+            'tw-grid tw-grid-cols-12  tw-divide-x tw-h-full ',
             styles.main,
           ])}
         >

@@ -77,4 +77,16 @@ class ModelRepository
                 'interpolation_decay' => $data['interpolation_decay']
             ]);
     }
+
+    public function publish($id)
+    {
+        return Model::where('id', $id)
+            ->update(['is_publish' => 1]);
+    }
+
+    public function private($id)
+    {
+        return Model::where('id', $id)
+            ->update(['is_publish', 0]);
+    }
 }

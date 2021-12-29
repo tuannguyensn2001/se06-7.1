@@ -35,6 +35,7 @@ function Manager() {
               {isSuccess &&
                 models?.map((model) => (
                   <CardModel
+                    isPublish={!!model?.is_publish}
                     id={model.id}
                     name={model.name}
                     preview={model.preview}

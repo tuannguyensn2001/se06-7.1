@@ -44,4 +44,14 @@ class ModelService
     {
         return $this->modelRepository->update($id, $data);
     }
+
+    public function handlePublish($id)
+    {
+        return $this->modelRepository->publish($id);
+    }
+
+    public function handlePrivate($id)
+    {
+        return $this->modelRepository->private($id);
+    }
 }

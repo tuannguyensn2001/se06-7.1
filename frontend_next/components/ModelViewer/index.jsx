@@ -16,7 +16,7 @@ function ModelViewer(props, ref) {
   return (
     <>
       <model-viewer
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%', backgroundColor: '#a5a4a4' }}
         ar
         ar-modes="webxr"
         ref={model}

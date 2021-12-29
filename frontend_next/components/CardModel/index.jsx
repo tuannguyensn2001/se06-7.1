@@ -18,12 +18,14 @@ import {
   RepeatIcon,
   EditIcon,
   DeleteIcon,
+  ViewIcon,
 } from '@chakra-ui/icons';
 import MySwal from '@/components/MySwal';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { Badge } from '@chakra-ui/react';
 
-function CardModel({ preview, name, id }) {
+function CardModel({ preview, name, id, isPublish }) {
   const router = useRouter();
   const handleDelete = async () => {
     const result = await MySwal.fire({
@@ -55,7 +57,13 @@ function CardModel({ preview, name, id }) {
       <div
         className={'tw-bg-white tw-flex tw-justify-between tw-shadow tw-p-5'}
       >
-        <div>{name}</div>
+        <div>
+          {name}{' '}
+          <Badge ml={3} colorScheme={isPublish ? 'green' : 'default'}>
+            {isPublish ? 'Publish ' : 'Private'}
+          </Badge>
+        </div>
+
         <div>
           <Menu>
             <MenuButton
@@ -65,6 +73,9 @@ function CardModel({ preview, name, id }) {
               variant="outline"
             />
             <MenuList>
+              {isPublish && (
+                <MenuItem icon={<ViewIcon />}>Xem chi tiết</MenuItem>
+              )}
               <MenuItem onClick={handleEdit} icon={<EditIcon />}>
                 Chỉnh sửa
               </MenuItem>
