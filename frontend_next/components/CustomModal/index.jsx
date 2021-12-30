@@ -7,32 +7,16 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-  useDisclosure,
   FormControl,
   FormLabel,
   Input,
   FormErrorMessage,
 } from '@chakra-ui/react';
 import { Controller } from 'react-hook-form';
-import { useForm } from 'react-hook-form';
 
-function CustomModal({
-  isAddMode,
-  onSubmit,
-  isOpen,
-  onClose,
-  onSave,
-  control,
-}) {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
-  // const { control, handleSubmit } = useForm({
-  //   defaultValues: {
-  //     name: '',
-  //   },
-  // });
+function CustomModal({ isAddMode, isOpen, onClose, onSave, control }) {
   return (
     <>
-      {/* <Button onClick={onOpen}>Add new</Button> */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
