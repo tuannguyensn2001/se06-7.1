@@ -1,18 +1,18 @@
-import styles from "./style.module.scss";
-import { Controller, useForm } from "react-hook-form";
-import { useMutation } from "react-query";
-import { fetchLogin } from "@/features/auth/services";
-import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { setLogin } from "@/features/auth/slices";
-import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
-import useToast from "@/hooks/useToast";
+import styles from './style.module.scss';
+import { Controller, useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { fetchLogin } from '@/features/auth/services';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '@/features/auth/slices';
+import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+import useToast from '@/hooks/useToast';
 
-function Login() {
+function Login({ name }) {
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      email: "tuannguyensn2001a@gmail.com",
-      password: "java2001",
+      email: 'tuannguyensn2001a@gmail.com',
+      password: 'java2001',
     },
   });
 
@@ -20,7 +20,7 @@ function Login() {
   const router = useRouter();
   const fire = useToast();
 
-  const login = useMutation("login", (data) => fetchLogin(data), {
+  const login = useMutation('login', (data) => fetchLogin(data), {
     onSuccess(response) {
       const {
         data: {
@@ -34,7 +34,7 @@ function Login() {
           user,
         })
       );
-      router.push("/").then(() => fire.success(response.data.message));
+      router.push('/').then(() => fire.success(response.data.message));
     },
     onError(error) {
       fire.error(error?.response?.data?.message);
@@ -46,31 +46,33 @@ function Login() {
   };
 
   return (
-    <div className={"tw-h-screen tw-w-full"}>
-      <div className={"tw-grid tw-grid-cols-2 tw-h-full "}>
+    <div className={'tw-h-screen tw-w-full'}>
+      <div className={'tw-grid tw-grid-cols-2 tw-h-full '}>
         <div className={styles.left} />
-        <div className={"tw-h-full"}>
+        <div className={'tw-h-full'}>
           <div
             className={
-              "tw-px-20 tw-h-full tw-flex tw-flex-col tw-justify-center"
+              'tw-px-20 tw-h-full tw-flex tw-flex-col tw-justify-center'
             }
           >
             <form onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <Controller
-                  name={"email"}
+                  name={'email'}
                   control={control}
                   render={({ field }) => (
                     <FormControl>
-                      <FormLabel htmlFor="email">Email address</FormLabel>
+                      <FormLabel htmlFor="email">
+                        Email address {name}
+                      </FormLabel>
                       <Input id="email" type="email" {...field} />
                     </FormControl>
                   )}
                 />
               </div>
-              <div className={"tw-mt-10"}>
+              <div className={'tw-mt-10'}>
                 <Controller
-                  name={"password"}
+                  name={'password'}
                   control={control}
                   render={({ field }) => (
                     <FormControl>
@@ -81,7 +83,7 @@ function Login() {
                 />
               </div>
               <div className="tw-mt-10">
-                <Button colorScheme="blue" type={"submit"}>
+                <Button colorScheme="blue" type={'submit'}>
                   Đăng nhập
                 </Button>
               </div>
@@ -92,5 +94,16 @@ function Login() {
     </div>
   );
 }
+
+// export const getInitialProps = async () => {
+//   return {
+//     name: 'tuan',
+//   };
+// };
+Login.getInitialProps = () => {
+  return {
+    name: 'tuan',
+  };
+};
 
 export default Login;

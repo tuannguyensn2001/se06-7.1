@@ -24,6 +24,7 @@ Object.defineProperty(defineModel, 'defaultValue', {
       { value: undefined },
     ],
     name: '',
+    tags: [],
   },
   writable: false,
 });

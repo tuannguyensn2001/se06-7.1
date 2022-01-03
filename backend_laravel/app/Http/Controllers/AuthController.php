@@ -61,6 +61,8 @@ class AuthController extends Controller
                 'log' => $exception->getMessage()
             ], ResponseAlias::HTTP_UNAUTHORIZED);
 
+
+
         } catch (\Exception $exception) {
 
             return $this->response([

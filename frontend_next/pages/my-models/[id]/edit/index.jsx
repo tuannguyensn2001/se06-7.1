@@ -17,6 +17,7 @@ import { fetchMyModel, fetchPublishModel } from '@/services/model';
 import { fetchModel } from '@/features/my_models_editor/services';
 import defineModel from '@/defines/model';
 import MySwal from '@/components/MySwal';
+import useUpdateModel from '@/features/my_models_editor/hooks/useUpdateModel';
 
 function MyModelsEdit() {
   const model = useRef(null);
@@ -25,9 +26,15 @@ function MyModelsEdit() {
 
   const { control, watch, handleSubmit, setValue, reset } = useFormEditor();
 
+  useEffect(() => {
+    console.log('tags', watch('tags'));
+  }, [watch('tags')]);
+
   const {
     query: { id },
   } = useRouter();
+
+  const update = useUpdateModel(id);
 
   useQuery(
     ['model', id],
@@ -39,13 +46,17 @@ function MyModelsEdit() {
       onSuccess(response) {
         const {
           data: {
-            data: { model, name },
+            data: { model, name, tags },
           },
         } = response;
         reset({
           ...defineModel.defaultValue,
           src: model,
           name,
+          tags: tags.map((item) => ({
+            value: item.name,
+            label: item.name,
+          })),
         });
       },
       onError(error) {
@@ -95,8 +106,9 @@ function MyModelsEdit() {
       max_field_of_view: null,
       min_field_of_view: null,
       interpolation_decay: null,
+      tags: data.tags.map((item) => item.value),
     };
-    console.log('edit', payload);
+    update.mutate(payload);
   };
 
   return (

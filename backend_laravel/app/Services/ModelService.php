@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Repositories\ModelRepository;
+use App\Repositories\TagRepository;
+use Illuminate\Support\Facades\Auth;
 
 class ModelService
 {
@@ -27,7 +29,7 @@ class ModelService
 
     public function handleGetModel($id)
     {
-        return $this->modelRepository->find($id);
+        return $this->modelRepository->find($id)->load('tags');
     }
 
     public function handleUpdateByName($id, $name)
@@ -40,8 +42,13 @@ class ModelService
         $this->modelRepository->destroy($id);
     }
 
+    /**
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function handleUpdate($id, $data)
     {
+        $tagRepository = app()->make(TagRepository::class);
+        $tagRepository->sync($data['tags'], $id, Auth::id());
         return $this->modelRepository->update($id, $data);
     }
 

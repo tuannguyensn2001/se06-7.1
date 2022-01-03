@@ -46,4 +46,14 @@ class Model extends LaravelModel
         return $this->belongsTo(User::class);
     }
 
+    public function tags(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Tag::class);
+    }
+
+    public function comments(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
 }

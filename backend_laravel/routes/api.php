@@ -44,6 +44,16 @@ Route::group(['prefix' => '/v1'], function () {
         Route::post('/', [\App\Http\Controllers\UploadController::class, 'store']);
     });
 
+    Route::group(['prefix' => '/tags', 'middleware' => ['jwt']], function () {
+        Route::get('/own', [\App\Http\Controllers\TagController::class, 'own']);
+    });
+
+    Route::group(['prefix' => '/comments'], function () {
+        Route::post('/', [\App\Http\Controllers\CommentController::class, 'store'])->middleware('jwt');
+        Route::get('/{id}', [\App\Http\Controllers\CommentController::class, 'show']);
+
+    });
+
     Route::group([
         'prefix' => '/base-models',
     ], function () {

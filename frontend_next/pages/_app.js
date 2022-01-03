@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import Script from 'next/script';
+import pusher from '@/utils/pusher';
 
 function MyApp({ Component, pageProps }) {
   const [ready, setReady] = useState(false);

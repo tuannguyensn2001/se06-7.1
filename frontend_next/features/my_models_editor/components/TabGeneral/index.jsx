@@ -7,6 +7,7 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/react';
 import { Controller } from 'react-hook-form';
+import Tag from '@/features/my_models_editor/components/Tag';
 
 function TabGeneral() {
   const { control } = useEditorContext();
@@ -38,6 +39,9 @@ function TabGeneral() {
             </FormControl>
           )}
         />
+      </div>
+      <div>
+        <Tag />
       </div>
     </div>
   );
