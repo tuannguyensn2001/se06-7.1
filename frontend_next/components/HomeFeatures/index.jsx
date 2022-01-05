@@ -41,10 +41,10 @@ function HomeFeatures() {
   };
 
   return (
-    <div className={'tw-bg-white tw-h-96 tw-relative'}>
+    <div className={'tw-bg-white tw-h-80 tw-relative'}>
       <div
         className={
-          'tw-bg-white tw-p-8 tw-rounded-md tw-absolute tw--top-16 tw-left-8 tw-right-8 tw-shadow-md tw-flex tw-justify-around tw-gap-8'
+          'tw-bg-white tw-p-8 tw-rounded-md tw-absolute tw--top-16 tw-left-24 tw-right-24 tw-shadow-md tw-flex tw-justify-around tw-gap-8'
         }
       >
         {features.map((feature, index) => {

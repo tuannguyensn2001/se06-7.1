@@ -11,8 +11,8 @@ function HomeHeader() {
         'tw-bg-gradient-to-br tw-from-cyan-400 tw-to-blue-500 tw-py-48'
       }
     >
-      <div className={'tw-w-6/12 tw-ml-24 tw-text-white tw-font-light'}>
-        <h1 className={'tw-text-4xl '}>
+      <div className={'tw-w-5/12 tw-ml-24 tw-text-white tw-font-light'}>
+        <h1 className={'tw-text-5xl '}>
           The leading platform for 3D & AR on the web
         </h1>
         <p className={'tw-text-md tw-mt-6'}>
