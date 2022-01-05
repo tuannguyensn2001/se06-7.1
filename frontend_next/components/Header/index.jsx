@@ -10,7 +10,7 @@ import { SearchIcon, SunIcon, ArrowUpIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-function Header() {
+function Header({ isTransparent }) {
   const [navColor, setNavColor] = useState('transparent');
 
   const handleLogin = () => {};
@@ -35,7 +35,7 @@ function Header() {
   return (
     <div
       className={`${
-        navColor === 'transparent'
+        navColor === 'transparent' && isTransparent
           ? 'tw-bg-transparent tw-text-white'
           : 'tw-bg-white tw-text-black tw-border-b'
       } 

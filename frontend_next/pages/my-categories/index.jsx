@@ -13,7 +13,7 @@ import {
 import { useState, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
-import CustomModal from 'components/CustomModal';
+import CategoryModal from 'components/CustomModal/CategoryModal';
 import useCategories from '@/hooks/useCategories';
 
 function MyCategories() {
@@ -69,7 +69,7 @@ function MyCategories() {
 
   return (
     <Layout>
-      <div className="tw-flex tw-flex-col tw-items-end tw-mx-auto tw-max-w-screen-md tw-mt-8">
+      <div className="tw-flex tw-flex-col tw-items-end tw-mx-auto tw-max-w-screen-md tw-mt-24">
         <Button
           colorScheme={'orange'}
           className="tw-float-right"
@@ -77,7 +77,7 @@ function MyCategories() {
         >
           + Add
         </Button>
-        <CustomModal
+        <CategoryModal
           isAddMode={isAddMode}
           control={control}
           onSave={handleSubmit(submit)}

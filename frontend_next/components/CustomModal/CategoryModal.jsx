@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { Controller } from 'react-hook-form';
 
-function CustomModal({ isAddMode, isOpen, onClose, onSave, control }) {
+function CategoryModal({ isAddMode, isOpen, onClose, onSave, control }) {
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -53,4 +53,4 @@ function CustomModal({ isAddMode, isOpen, onClose, onSave, control }) {
   );
 }
 
-export default CustomModal;
+export default CategoryModal;

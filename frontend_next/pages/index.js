@@ -14,7 +14,7 @@ import HomeEditor from 'components/HomeEditor';
 function Home() {
   return (
     <div>
-      <Header />
+      <Header isTransparent={true} />
       <HomeHeader />
       <HomeFeatures />
       <HomeConfiguration />
