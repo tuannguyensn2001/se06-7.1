@@ -1,81 +1,116 @@
 import Layout from '@/layouts/Default';
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   Button,
+  ButtonGroup,
   useDisclosure,
-  FormControl,
-  FormLabel,
-  Input,
-  FormErrorMessage,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
-import { Controller } from 'react-hook-form';
+
+import CategoryModal from 'components/CustomModal/CategoryModal';
+import useCategories from '@/hooks/useCategories';
 
 function MyCategories() {
-  const { isOpen, onClose, onOpen } = useDisclosure();
+  const [categories, setCategories] = useCategories();
 
-  const [categories, setCategories] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, setValue } = useForm({
     defaultValues: {
       name: '',
     },
   });
 
+  const [currentIndex, setCurrentIndex] = useState(null);
+
+  const handleAdd = (data) => {
+    setCategories((categories) => [...categories, data.name]);
+  };
+
+  const handleDelete = (index) => {
+    const newArray = [...categories];
+    newArray.splice(index, 1);
+    setCategories(newArray);
+  };
+
+  const handleEdit = (data) => {
+    let newCategories = [...categories];
+    newCategories[currentIndex] = data.name;
+    setCategories(newCategories);
+    setCurrentIndex(null);
+  };
+
+  const isAddMode = useMemo(() => {
+    return currentIndex === null;
+  }, [currentIndex]);
+
   const submit = (data) => {
-    console.log(data);
+    if (isAddMode) {
+      handleAdd(data);
+    } else {
+      handleEdit(data);
+    }
+    onClose();
+  };
+
+  const onClickEdit = (index) => {
+    return () => {
+      setCurrentIndex(index);
+      setValue('name', categories[index]);
+      onOpen();
+    };
   };
 
   return (
     <Layout>
-      <Button onClick={onOpen}>Thêm mới</Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Thêm mới</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Controller
-              rules={{
-                required: 'Tên không được để trống',
-              }}
-              control={control}
-              name={'name'}
-              render={({
-                field,
-                fieldState: { error },
-                formState: { errors },
-              }) => (
-                <FormControl isInvalid={!!error}>
-                  <FormLabel htmlFor={'name'}>Tên danh mục</FormLabel>
-                  <Input id={'name'} {...field} />
-                  <FormErrorMessage>{error?.message}</FormErrorMessage>
-                </FormControl>
-              )}
-            />
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Hủy
-            </Button>
-            <Button
-              type={'button'}
-              onClick={handleSubmit(submit)}
-              variant="ghost"
-            >
-              Thêm mới
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <div className="tw-flex tw-flex-col tw-items-end tw-mx-auto tw-max-w-screen-md tw-mt-24">
+        <Button
+          colorScheme={'orange'}
+          className="tw-float-right"
+          onClick={onOpen}
+        >
+          + Add
+        </Button>
+        <CategoryModal
+          isAddMode={isAddMode}
+          control={control}
+          onSave={handleSubmit(submit)}
+          isOpen={isOpen}
+          onClose={onClose}
+        />
+        <Table variant="simple" size={'md'}>
+          <Thead>
+            <Tr>
+              <Th className="tw-w-9/12">Name</Th>
+              <Th className="tw-w-3/12">Option</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {categories?.map((category, index) => (
+              <Tr key={index}>
+                <Td>{category}</Td>
+                <Td>
+                  <ButtonGroup variant="solid" spacing="6">
+                    <Button onClick={onClickEdit(index)}>Edit</Button>
+                    <Button
+                      colorScheme={'telegram'}
+                      onClick={() => handleDelete(index)}
+                    >
+                      Delete
+                    </Button>
+                  </ButtonGroup>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </div>
     </Layout>
   );
 }

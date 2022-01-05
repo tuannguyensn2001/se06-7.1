@@ -1,8 +1,8 @@
 .header {
   height: 60px;
-  @apply tw-w-full tw-bg-white tw-shadow-md tw-flex tw-flex-col tw-justify-center
+  @apply tw-w-full tw-bg-transparent tw-flex tw-flex-col tw-justify-center tw-fixed tw-top-0 tw-left-0 tw-right-0;
 }
 
 .search {
-  @apply tw-p-2 tw-border-2 tw-border-rose-500
+  @apply tw-p-2 tw-border-2 tw-border-rose-500;
 }
