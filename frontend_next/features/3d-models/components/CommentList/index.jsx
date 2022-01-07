@@ -12,20 +12,25 @@ function CommentList() {
     query: { id },
   } = useRouter();
 
-  const [comments, setComments] = useState([]);
-
-  const { data } = useQuery(
-    'comments',
-    async () => {
-      const response = await fetchModelComments(id);
-      return response.data.data;
-    },
+  const [comments, setComments] = useState([
     {
-      onSuccess(data) {
-        setComments([...data]);
-      },
-    }
-  );
+      id: 1,
+      content: 'abc',
+    },
+  ]);
+
+  // const { data } = useQuery(
+  //   'comments',
+  //   async () => {
+  //     const response = await fetchModelComments(id);
+  //     return response.data.data;
+  //   },
+  //   {
+  //     onSuccess(data) {
+  //       setComments([...data]);
+  //     },
+  //   }
+  // );
 
   useEffect(() => {
     const channel = pusher.subscribe(`view-detail-model-${id}`);
