@@ -33,7 +33,7 @@ class CommentController extends Controller
             'commentable_type' => Model::class
         ]);
 
-        event(new CommentCreateEvent(1, $comment));
+        event(new CommentCreateEvent($data['id'], $comment));
 
         return $this->response([
             'message' => 'Thêm mới comment thành công',

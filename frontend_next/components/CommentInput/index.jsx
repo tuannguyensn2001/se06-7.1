@@ -1,8 +1,15 @@
 import { Button, Input } from '@chakra-ui/react';
 import styles from './style.module.scss';
 import { Textarea } from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
 
-function CommentInput() {
+function CommentInput({ handlePostComment }) {
+  const { handleSubmit, register } = useForm();
+
+  const submit = (data) => {
+    handlePostComment(data);
+  };
+
   return (
     <div className={'tw-flex '}>
       <div>
@@ -13,12 +20,19 @@ function CommentInput() {
         />
       </div>
       <div className={styles.comment}>
-        <Input placeholder={'Để lại bình luận của bạn ở đây'} />
-        <div className={'tw-my-2 tw-flex tw-justify-end'}>
-          <Button size={'sm'} colorScheme={'blue'}>
-            Post Comment
-          </Button>
-        </div>
+        <form onSubmit={handleSubmit(submit)}>
+          <Input
+            {...register('comment', {
+              required: 'Bình luận không được để trống',
+            })}
+            placeholder={'Để lại bình luận của bạn ở đây'}
+          />
+          <div className={'tw-mt-2 tw-flex tw-justify-end'}>
+            <Button type={'submit'} size={'sm'} colorScheme={'blue'}>
+              Post Comment
+            </Button>
+          </div>
+        </form>
       </div>
     </div>
   );

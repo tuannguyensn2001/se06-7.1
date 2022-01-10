@@ -74,7 +74,12 @@ function CardModel({ preview, name, id, isPublish }) {
             />
             <MenuList>
               {isPublish && (
-                <MenuItem icon={<ViewIcon />}>Xem chi tiết</MenuItem>
+                <MenuItem
+                  onClick={() => router.push(`/3d-models/${id}`)}
+                  icon={<ViewIcon />}
+                >
+                  Xem chi tiết
+                </MenuItem>
               )}
               <MenuItem onClick={handleEdit} icon={<EditIcon />}>
                 Chỉnh sửa
