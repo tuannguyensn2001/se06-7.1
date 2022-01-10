@@ -12,13 +12,17 @@ import { useEffect, useState } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import Script from 'next/script';
 import pusher from '@/utils/pusher';
+import { setList } from '@/slices/collection';
 
 function MyApp({ Component, pageProps }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     fetchMe()
-      .then((response) => store.dispatch(setMe(response.data.data)))
+      .then((response) => {
+        store.dispatch(setMe(response.data.data));
+        store.dispatch(setList(response?.data?.data?.collections));
+      })
       .catch((err) => console.log(err))
       .finally(() => setReady(true));
   }, []);

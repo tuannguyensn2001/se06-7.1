@@ -14,7 +14,7 @@ class UserRepository
 
     public function getAuthUser(): ?\Illuminate\Contracts\Auth\Authenticatable
     {
-        return auth()->user();
+        return auth()->user()->load('collections');
     }
 
 }

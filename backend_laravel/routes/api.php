@@ -54,6 +54,10 @@ Route::group(['prefix' => '/v1'], function () {
 
     });
 
+    Route::group(['prefix' => '/collections', 'middleware' => ['jwt']], function () {
+        Route::post('/', [\App\Http\Controllers\CollectionController::class, 'store']);
+    });
+
     Route::group([
         'prefix' => '/base-models',
     ], function () {
