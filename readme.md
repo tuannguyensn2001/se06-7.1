@@ -10,7 +10,7 @@
 
 # Công nghệ sử dụng:
 
-- ReactJS
+- NextJS, Redux
 - Google Model Viewer
-- NodeJS, MongoDB
-- ThreeJS
+- Laravel
+- MySQL

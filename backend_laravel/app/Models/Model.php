@@ -56,4 +56,9 @@ class Model extends LaravelModel
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+    public function collections(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Collection::class, 'collection_model');
+    }
+
 }

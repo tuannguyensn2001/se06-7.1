@@ -63,7 +63,7 @@ function ModalCreateCollection({ isOpen, onClose }) {
             w={'100%'}
             colorScheme={'blue'}
           >
-            Tạo mới collection
+            Tạo mới
           </Button>
         </ModalFooter>
       </ModalContent>

@@ -10,7 +10,7 @@ class ModelPublishController extends Controller
     public function show($id): \Illuminate\Http\JsonResponse
     {
         return $this->response([
-            'data' => Model::find($id)
+            'data' => Model::find($id)->load('collections')
         ]);
     }
 }
