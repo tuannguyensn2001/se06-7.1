@@ -10,6 +10,7 @@ import HomeBrands from 'components/HomeBrands';
 import HomeCommunity from 'components/HomeCommunity';
 import HomeStore from 'components/HomeStore';
 import HomeEditor from 'components/HomeEditor';
+import Footer from 'components/Footer';
 
 function Home() {
   return (
@@ -22,6 +23,7 @@ function Home() {
       <HomeCommunity />
       <HomeStore />
       <HomeEditor />
+      <Footer />
     </div>
   );
 }

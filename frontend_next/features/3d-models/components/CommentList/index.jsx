@@ -15,7 +15,13 @@ function CommentList() {
   const [comments, setComments] = useState([
     {
       id: 1,
-      content: 'abc',
+      content:
+        'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos neque in voluptatem aliquid et cupiditate pariatur ab non, fuga velit eum reiciendis dolor omnis vel dolorem fugit sit illum culpa. Doloribus porro nisi dolore deserunt id? Asperiores nihil, suscipit, expedita iste, id ipsa nam voluptatum non eveniet ipsam eos magni consequuntur culpa. Hic dolores minima amet eaque quisquam fugit deleniti.',
+    },
+    {
+      id: 2,
+      content:
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, nulla assumenda, deleniti eos quas soluta facilis expedita voluptas dolorem exercitationem nobis earum beatae debitis, fugit quam suscipit doloribus tenetur iste!',
     },
   ]);
 
@@ -49,6 +55,7 @@ function CommentList() {
           <CardComment content={item.content} key={item.id} />
         ))}
       </div>
+      <hr />
     </div>
   );
 }

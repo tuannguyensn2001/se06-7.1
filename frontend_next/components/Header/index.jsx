@@ -15,21 +15,47 @@ import { AddIcon, HamburgerIcon, SearchIcon } from '@chakra-ui/icons';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
-function Header() {
+function Header({ isTransparent }) {
   const { isAuth } = useSelector((state) => state.auth);
+  const [navColor, setNavColor] = useState('transparent');
 
   const router = useRouter();
 
+  const revealNavbar = () => {
+    if (window.scrollY > 100) {
+      setNavColor('white');
+    } else {
+      setNavColor('transparent');
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', revealNavbar);
+    return () => {
+      window.removeEventListener('scroll', revealNavbar);
+    };
+  }, []);
+
   return (
-    <div className={styles.header}>
-      <div className={'tw-flex tw-justify-between tw-px-10'}>
-        <div className={'tw-flex tw-flex-col tw-justify-center'}>
-          <div className={'tw-font-bold tw-text-lg'}>
+    <div
+      className={`${
+        navColor === 'transparent' && isTransparent
+          ? 'tw-bg-transparent tw-text-white'
+          : 'tw-bg-white tw-text-black tw-border-b'
+      } 
+      tw-w-full tw-flex tw-flex-col tw-justify-center tw-fixed tw-top-0 tw-left-0 tw-right-0 tw-h-16 delay-100 tw-ease-linear tw-duration-100 tw-z-50`}
+    >
+      <div className={'tw-flex tw-justify-between tw-items-center tw-px-10'}>
+        <div
+          className={'tw-flex tw-flex-col tw-justify-center tw-items-center'}
+        >
+          <div className={'tw-font-bold tw-text-lg tw-mr-4'}>
             <Link href={'/'}>SE</Link>
           </div>
         </div>
-        <div className={'tw-flex tw-flex-col tw-justify-center'}>
+        <div className={'tw-w-full tw-mx-2'}>
           <InputGroup>
             <InputLeftElement>
               <SearchIcon />
@@ -72,7 +98,7 @@ function Header() {
           )}
           {!isAuth && (
             <Link href={'/login'}>
-              <Button>Đăng nhập</Button>
+              <Button colorScheme={'orange'}>Đăng nhập</Button>
             </Link>
           )}
         </div>

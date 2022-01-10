@@ -5,7 +5,12 @@ module.exports = {
     './features/**/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        profile: "url('/Pictures/Backdrop/triangle.png')",
+        string: "url('/Pictures/Backdrop/string.png')",
+      },
+    },
   },
   plugins: [],
   prefix: 'tw-',

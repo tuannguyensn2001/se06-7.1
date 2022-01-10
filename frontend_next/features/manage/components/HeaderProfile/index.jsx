@@ -17,7 +17,7 @@ function HeaderProfile() {
       </div>
       <div className={styles.account}>
         <div className={'tw-flex tw-flex-col tw-justify-evenly tw-h-full'}>
-          <div>tuannguyensn2001a@gmail.com</div>
+          <div className={'tw-font-light'}>tuannguyensn2001a@gmail.com</div>
           <div>
             <Button colorScheme={'blue'}>Edit profile</Button>
           </div>

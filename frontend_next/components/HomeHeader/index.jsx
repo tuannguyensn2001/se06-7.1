@@ -8,7 +8,7 @@ function HomeHeader() {
   return (
     <div
       className={
-        'tw-bg-gradient-to-br tw-from-cyan-400 tw-to-blue-500 tw-py-48'
+        'tw-bg-blue-500 tw-bg-string tw-py-48 tw-bg-cover tw-bg-no-repeat'
       }
     >
       <div className={'tw-w-5/12 tw-ml-24 tw-text-white tw-font-light'}>

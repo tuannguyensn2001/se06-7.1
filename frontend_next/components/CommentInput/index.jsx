@@ -14,7 +14,7 @@ function CommentInput() {
       </div>
       <div className={styles.comment}>
         <Input placeholder={'Để lại bình luận của bạn ở đây'} />
-        <div className={'tw-mt-2 tw-flex tw-justify-end'}>
+        <div className={'tw-my-2 tw-flex tw-justify-end'}>
           <Button size={'sm'} colorScheme={'blue'}>
             Post Comment
           </Button>

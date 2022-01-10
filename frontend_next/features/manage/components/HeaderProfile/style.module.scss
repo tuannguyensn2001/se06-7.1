@@ -1,6 +1,6 @@
 .profile {
   height: 200px;
-  @apply tw-bg-red-500 tw-w-full tw-bg-blue-900 tw-px-40 tw-flex;
+  @apply tw-w-full tw-bg-black tw-px-40 tw-flex tw-bg-profile tw-bg-contain;
 }
 
 .avatar {
@@ -10,5 +10,5 @@
 
 .account {
   height: calc(200px - 3rem);
-  @apply tw-my-6 tw-ml-5 tw-text-white tw-text-2xl
+  @apply tw-my-6 tw-ml-5 tw-text-white tw-text-2xl;
 }

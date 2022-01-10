@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import Footer from 'components/Footer';
 import styles from './style.module.scss';
 
 function Layout({ children }) {
@@ -8,7 +9,9 @@ function Layout({ children }) {
         <Header />
       </div>
       <div className={styles.main}>{children}</div>
-      <div className={styles.footer}>footer</div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }
