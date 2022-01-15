@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 export default function useCategories() {
   const KEY = 'CATEGORIES_VALUE';
   const [categories, setCategories] = useState();
 
-  useEffect(() => {
-    setCategories(
-      Array.isArray(JSON.parse(localStorage.getItem(KEY)))
-        ? JSON.parse(localStorage.getItem(KEY))
-        : []
-    );
+  useLayoutEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedData = localStorage.getItem(KEY);
+      setCategories(savedData !== null ? JSON.parse(savedData) : []);
+    }
   }, []);
 
   useEffect(() => {

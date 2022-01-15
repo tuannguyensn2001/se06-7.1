@@ -14,25 +14,22 @@ import {
 } from '@chakra-ui/react';
 import { Controller } from 'react-hook-form';
 
-function CategoryModal({ isAddMode, isOpen, onClose, onSave, control }) {
+function ProfileModal({ isOpen, onClose, onSave, control }) {
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{isAddMode ? 'Add new' : 'Editing'}</ModalHeader>
+          <ModalHeader>Đổi ảnh đại diện</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Controller
-              rules={{
-                required: 'Tên không được để trống',
-              }}
               control={control}
-              name={'name'}
+              name={'avatar'}
               render={({ field, fieldState: { error } }) => (
                 <FormControl isInvalid={!!error}>
-                  <FormLabel htmlFor={'name'}>Tên danh mục</FormLabel>
-                  <Input id={'name'} {...field} />
+                  <FormLabel htmlFor={'avatar'}>Tải ảnh lên</FormLabel>
+                  <Input type={'file'} id={'avatar'} {...field} />
                   <FormErrorMessage>{error?.message}</FormErrorMessage>
                 </FormControl>
               )}
@@ -44,7 +41,7 @@ function CategoryModal({ isAddMode, isOpen, onClose, onSave, control }) {
               Hủy
             </Button>
             <Button type={'button'} onClick={onSave} variant="ghost">
-              Save
+              Lưu
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -53,4 +50,4 @@ function CategoryModal({ isAddMode, isOpen, onClose, onSave, control }) {
   );
 }
 
-export default CategoryModal;
+export default ProfileModal;
