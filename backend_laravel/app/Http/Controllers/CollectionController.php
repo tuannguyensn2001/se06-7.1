@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Collection;
 use App\Services\CollectionService;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,23 @@ class CollectionController extends Controller
         return $this->response([
             'message' => 'Tạo mới collection thành công',
             'data' => $result
+        ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $collection = Collection::find($id);
+
+        $data = $request->only('name', 'description');
+
+        $collection->name = $data['name'];
+        $collection->description = $data['description'];
+
+        $collection->save();
+
+        return $this->response([
+            'message' => 'Cập nhật thành công',
+            'data' => $collection
         ]);
     }
 }

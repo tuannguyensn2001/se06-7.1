@@ -3,7 +3,7 @@ import styles from '../../style.module.scss';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 
-function Collection() {
+function Collection({name,onEdit,id}) {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleOptions = () => {
@@ -17,10 +17,7 @@ function Collection() {
           'tw-h-64 tw-grid tw-grid-cols-2 tw-grid-rows-2 tw-overflow-hidden'
         }
       >
-        <img src="https://i.pinimg.com/originals/53/25/9a/53259a1f4e675127c61097b4f8726c66.jpg" />
-        <img src="https://i.pinimg.com/originals/53/25/9a/53259a1f4e675127c61097b4f8726c66.jpg" />
-        <img src="https://i.pinimg.com/originals/53/25/9a/53259a1f4e675127c61097b4f8726c66.jpg" />
-        <img src="https://i.pinimg.com/originals/53/25/9a/53259a1f4e675127c61097b4f8726c66.jpg" />
+          <img src="https://cdn.pixabay.com/photo/2019/08/11/21/17/lion-hologram-4399941_960_720.jpg" alt=""/>
       </div>
       <div className={'tw-flex tw-items-center tw-justify-between tw-p-2'}>
         <div
@@ -28,7 +25,7 @@ function Collection() {
             'tw-overflow-hidden tw-whitespace-nowrap tw-text-ellipsis tw-w-10/12'
           }
         >
-          Shy cat - Description aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            {name}
         </div>
         <div className={'tw-relative'}>
           <HamburgerIcon
@@ -45,6 +42,7 @@ function Collection() {
                 className={
                   'tw-px-4 tw-py-1 hover:tw-text-cyan-500 tw-cursor-pointer'
                 }
+                onClick={() => onEdit(id)}
               >
                 Edit
               </div>

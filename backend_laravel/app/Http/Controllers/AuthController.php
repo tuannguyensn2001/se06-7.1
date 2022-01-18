@@ -62,7 +62,6 @@ class AuthController extends Controller
             ], ResponseAlias::HTTP_UNAUTHORIZED);
 
 
-
         } catch (\Exception $exception) {
 
             return $this->response([
@@ -107,5 +106,15 @@ class AuthController extends Controller
                 'log' => $exception->getMessage()
             ]);
         }
+    }
+
+    public function medias(): \Illuminate\Http\JsonResponse
+    {
+        $result = $this->service->handleGetMedias();
+
+        return $this->response([
+            'message' => 'Lấy thông tin file thành công',
+            'data' => $result
+        ]);
     }
 }

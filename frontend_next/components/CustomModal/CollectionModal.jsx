@@ -38,9 +38,6 @@ function CollectionModal({ isAddMode, isOpen, onClose, onSave, control }) {
               )}
             />
             <Controller
-              rules={{
-                required: 'Mô tả không được để trống',
-              }}
               control={control}
               name={'description'}
               render={({ field, fieldState: { error } }) => (
