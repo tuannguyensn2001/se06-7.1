@@ -1,30 +1,38 @@
-import { Button, Image } from '@chakra-ui/react';
+import {Button, Image} from '@chakra-ui/react';
 import styles from './style.module.scss';
+import Link from 'next/link';
+import {useSelector} from "react-redux";
 
 function HeaderProfile() {
-  return (
-    <div className={styles.profile}>
-      <div className={'tw-flex tw-flex-col tw-justify-center tw-h-full'}>
-        <div className={styles.avatar}>
-          <Image
-            className={'tw-h-full'}
-            objectFit={'cover'}
-            src={
-              'https://genk.mediacdn.vn/139269124445442048/2021/10/8/photo-1-16336740561941499902920.jpg'
-            }
-          />
+
+    const {user} = useSelector(state => state.auth);
+
+    return (
+        <div className={styles.profile}>
+            <div className={'tw-flex tw-flex-col tw-justify-center tw-h-full'}>
+                <div className={styles.avatar}>
+                    <Image
+                        className={'tw-h-full'}
+                        objectFit={'cover'}
+                        src={
+                            user?.avatar
+                        }
+                    />
+                </div>
+            </div>
+            <div className={styles.account}>
+                <div className={'tw-flex tw-flex-col tw-justify-evenly tw-h-full'}>
+                    <div className={'tw-font-bold tw-text-3xl'}>{user?.name}</div>
+                    <div className={'tw-font-light tw-text-lg'}>{user?.email}</div>
+                    <div>
+                        <Link href={'/profile'}>
+                            <Button colorScheme={'blue'}>Edit profile</Button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div className={styles.account}>
-        <div className={'tw-flex tw-flex-col tw-justify-evenly tw-h-full'}>
-          <div className={'tw-font-light'}>tuannguyensn2001a@gmail.com</div>
-          <div>
-            <Button colorScheme={'blue'}>Edit profile</Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default HeaderProfile;

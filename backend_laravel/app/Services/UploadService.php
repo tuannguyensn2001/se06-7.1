@@ -16,7 +16,7 @@ class UploadService
         $this->mediaRepository = $mediaRepository;
     }
 
-    public function handle($file, $type) : Media
+    public function handle($file, $type): Media
     {
         $originalName = $file->getClientOriginalName();
 
@@ -28,7 +28,7 @@ class UploadService
             'name' => $name,
             'original_name' => $originalName,
             'type' => $type,
-            'user_id' => 1,
+            'user_id' => auth()->id(),
             'path' => $path,
             'disk' => 'local'
         ]);

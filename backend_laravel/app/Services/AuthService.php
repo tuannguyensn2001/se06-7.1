@@ -20,6 +20,7 @@ class AuthService
 
     public function handleRegister($data)
     {
+
         $data['password'] = Hash::make($data['password']);
         return $this->repository->create($data);
     }

@@ -24,17 +24,23 @@ Route::group(['prefix' => '/v1'], function () {
         Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
         Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
         Route::get('/me', [\App\Http\Controllers\AuthController::class, 'me'])->middleware('jwt');
+        Route::put('/', [\App\Http\Controllers\AuthController::class, 'update'])->middleware('jwt');
+        Route::put('/change-password', [\App\Http\Controllers\AuthController::class, 'changePassword'])->middleware('jwt');
     });
 
+
+    Route::get('/models/suggest', [\App\Http\Controllers\ModelController::class, 'suggest']);
+    Route::get('/models/{id}', [\App\Http\Controllers\ModelController::class, 'show']);
     Route::group(['prefix' => '/models', 'middleware' => ['jwt']], function () {
         Route::get('/', [\App\Http\Controllers\ModelController::class, 'index'])->middleware('jwt');
         Route::post('/', [\App\Http\Controllers\ModelController::class, 'store'])->middleware('jwt');
-        Route::get('/{id}', [\App\Http\Controllers\ModelController::class, 'show']);
+
         Route::put('/{id}', [\App\Http\Controllers\ModelController::class, 'update'])->middleware('jwt');
         Route::delete('/{id}', [\App\Http\Controllers\ModelController::class, 'destroy'])->middleware('jwt');
         Route::put('/{id}/publish', [\App\Http\Controllers\ModelController::class, 'publish']);
         Route::put('/{id}/private', [\App\Http\Controllers\ModelController::class, 'private']);
     });
+
 
     Route::group(['prefix' => '/models-publish'], function () {
         Route::get('/{id}', [\App\Http\Controllers\ModelPublishController::class, 'show']);

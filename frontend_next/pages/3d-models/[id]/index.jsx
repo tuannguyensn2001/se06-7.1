@@ -10,6 +10,8 @@ import {useRouter} from 'next/router';
 import pusher from '@/utils/pusher';
 import {useQuery} from "react-query";
 import {fetchModel} from "@/services/model";
+import {useSelector} from "react-redux";
+import CardMiniModel from "@/components/CardMiniModel";
 
 function Model3D() {
 
@@ -18,11 +20,13 @@ function Model3D() {
     const {data} = useQuery(['model', id], async () => {
         const response = await fetchModel(id);
         return response.data.data;
-    })
+    });
+
+    const {isAuth} = useSelector(state => state.auth);
 
     return (
         <Layout>
-            <div className={'tw-grid tw-grid-cols-12 tw-gap-4 tw-mt-5 tw-px-5 '}>
+            <div className={'tw-grid tw-grid-cols-12 tw-gap-20 tw-mt-20 tw-px-5 '}>
                 <div className={'tw-col-span-9'}>
                     <div className={styles.model}>
                         <ModelViewer
@@ -33,13 +37,13 @@ function Model3D() {
                         />
                     </div>
                     <div className={'tw-mt-5'}>
-                        <h4 className={'tw-font-bold tw-text-2xl'}>Horse</h4>
+                        <h4 className={'tw-font-bold tw-text-2xl'}>{data?.name}</h4>
                         <p>3d Model</p>
                     </div>
                     <div className={'tw-mt-10'}>
-                        <ProfileModel/>
+                        <ProfileModel user={data?.user}/>
                         <div className={'tw-my-5'}>
-                            <Action/>
+                            {isAuth && <Action/>}
                         </div>
                         <hr/>
                         <div>{/*<TagList />*/}</div>
@@ -48,7 +52,14 @@ function Model3D() {
                         </div>
                     </div>
                 </div>
-                <div className={'tw-col-span-3'}>suggest</div>
+                <div className={'tw-col-span-3'}>
+                    <div>
+                        <div>Gợi ý</div>
+                        <div>
+                            <CardMiniModel/>
+                        </div>
+                    </div>
+                </div>
             </div>
         </Layout>
     );

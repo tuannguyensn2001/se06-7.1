@@ -35,6 +35,11 @@ class UploadController extends Controller
 
         $media = $this->uploadService->handle($file, $type)->toArray();
 
+        if ($request->has("avatar") && $request->get("avatar")) {
+            auth()->user()->avatar = asset(Storage::url($media['path']));
+            auth()->user()->save();
+        }
+
         return $this->response([
             'message' => 'Upload file thành công',
             'data' => array_merge($media, [

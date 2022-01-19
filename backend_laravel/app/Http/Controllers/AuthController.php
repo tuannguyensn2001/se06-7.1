@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\UserRepository;
 use App\Services\AuthService;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\UnauthorizedException;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
@@ -19,6 +22,21 @@ class AuthController extends Controller
 
     public function register(Request $request): \Illuminate\Http\JsonResponse
     {
+
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'email|unique:users,email',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Thông tin đăng ký không hợp lệ',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+
         $data = $request->only('email', 'name', 'password');
 
         try {
@@ -117,4 +135,50 @@ class AuthController extends Controller
             'data' => $result
         ]);
     }
+
+    public function update(Request $request, UserRepository $userRepository)
+    {
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'name' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->responseBadRequest('Thông tin không hợp lệ');
+        }
+
+        auth()->user()->name = $request->get('name');
+
+        auth()->user()->save();
+
+        return $this->response([
+            'message' => 'Cập nhật thông tin thành công',
+            'data' => $userRepository->getAuthUser()
+        ]);
+    }
+
+    public function changePassword(Request $request, UserRepository $userRepository): \Illuminate\Http\JsonResponse
+    {
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'password' => 'required',
+            'old_password' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->responseBadRequest('Thông tin gửi lên không hợp lệ');
+        }
+
+        if (!Hash::check($request->get('old_password'),auth()->user()->password)){
+            return $this->responseBadRequest('Mật khẩu hiện tại không chính xác');
+        }
+
+        auth()->user()->password = Hash::make($request->get('password'));
+
+        return $this->response([
+            'message' => 'Cập nhật mật khẩu thành công',
+            'data' => $userRepository->getAuthUser()
+        ]);
+
+    }
+
+
 }

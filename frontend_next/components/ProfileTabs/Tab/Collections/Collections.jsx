@@ -2,7 +2,7 @@ import {Button, useDisclosure} from '@chakra-ui/react';
 import {useForm} from 'react-hook-form';
 
 import Collection from './Collection';
-import CollectionModal from 'components/CustomModal/CollectionModal';
+import CollectionModal from "@/components/CollectionModal";
 import {useDispatch, useSelector} from "react-redux";
 import {useMutation} from "react-query";
 import {fetchUpdateCollection} from "@/services/collection";

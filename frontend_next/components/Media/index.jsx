@@ -23,7 +23,7 @@ function Media({
                    onClose,
                    overlay = true,
                    text = 'Upload File',
-                    onPickFile
+                   onPickFile
                }) {
     const {getRootProps, getInputProps, isDragActive, open} = useDropzone({
         onDrop,

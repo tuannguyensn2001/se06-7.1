@@ -23,6 +23,7 @@ export default function useUploadEditor({onOpen, onSuccess}) {
                 const map = {
                     models: 'src',
                     skybox: 'skybox',
+                    src: 'src'
                 };
                 // setValue(map[type], path);
                 // onClose();
@@ -49,5 +50,5 @@ export default function useUploadEditor({onOpen, onSuccess}) {
         onSuccess(typeUpload, file);
     }
 
-    return {typeUpload, setTypeUpload, openUploadType, onDropFile,onPickFile};
+    return {typeUpload, setTypeUpload, openUploadType, onDropFile, onPickFile};
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Media;
+use App\Models\Model;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -46,5 +48,7 @@ class MediaSeeder extends Seeder
 //                'updated_at' => Carbon::now()
 //            ]);
 //        }
+
+        Model::factory()->count(1000)->create();
     }
 }

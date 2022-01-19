@@ -8,6 +8,7 @@ import {setLogin} from '@/features/auth/slices';
 import {FormControl, FormLabel, Input, Button} from '@chakra-ui/react';
 import useToast from '@/hooks/useToast';
 import {setList} from "@/slices/collection";
+import Link from 'next/link';
 
 function Login({name}) {
     const {control, handleSubmit} = useForm({
@@ -84,6 +85,12 @@ function Login({name}) {
                                     )}
                                 />
                             </div>
+
+                            <div className={'tw-mt-10'}>
+                                Bạn chưa có tài khoản ? <Link className={'tw-text-blue-500'} href={'/register'}>Đăng ký
+                                ngay</Link>
+                            </div>
+
                             <div className="tw-mt-10">
                                 <Button colorScheme="blue" type={'submit'}>
                                     Đăng nhập

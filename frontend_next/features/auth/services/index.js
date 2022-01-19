@@ -11,3 +11,4 @@ export const fetchMe = () => {
 export const fetchRegister = (data) => {
   return SE_API.post("/v1/auth/register", data);
 };
+
