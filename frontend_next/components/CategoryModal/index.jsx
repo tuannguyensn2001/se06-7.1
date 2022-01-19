@@ -14,13 +14,13 @@ import {
 } from '@chakra-ui/react';
 import { Controller } from 'react-hook-form';
 
-function CollectionModal({ isAddMode, isOpen, onClose, onSave, control }) {
+function CategoryModal({ isAddMode, isOpen, onClose, onSave, control }) {
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{isAddMode ? 'Thêm mới' : 'Chỉnh sửa'}</ModalHeader>
+          <ModalHeader>{isAddMode ? 'Add new' : 'Editing'}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Controller
@@ -31,19 +31,8 @@ function CollectionModal({ isAddMode, isOpen, onClose, onSave, control }) {
               name={'name'}
               render={({ field, fieldState: { error } }) => (
                 <FormControl isInvalid={!!error}>
-                  <FormLabel htmlFor={'name'}>Tên bộ sưu tập</FormLabel>
+                  <FormLabel htmlFor={'name'}>Tên danh mục</FormLabel>
                   <Input id={'name'} {...field} />
-                  <FormErrorMessage>{error?.message}</FormErrorMessage>
-                </FormControl>
-              )}
-            />
-            <Controller
-              control={control}
-              name={'description'}
-              render={({ field, fieldState: { error } }) => (
-                <FormControl isInvalid={!!error}>
-                  <FormLabel htmlFor={'description'}>Mô tả</FormLabel>
-                  <Input id={'description'} {...field} />
                   <FormErrorMessage>{error?.message}</FormErrorMessage>
                 </FormControl>
               )}
@@ -55,7 +44,7 @@ function CollectionModal({ isAddMode, isOpen, onClose, onSave, control }) {
               Hủy
             </Button>
             <Button type={'button'} onClick={onSave} variant="ghost">
-              Save
+              Lưu
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -64,4 +53,4 @@ function CollectionModal({ isAddMode, isOpen, onClose, onSave, control }) {
   );
 }
 
-export default CollectionModal;
+export default CategoryModal;

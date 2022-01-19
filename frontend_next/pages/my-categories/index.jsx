@@ -13,7 +13,7 @@ import {
 import { useState, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
-import CategoryModal from 'components/CustomModal/CategoryModal';
+import CategoryModal from 'components/CategoryModal';
 import useCategories from '@/hooks/useCategories';
 
 function MyCategories() {
