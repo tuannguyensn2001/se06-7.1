@@ -52,6 +52,7 @@ function CommentList() {
         channel.bind('comment-created', (data) => {
             setComments((prevState) => [data.comment, ...prevState]);
         });
+
     }, [id]);
 
     const handlePostComment = (data) => {
