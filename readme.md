@@ -14,3 +14,6 @@
 - Google Model Viewer
 - Laravel
 - MySQL
+
+# Báo cáo 
+[Báo cáo cuối kì](https://docs.google.com/document/d/1BSP3XIKLbEZDlv-ts1BlsG3N-aPrUPjZ9E_bDD0mGQA/edit#)
