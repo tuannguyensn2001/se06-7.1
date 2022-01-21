@@ -47,17 +47,21 @@ function MyModelsEdit() {
             onSuccess(response) {
                 const {
                     data: {
-                        data: {model, name, tags},
+                        data,
                     },
                 } = response;
+                const {model, name, tags} = data;
                 reset({
                     ...defineModel.defaultValue,
+                    ...data,
                     src: model,
                     name,
                     tags: tags.map((item) => ({
                         value: item.name,
                         label: item.name,
                     })),
+                    can_download: data.can_download
+
                 });
             },
             onError(error) {
@@ -110,6 +114,7 @@ function MyModelsEdit() {
             min_field_of_view: null,
             interpolation_decay: null,
             tags: data.tags.map((item) => item.value),
+            can_download: data.can_download
         };
         update.mutate(payload);
     };

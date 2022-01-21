@@ -101,7 +101,8 @@ class ModelController extends Controller
             'max_field_of_view',
             'min_field_of_view',
             'interpolation_decay',
-            'tags'
+            'tags',
+            'can_download'
         ]);
 
         try {

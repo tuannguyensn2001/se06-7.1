@@ -74,7 +74,8 @@ class ModelRepository
                 'field_of_view' => $data['field_of_view'],
                 'max_field_of_view' => $data['max_field_of_view'],
                 'min_field_of_view' => $data['min_field_of_view'],
-                'interpolation_decay' => $data['interpolation_decay']
+                'interpolation_decay' => $data['interpolation_decay'],
+                'can_download' => $data['can_download']
             ]);
     }
 

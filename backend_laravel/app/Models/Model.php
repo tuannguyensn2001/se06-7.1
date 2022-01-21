@@ -38,7 +38,8 @@ class Model extends LaravelModel
         'metal_ness' => 'array',
         'rough_ness' => 'array',
         'exposure' => 'array',
-        'shadow_intensity' => 'array'
+        'shadow_intensity' => 'array',
+        'can_download' => 'boolean'
     ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo

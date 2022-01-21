@@ -5,7 +5,7 @@ import ProfileModel from '@/features/3d-models/components/Profile';
 import Action from '@/features/3d-models/components/Action';
 import TagList from '@/features/3d-models/components/TagList';
 import CommentList from '@/features/3d-models/components/CommentList';
-import {useEffect} from 'react';
+import {useEffect, useRef} from 'react';
 import {useRouter} from 'next/router';
 import pusher from '@/utils/pusher';
 import {useQuery} from "react-query";
@@ -31,12 +31,19 @@ function Model3D() {
 
     const {isAuth} = useSelector(state => state.auth);
 
+    const model = useRef(null);
+
+    const handleDownload = () => {
+        model.current.download();
+    }
+
     return (
         <Layout>
             <div className={'tw-grid tw-grid-cols-12 tw-gap-20 tw-mt-20 tw-px-5 '}>
                 <div className={'tw-col-span-9'}>
                     <div className={styles.model}>
                         <ModelViewer
+                            ref={model}
                             cameraControls
                             src={
                                 data?.model
@@ -50,7 +57,7 @@ function Model3D() {
                     <div className={'tw-mt-10'}>
                         <ProfileModel user={data?.user}/>
                         <div className={'tw-my-5'}>
-                            {isAuth && <Action/>}
+                            {isAuth && <Action handleDownload={handleDownload}/>}
                         </div>
                         <hr/>
                         <div>{/*<TagList />*/}</div>
