@@ -57,7 +57,7 @@ export default function useAuth(setReady = () => {}) {
       },
       onError(error) {
         setReady(true);
-        fire.error(error.response.data.message);
+        // fire.error(error.response.data.message);
       },
     }
   );

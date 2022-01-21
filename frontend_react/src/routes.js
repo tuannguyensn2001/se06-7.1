@@ -29,6 +29,10 @@ const Routes = () => {
       path: "/my-models/create",
       element: <Viewer />,
     },
+    {
+      path: "/my-models/:id",
+      element: <Viewer />,
+    },
   ]);
 
   return routes;

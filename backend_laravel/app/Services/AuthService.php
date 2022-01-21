@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\Fluent\Concerns\Has;
 use Illuminate\Validation\UnauthorizedException;
 
@@ -19,6 +20,7 @@ class AuthService
 
     public function handleRegister($data)
     {
+
         $data['password'] = Hash::make($data['password']);
         return $this->repository->create($data);
     }
@@ -47,5 +49,12 @@ class AuthService
     public function handleGetAuth(): ?\Illuminate\Contracts\Auth\Authenticatable
     {
         return $this->repository->getAuthUser();
+    }
+
+    public function handleGetMedias()
+    {
+        return auth()->user()->medias->each(function ($item) {
+            $item->path = asset(Storage::url($item->path));
+        });
     }
 }

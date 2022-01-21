@@ -24,11 +24,48 @@ Route::group(['prefix' => '/v1'], function () {
         Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
         Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
         Route::get('/me', [\App\Http\Controllers\AuthController::class, 'me'])->middleware('jwt');
+        Route::put('/', [\App\Http\Controllers\AuthController::class, 'update'])->middleware('jwt');
+        Route::put('/change-password', [\App\Http\Controllers\AuthController::class, 'changePassword'])->middleware('jwt');
     });
 
-    Route::group(['prefix' => '/models'], function () {
+
+    Route::get('/models/suggest', [\App\Http\Controllers\ModelController::class, 'suggest']);
+    Route::get('/models/{id}', [\App\Http\Controllers\ModelController::class, 'show']);
+    Route::group(['prefix' => '/models', 'middleware' => ['jwt']], function () {
         Route::get('/', [\App\Http\Controllers\ModelController::class, 'index'])->middleware('jwt');
+        Route::post('/', [\App\Http\Controllers\ModelController::class, 'store'])->middleware('jwt');
+
+        Route::put('/{id}', [\App\Http\Controllers\ModelController::class, 'update'])->middleware('jwt');
+        Route::delete('/{id}', [\App\Http\Controllers\ModelController::class, 'destroy'])->middleware('jwt');
+        Route::put('/{id}/publish', [\App\Http\Controllers\ModelController::class, 'publish']);
+        Route::put('/{id}/private', [\App\Http\Controllers\ModelController::class, 'private']);
     });
+
+
+    Route::group(['prefix' => '/models-publish'], function () {
+        Route::get('/{id}', [\App\Http\Controllers\ModelPublishController::class, 'show']);
+    });
+
+    Route::group(['prefix' => '/upload'], function () {
+        Route::post('/', [\App\Http\Controllers\UploadController::class, 'store']);
+    });
+
+    Route::group(['prefix' => '/tags', 'middleware' => ['jwt']], function () {
+        Route::get('/own', [\App\Http\Controllers\TagController::class, 'own']);
+    });
+
+    Route::group(['prefix' => '/comments'], function () {
+        Route::post('/', [\App\Http\Controllers\CommentController::class, 'store'])->middleware('jwt');
+        Route::get('/{id}', [\App\Http\Controllers\CommentController::class, 'show']);
+
+    });
+
+    Route::group(['prefix' => '/collections', 'middleware' => ['jwt']], function () {
+        Route::post('/', [\App\Http\Controllers\CollectionController::class, 'store']);
+        Route::put('/{id}', [\App\Http\Controllers\CollectionController::class, 'update']);
+    });
+
+    Route::get('/files', [\App\Http\Controllers\AuthController::class, 'medias'])->middleware('jwt');
 
     Route::group([
         'prefix' => '/base-models',

@@ -4,21 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
+/**
+ * @method static create(array $data)
+ */
 class Media extends Model
 {
     use HasFactory;
 
-    public function models(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(\App\Models\Model::class);
-    }
+    protected $guarded = ['id'];
 
-    public function getPathAttribute($value): string
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-
-        return asset(Storage::url($value));
+        return $this->belongsTo(User::class);
     }
 
 }

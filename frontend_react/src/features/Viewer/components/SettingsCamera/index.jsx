@@ -42,23 +42,6 @@ function SettingsCamera({ control, watch }) {
         )}
       />
 
-      <Controller
-        control={control}
-        name={"baseColor"}
-        render={({ field }) => {
-          const onChange = (color) => {
-            console.log(color);
-          };
-
-          return (
-            <SketchPicker
-              onChangeComplete={field.onChange}
-              color={field.value}
-            />
-          );
-        }}
-      />
-
       <Collapse>
         <Panel header="Rotate" key="1">
           <Collapse defaultActiveKey="1">
@@ -649,7 +632,7 @@ function SettingsCamera({ control, watch }) {
       </Collapse>
 
       <Collapse>
-        <CollapsePanel header="Lighting and Enviroment">
+        <CollapsePanel header="Lighting and Enviroment" key={"light_env"}>
           <FormItemInput>
             <Controller
               control={control}

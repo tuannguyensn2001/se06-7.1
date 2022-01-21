@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Media;
+use App\Models\Model;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -22,29 +24,31 @@ class MediaSeeder extends Seeder
 //                'created_at' => Carbon::now()
 //            ]
 //        ]);
-        $data = [
-            'coffeemat.glb',
-            'Horse.glb',
-            'House_001_GLB.glb',
-            'NeilArmstrong.glb',
-            'RobotExpressive.glb',
-            'shishkebab.glb'
-        ];
+//        $data = [
+//            'coffeemat.glb',
+//            'Horse.glb',
+//            'House_001_GLB.glb',
+//            'NeilArmstrong.glb',
+//            'RobotExpressive.glb',
+//            'shishkebab.glb'
+//        ];
+//
+//        foreach ($data as $key => $item) {
+//            DB::table('media')->insert([
+//                'name' => $item,
+//                'path' => "model/{$item}",
+//                'created_at' => Carbon::now(),
+//                'updated_at' => Carbon::now()
+//            ]);
+//
+//            DB::table('models')->insert([
+//                'name' => $item,
+//                'media_id' => $key + 1,
+//                'created_at' => Carbon::now(),
+//                'updated_at' => Carbon::now()
+//            ]);
+//        }
 
-        foreach ($data as $key => $item) {
-            DB::table('media')->insert([
-                'name' => $item,
-                'path' => "model/{$item}",
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
-
-            DB::table('models')->insert([
-                'name' => $item,
-                'media_id' => $key + 1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
-        }
+        Model::factory()->count(1000)->create();
     }
 }

@@ -1,0 +1,8 @@
+.main {
+  min-height: calc(100vh - 60px);
+}
+
+.editor {
+  height: calc(100vh - 60px);
+  @apply tw-col-span-3 tw-overflow-scroll;
+}

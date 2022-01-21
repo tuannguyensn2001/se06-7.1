@@ -1,5 +1,6 @@
 import Search from "@/components/Search";
 import Footer from "@/components/Footer";
+import styles from "./style.module.scss";
 
 function Layout({ children, isShowSearch }) {
   return (
@@ -10,7 +11,7 @@ function Layout({ children, isShowSearch }) {
         </div>
       )}
 
-      <div>{children}</div>
+      <div className={styles.main}>{children}</div>
 
       <div>
         <Footer />

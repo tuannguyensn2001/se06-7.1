@@ -15,8 +15,14 @@ function App() {
 
   return (
     <div>
-      <Header />
-      <div>{ready && <Routes />}</div>
+      {ready && (
+        <>
+          <Header />
+          <div>
+            <Routes />
+          </div>
+        </>
+      )}
     </div>
   );
 }

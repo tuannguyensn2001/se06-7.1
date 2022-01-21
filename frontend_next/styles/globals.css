@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.section-layout {
+  @apply tw-mx-24 tw-flex tw-flex-col tw-items-center tw-py-16;
+}
+
+.section-header {
+  @apply tw-text-4xl tw-font-light tw-text-sky-400 tw-tracking-wider tw-mb-4;
+}
+
+.text-red {
+  @apply tw-text-red-500;
+}
+
+.section-sub-header {
+  @apply tw-font-light tw-max-w-3xl tw-text-center;
+}

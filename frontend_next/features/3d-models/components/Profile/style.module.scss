@@ -1,0 +1,4 @@
+.profile {
+  width: calc(100% - 64px);
+  @apply tw-flex tw-flex-col tw-justify-center tw-pl-5;
+}

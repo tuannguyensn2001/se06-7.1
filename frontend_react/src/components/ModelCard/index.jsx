@@ -1,22 +1,52 @@
-import avatar from "@/assets/img/sieunhando.jpg";
-import styles from "./style.module.scss";
+import { Card, Avatar, Modal } from "antd";
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+  DeleteOutlined,
+  ExclamationCircleOutlined,
+} from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
-function ModelCard() {
+const { Meta } = Card;
+const { confirm } = Modal;
+
+function ModelCard({ onClick, id, name, onDelete, img }) {
+  const handleClick = () => {
+    onClick(id, name);
+  };
+
+  const handleDelete = () => {
+    confirm({
+      title: "Bạn chắc chắn muốn xóa model này ?",
+      icon: <ExclamationCircleOutlined />,
+      okText: "Xóa",
+      okType: "danger",
+      cancelText: "Hủy",
+      centered: true,
+      onOk() {
+        console.log("ok");
+        onDelete(id);
+      },
+    });
+  };
+
   return (
-    <div className={`${styles["content-list"]} ${"w-64 h-60 mb-20"}`}>
-      <div className={styles["content-item"]}>
-        <img src={avatar} />
-        <div className={styles["content-content"]}>
-          <h1
-            className={`${styles["content-title"]} ${"w-full pl-24 pb-2 pt-4"}`}
-          >
-            Sieu nhan
-          </h1>
-          <div className="w-full text-center pb-10 pt-5 text-2xl ">
-            <a href="#">Go to Editor</a>
-          </div>
-        </div>
-      </div>
+    <div>
+      <Card
+        cover={<img alt="example" src={img} />}
+        actions={[
+          <EditOutlined onClick={handleClick} key="edit" />,
+          <DeleteOutlined onClick={handleDelete} key="ellipsis" />,
+        ]}
+      >
+        <Meta
+          avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+          title={<Link to={`/my-models/${id}`}>{name}</Link>}
+          description="This is the description"
+        />
+      </Card>
+      ,
     </div>
   );
 }
