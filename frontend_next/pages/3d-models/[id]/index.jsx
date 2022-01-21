@@ -10,16 +10,23 @@ import {useRouter} from 'next/router';
 import pusher from '@/utils/pusher';
 import {useQuery} from "react-query";
 import {fetchModel} from "@/services/model";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import CardMiniModel from "@/components/CardMiniModel";
+import {setModel} from "@/slices/model";
 
 function Model3D() {
 
     const {query: {id}} = useRouter();
 
+    const dispatch = useDispatch();
+
     const {data} = useQuery(['model', id], async () => {
         const response = await fetchModel(id);
         return response.data.data;
+    }, {
+        onSuccess(data) {
+            dispatch(setModel(data));
+        }
     });
 
     const {isAuth} = useSelector(state => state.auth);

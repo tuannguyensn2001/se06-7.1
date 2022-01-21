@@ -33,6 +33,8 @@ class CommentController extends Controller
             'commentable_type' => Model::class
         ]);
 
+        $comment->load('user');
+
         event(new CommentCreateEvent($data['id'], $comment));
 
         return $this->response([

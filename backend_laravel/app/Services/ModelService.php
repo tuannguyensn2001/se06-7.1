@@ -29,7 +29,7 @@ class ModelService
 
     public function handleGetModel($id)
     {
-        return $this->modelRepository->find($id)->load('tags','user');
+        return $this->modelRepository->find($id)->load('tags','user','collections');
     }
 
     public function handleUpdateByName($id, $name)

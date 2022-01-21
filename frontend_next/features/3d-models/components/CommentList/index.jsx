@@ -39,7 +39,7 @@ function CommentList() {
         },
         {
             onSuccess(data) {
-                setComments((prevState) => [data, ...prevState]);
+                // setComments((prevState) => [data, ...prevState]);
             },
             onError(error) {
                 console.log(error);
@@ -50,8 +50,10 @@ function CommentList() {
     useEffect(() => {
         const channel = pusher.subscribe(`view-detail-model-${id}`);
         channel.bind('comment-created', (data) => {
+
             setComments((prevState) => [data.comment, ...prevState]);
         });
+
 
     }, [id]);
 
@@ -71,7 +73,8 @@ function CommentList() {
             </div>
             <div>
                 {comments?.map((item) => (
-                    <CardComment content={item.content} key={item.id}/>
+                    <CardComment created_at={item.created_at} avatar={item?.user?.avatar} content={item.content}
+                                 key={item.id}/>
                 ))}
             </div>
             <hr/>

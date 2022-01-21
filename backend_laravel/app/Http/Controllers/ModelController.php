@@ -169,5 +169,31 @@ class ModelController extends Controller
         ]);
     }
 
+    public function addToCollection($id, Request $request)
+    {
+        $model = Model::find($id);
+
+        if (is_null($model)) {
+            return $this->responseBadRequest('Không tìm thấy model');
+        }
+
+        $validator = Validator::make($request->all(), [
+            'collection_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->responseBadRequest('Thông tin không hợp lệ');
+        }
+
+        $collection_id = $request->get('collection_id');
+
+        $model->collections()->attach($collection_id);
+
+        return $this->response([
+            'message' => 'Thêm thành công',
+            'data' => $collection_id
+        ]);
+
+    }
 
 }
