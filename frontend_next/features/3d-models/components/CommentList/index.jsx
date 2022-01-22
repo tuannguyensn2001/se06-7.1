@@ -19,17 +19,18 @@ function CommentList() {
     const [comments, setComments] = useState([]);
 
     const {data} = useQuery(
-        'comments',
-        async () => {
-            const response = await fetchModelComments(id);
-            return response.data.data;
-        },
-        {
-            onSuccess(data) {
-                setComments([...data]);
+            ['comments', id],
+            async () => {
+                const response = await fetchModelComments(id);
+                return response.data.data;
             },
-        }
-    );
+            {
+                onSuccess(data) {
+                    setComments([...data]);
+                },
+            }
+        )
+    ;
 
     const postComment = useMutation(
         'comment',
@@ -73,8 +74,10 @@ function CommentList() {
             </div>
             <div>
                 {comments?.map((item) => (
-                    <CardComment created_at={item.created_at} avatar={item?.user?.avatar} content={item.content}
-                                 key={item.id}/>
+                    <CardComment
+                        name={item?.user?.name}
+                        created_at={item.created_at} avatar={item?.user?.avatar} content={item.content}
+                        key={item.id}/>
                 ))}
             </div>
             <hr/>

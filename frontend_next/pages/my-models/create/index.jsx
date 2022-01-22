@@ -37,6 +37,8 @@ function MyModelsCreate() {
     }, [watch('src')]);
 
     const submit = (data) => {
+        console.log(data);
+        return;
         const payload = {
             name: data.name,
             model: data.src,
@@ -52,6 +54,7 @@ function MyModelsCreate() {
             max_field_of_view: null,
             min_field_of_view: null,
             interpolation_decay: null,
+            
         };
         create.mutate(payload);
     };

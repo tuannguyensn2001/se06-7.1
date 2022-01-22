@@ -2,7 +2,7 @@ import {Button} from '@chakra-ui/react';
 import {formatDistance, format, formatDistanceToNow} from "date-fns";
 import viLocale from "date-fns/locale/vi";
 
-function CardComment({content, avatar, created_at}) {
+function CardComment({content, avatar, created_at, name}) {
     return (
         <div>
             <hr/>
@@ -21,7 +21,7 @@ function CardComment({content, avatar, created_at}) {
                             'tw-font-medium tw-text-lg tw-text-sky-500 tw-cursor-pointer'
                         }
                     >
-                        tuannguyensn2001
+                        {name}
                     </div>
                     <div className={'tw-text-gray tw-text-xs tw-text-gray-400'}>
                         {formatDistanceToNow(new Date(created_at), {addSuffix: true, locale: viLocale})}

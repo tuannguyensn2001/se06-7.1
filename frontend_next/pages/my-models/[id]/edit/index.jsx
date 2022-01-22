@@ -60,7 +60,8 @@ function MyModelsEdit() {
                         value: item.name,
                         label: item.name,
                     })),
-                    can_download: data.can_download
+                    can_download: data.can_download,
+                    disableZoom: data.disable_zoom
 
                 });
             },

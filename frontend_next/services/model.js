@@ -23,5 +23,9 @@ export const fetchPublishModel = (id) => {
 };
 
 export const fetchUpdateCollectionModel = (id, data) => {
-    return SE_API.put(`/v1/models/${id}/collections`,data)
+    return SE_API.put(`/v1/models/${id}/collections`, data)
+}
+
+export const fetchSuggestModel = () => {
+    return SE_API.get('/v1/models/suggest');
 }

@@ -56,7 +56,7 @@ class ModelController extends Controller
             'field_of_view',
             'max_field_of_view',
             'min_field_of_view',
-            'interpolation_decay'
+            'interpolation_decay',
         ]);
 
         try {

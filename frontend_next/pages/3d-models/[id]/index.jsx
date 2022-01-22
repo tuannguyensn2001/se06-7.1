@@ -9,7 +9,7 @@ import {useEffect, useRef} from 'react';
 import {useRouter} from 'next/router';
 import pusher from '@/utils/pusher';
 import {useQuery} from "react-query";
-import {fetchModel} from "@/services/model";
+import {fetchModel, fetchSuggestModel} from "@/services/model";
 import {useDispatch, useSelector} from "react-redux";
 import CardMiniModel from "@/components/CardMiniModel";
 import {setModel} from "@/slices/model";
@@ -29,6 +29,11 @@ function Model3D() {
         }
     });
 
+    const {data: suggest} = useQuery('model', async () => {
+        const response = await fetchSuggestModel();
+        return response.data.data;
+    })
+
     const {isAuth} = useSelector(state => state.auth);
 
     const model = useRef(null);
@@ -39,7 +44,7 @@ function Model3D() {
 
     return (
         <Layout>
-            <div className={'tw-grid tw-grid-cols-12 tw-gap-20 tw-mt-20 tw-px-5 '}>
+            <div className={'tw-grid tw-grid-cols-12 tw-gap-10 tw-mt-20 tw-px-5 '}>
                 <div className={'tw-col-span-9'}>
                     <div className={styles.model}>
                         <ModelViewer
@@ -48,6 +53,7 @@ function Model3D() {
                             src={
                                 data?.model
                             }
+                            skybox={data?.skybox}
                         />
                     </div>
                     <div className={'tw-mt-5'}>
@@ -57,7 +63,7 @@ function Model3D() {
                     <div className={'tw-mt-10'}>
                         <ProfileModel user={data?.user}/>
                         <div className={'tw-my-5'}>
-                            {isAuth && <Action handleDownload={handleDownload}/>}
+                            {isAuth && <Action canDownload={data?.can_download} handleDownload={handleDownload}/>}
                         </div>
                         <hr/>
                         <div>{/*<TagList />*/}</div>
@@ -68,9 +74,14 @@ function Model3D() {
                 </div>
                 <div className={'tw-col-span-3'}>
                     <div>
-                        <div>Gợi ý</div>
+                        <div className={'tw-font-bold tw-text-xl'}>Gợi ý</div>
                         <div>
-                            <CardMiniModel/>
+                            {suggest?.map(item => (
+                                <div className={'tw-mt-8'} key={item.id}>
+                                    <CardMiniModel name={item.name} author={item?.user?.name} id={item.id}
+                                                   preview={item.preview}/>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
