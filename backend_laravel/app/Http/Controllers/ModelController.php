@@ -56,7 +56,11 @@ class ModelController extends Controller
             'field_of_view',
             'max_field_of_view',
             'min_field_of_view',
-            'interpolation_decay'
+            'interpolation_decay',
+            'camera_target',
+            'camera_orbit',
+            'min_camera_orbit',
+            'max_camera_orbit',
         ]);
 
         try {
@@ -102,7 +106,11 @@ class ModelController extends Controller
             'min_field_of_view',
             'interpolation_decay',
             'tags',
-            'can_download'
+            'can_download',
+            'camera_target',
+            'camera_orbit',
+            'min_camera_orbit',
+            'max_camera_orbit',
         ]);
 
         try {

@@ -98,6 +98,7 @@ function MyModelsEdit() {
     };
 
     const submit = (data) => {
+        console.log(data);
         const payload = {
             name: data.name,
             model: data.src,
@@ -110,9 +111,16 @@ function MyModelsEdit() {
             interaction_policy: data?.interactionPolicy || null,
             field_of_view: data?.fieldOfView || null,
             preview: model.current.capture(),
-            max_field_of_view: null,
-            min_field_of_view: null,
-            interpolation_decay: null,
+            // max_field_of_view: null,
+            // min_field_of_view: null,
+            // interpolation_decay: null,
+            max_field_of_view: data?.maxFieldOfView || null,
+            min_field_of_view: data?.minFieldOfView || null,
+            interpolation_decay: data?.interpolationDecay || null,
+            camera_target: data?.cameraTarget || null,
+            camera_orbit: data?.cameraOrbit || null,
+            min_camera_orbit: data?.minCameraOrbit || null,
+            max_camera_orbit: data?.maxCameraOrbit || null,
             tags: data.tags.map((item) => item.value),
             can_download: data.can_download
         };
