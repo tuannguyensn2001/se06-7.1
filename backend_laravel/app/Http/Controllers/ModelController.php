@@ -170,7 +170,7 @@ class ModelController extends Controller
 
     public function suggest()
     {
-        $list = Model::inRandomOrder()->where('is_publish', 1)->limit(6)->get();
+        $list = Model::inRandomOrder()->where('is_publish', 1)->limit(8)->get();
 
         return $this->response([
             'data' => $list,
