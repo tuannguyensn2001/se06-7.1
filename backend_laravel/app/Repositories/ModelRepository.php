@@ -79,7 +79,12 @@ class ModelRepository
                 'max_field_of_view' => $data['max_field_of_view'],
                 'min_field_of_view' => $data['min_field_of_view'],
                 'interpolation_decay' => $data['interpolation_decay'],
-                'can_download' => $data['can_download']
+                'can_download' => $data['can_download'],
+                'interpolation_decay' => $data['interpolation_decay'],
+                'camera_orbit' => $data['camera_orbit'],
+                'camera_target' => $data['camera_target'],
+                'min_camera_orbit' => $data['min_camera_orbit'],
+                'max_camera_orbit' => $data['max_camera_orbit'],
             ]);
     }
 

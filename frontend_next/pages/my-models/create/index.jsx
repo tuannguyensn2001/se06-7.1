@@ -56,6 +56,8 @@ function MyModelsCreate() {
             camera_orbit: data?.cameraOrbit || null,
             min_camera_orbit: data?.minCameraOrbit || null,
             max_camera_orbit: data?.maxCameraOrbit || null,
+            tags: data.tags.map((item) => item.value),
+            can_download: data.can_download
 
         };
         create.mutate(payload);
