@@ -30,11 +30,15 @@ class ModelRepository
             'auto_rotate' => $data['auto_rotate'],
             'auto_rotate_delay' => $data['auto_rotate_delay'],
             'rotation_per_second' => $data['rotation_per_second'],
-//            'interaction_policy' => $data['interaction_policy'],
+            'interaction_policy' => $data['interaction_policy'],
             'field_of_view' => $data['field_of_view'],
             'max_field_of_view' => $data['max_field_of_view'],
             'min_field_of_view' => $data['min_field_of_view'],
-            'interpolation_decay' => $data['interpolation_decay']
+            'interpolation_decay' => $data['interpolation_decay'],
+            'camera_orbit' => $data['camera_orbit'],
+            'camera_target' => $data['camera_target'],
+            'min_camera_orbit' => $data['min_camera_orbit'],
+            'max_camera_orbit' => $data['max_camera_orbit'],
         ]);
     }
 
@@ -74,7 +78,13 @@ class ModelRepository
                 'field_of_view' => $data['field_of_view'],
                 'max_field_of_view' => $data['max_field_of_view'],
                 'min_field_of_view' => $data['min_field_of_view'],
-                'interpolation_decay' => $data['interpolation_decay']
+                'interpolation_decay' => $data['interpolation_decay'],
+                'can_download' => $data['can_download'],
+                'interpolation_decay' => $data['interpolation_decay'],
+                'camera_orbit' => $data['camera_orbit'],
+                'camera_target' => $data['camera_target'],
+                'min_camera_orbit' => $data['min_camera_orbit'],
+                'max_camera_orbit' => $data['max_camera_orbit'],
             ]);
     }
 

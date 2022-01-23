@@ -66,7 +66,7 @@ function Login({name}) {
                                     render={({field}) => (
                                         <FormControl>
                                             <FormLabel htmlFor="email">
-                                                Email address {name}
+                                                Email address
                                             </FormLabel>
                                             <Input id="email" type="email" {...field} />
                                         </FormControl>

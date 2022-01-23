@@ -32,6 +32,7 @@ Route::group(['prefix' => '/v1'], function () {
     Route::get('/models/suggest', [\App\Http\Controllers\ModelController::class, 'suggest']);
     Route::get('/models/{id}', [\App\Http\Controllers\ModelController::class, 'show']);
     Route::group(['prefix' => '/models', 'middleware' => ['jwt']], function () {
+        Route::put('/{id}/collections', [\App\Http\Controllers\ModelController::class, 'addToCollection']);
         Route::get('/', [\App\Http\Controllers\ModelController::class, 'index'])->middleware('jwt');
         Route::post('/', [\App\Http\Controllers\ModelController::class, 'store'])->middleware('jwt');
 

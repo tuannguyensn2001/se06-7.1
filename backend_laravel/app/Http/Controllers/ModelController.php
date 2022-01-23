@@ -56,7 +56,11 @@ class ModelController extends Controller
             'field_of_view',
             'max_field_of_view',
             'min_field_of_view',
-            'interpolation_decay'
+            'interpolation_decay',
+            'camera_target',
+            'camera_orbit',
+            'min_camera_orbit',
+            'max_camera_orbit',
         ]);
 
         try {
@@ -101,7 +105,12 @@ class ModelController extends Controller
             'max_field_of_view',
             'min_field_of_view',
             'interpolation_decay',
-            'tags'
+            'tags',
+            'can_download',
+            'camera_target',
+            'camera_orbit',
+            'min_camera_orbit',
+            'max_camera_orbit',
         ]);
 
         try {
@@ -169,5 +178,31 @@ class ModelController extends Controller
         ]);
     }
 
+    public function addToCollection($id, Request $request)
+    {
+        $model = Model::find($id);
+
+        if (is_null($model)) {
+            return $this->responseBadRequest('Không tìm thấy model');
+        }
+
+        $validator = Validator::make($request->all(), [
+            'collection_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->responseBadRequest('Thông tin không hợp lệ');
+        }
+
+        $collection_id = $request->get('collection_id');
+
+        $model->collections()->attach($collection_id);
+
+        return $this->response([
+            'message' => 'Thêm thành công',
+            'data' => $collection_id
+        ]);
+
+    }
 
 }

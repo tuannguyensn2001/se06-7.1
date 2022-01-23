@@ -8,10 +8,13 @@ function CommentInput({handlePostComment}) {
 
     const {user} = useSelector(state => state.auth);
 
-    const {handleSubmit, register} = useForm();
+    const {handleSubmit, register, reset} = useForm();
 
     const submit = (data) => {
         handlePostComment(data);
+        reset({
+            comment: ''
+        })
     };
 
     return (

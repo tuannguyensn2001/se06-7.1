@@ -19,17 +19,18 @@ function CommentList() {
     const [comments, setComments] = useState([]);
 
     const {data} = useQuery(
-        'comments',
-        async () => {
-            const response = await fetchModelComments(id);
-            return response.data.data;
-        },
-        {
-            onSuccess(data) {
-                setComments([...data]);
+            ['comments', id],
+            async () => {
+                const response = await fetchModelComments(id);
+                return response.data.data;
             },
-        }
-    );
+            {
+                onSuccess(data) {
+                    setComments([...data]);
+                },
+            }
+        )
+    ;
 
     const postComment = useMutation(
         'comment',
@@ -39,7 +40,7 @@ function CommentList() {
         },
         {
             onSuccess(data) {
-                setComments((prevState) => [data, ...prevState]);
+                // setComments((prevState) => [data, ...prevState]);
             },
             onError(error) {
                 console.log(error);
@@ -50,8 +51,10 @@ function CommentList() {
     useEffect(() => {
         const channel = pusher.subscribe(`view-detail-model-${id}`);
         channel.bind('comment-created', (data) => {
+
             setComments((prevState) => [data.comment, ...prevState]);
         });
+
 
     }, [id]);
 
@@ -71,7 +74,10 @@ function CommentList() {
             </div>
             <div>
                 {comments?.map((item) => (
-                    <CardComment content={item.content} key={item.id}/>
+                    <CardComment
+                        name={item?.user?.name}
+                        created_at={item.created_at} avatar={item?.user?.avatar} content={item.content}
+                        key={item.id}/>
                 ))}
             </div>
             <hr/>

@@ -42,15 +42,15 @@ function ProfileTabs() {
       {/*</div>*/}
       <Tabs>
         <TabList>
-          <Tab>Summary</Tab>
+          {/*<Tab>Summary</Tab>*/}
           <Tab>My Models</Tab>
           <Tab>Collections</Tab>
         </TabList>
 
         <TabPanels>
-          <TabPanel>
-            <Summary />
-          </TabPanel>
+          {/*<TabPanel>*/}
+          {/*  /!*<Summary />*!/*/}
+          {/*</TabPanel>*/}
           <TabPanel>
             <MyModels />
           </TabPanel>
