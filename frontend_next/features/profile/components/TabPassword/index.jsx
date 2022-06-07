@@ -50,7 +50,7 @@ function TabPassword() {
                         render={({field, fieldState: {error, invalid}}) => (
                             <FormControl isInvalid={invalid}>
                                 <FormLabel htmlFor={'old_password'}>Nhập mật khẩu hiện tại</FormLabel>
-                                <Input placeholder={'Nhập mật khẩu mới'} type={'password'} {...field}
+                                <Input placeholder={'Nhập mật khẩu hiện tại'} type={'password'} {...field}
                                        id={'old_password'}/>
                                 {invalid && <FormErrorMessage>{error?.message}</FormErrorMessage>}
                             </FormControl>
@@ -84,7 +84,7 @@ function TabPassword() {
                         render={({field, fieldState: {error, invalid}}) => (
                             <FormControl isInvalid={invalid}>
                                 <FormLabel htmlFor={'confirm_password'}>Xác nhận mật khẩu</FormLabel>
-                                <Input placeholder={'Xác nhận mật khẩu mới mật khẩu mới'} type={'password'} {...field}
+                                <Input placeholder={'Xác nhận mật khẩu mới'} type={'password'} {...field}
                                        id={'confirm_password'}/>
                                 {invalid && <FormErrorMessage>{error?.message}</FormErrorMessage>}
                             </FormControl>
